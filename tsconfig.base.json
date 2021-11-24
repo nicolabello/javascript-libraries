@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@nicolabello/js-acl": ["libs/js-acl/src/index.ts"]
+      "@nicolabello/js-acl": ["libs/js-acl/src/index.ts"],
+      "@nicolabello/ng-dynamic-router": ["libs/ng-dynamic-router/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

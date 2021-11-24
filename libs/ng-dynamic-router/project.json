@@ -1,0 +1,42 @@
+{
+  "projectType": "library",
+  "root": "libs/ng-dynamic-router",
+  "sourceRoot": "libs/ng-dynamic-router/src",
+  "prefix": "javacript-libraries",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/ng-dynamic-router"],
+      "options": {
+        "project": "libs/ng-dynamic-router/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/ng-dynamic-router/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/ng-dynamic-router/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/ng-dynamic-router"],
+      "options": {
+        "jestConfig": "libs/ng-dynamic-router/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ng-dynamic-router/src/**/*.ts",
+          "libs/ng-dynamic-router/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

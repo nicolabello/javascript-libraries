@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
-    "js-acl": "libs/js-acl"
+    "js-acl": "libs/js-acl",
+    "ng-dynamic-router": "libs/ng-dynamic-router"
   }
 }
