@@ -5,7 +5,7 @@ import {
   SuspenseData,
   SuspenseError,
   SuspenseLoading,
-} from '../types/suspense';
+} from '../models/suspense';
 
 @Injectable()
 export class SuspenseService implements OnDestroy {

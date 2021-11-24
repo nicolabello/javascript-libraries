@@ -12,7 +12,7 @@ import {
   SuspenseError,
   SuspenseInput,
   SuspenseLoading,
-} from '../types/suspense';
+} from '../models/suspense';
 import { SuspenseService } from '../services/suspense.service';
 
 @Component({

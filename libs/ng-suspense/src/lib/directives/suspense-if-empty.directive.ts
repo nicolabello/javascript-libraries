@@ -6,7 +6,7 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import { SuspenseIfContext, SuspenseInput } from '../types/suspense';
+import { SuspenseIfContext, SuspenseInput } from '../models/suspense';
 import { SuspenseIfDirective } from './suspense-if.directive';
 import { SuspenseService } from '../services/suspense.service';
 

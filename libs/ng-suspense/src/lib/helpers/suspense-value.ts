@@ -1,5 +1,5 @@
 import { isObservable, Observable, Subject, Subscription } from 'rxjs';
-import { SuspenseInput } from '../types/suspense';
+import { SuspenseInput } from '../models/suspense';
 
 function isPromise(value: any): value is Promise<any> {
   return typeof value?.then === 'function';

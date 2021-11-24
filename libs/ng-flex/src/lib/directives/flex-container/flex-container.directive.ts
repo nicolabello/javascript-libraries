@@ -12,7 +12,7 @@ import {
 } from '@nicolabello/ng-helpers';
 import { Observable } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
-import { Size } from '../../types/size';
+import { Size } from '../../models/size';
 import { FlexContainerService } from '../../services/flex-container.service';
 import { FlexPaneService } from '../../services/flex-pane.service';
 import { FlexRootService } from '../../services/flex-root.service';

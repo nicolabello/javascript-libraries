@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SuspenseService } from '../services/suspense.service';
-import { SuspenseIfContext } from '../types/suspense';
+import { SuspenseIfContext } from '../models/suspense';
 
 @Directive()
 export abstract class SuspenseIfDirective<T> implements OnInit, OnDestroy {
