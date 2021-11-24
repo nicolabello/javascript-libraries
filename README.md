@@ -49,6 +49,8 @@ Run `nx g @nrwl/node:library my-lib --publishable true --importPath @my-org/my-l
 
 Libraries are shareable across libraries and applications. They can be imported from `@javacript-libraries/mylib`.
 
+Publishable libraries' documentation can be found [here](https://nx.dev/l/a/structure/buildable-and-publishable-libraries).
+
 ## Development server
 
 Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.

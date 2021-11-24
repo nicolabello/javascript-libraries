@@ -1,4 +1,17 @@
 {
   "name": "@nicolabello/js-acl",
-  "version": "0.0.1"
+  "version": "2.0.0",
+  "description": "Provides a lightweight and flexible access control list (ACL) implementation for privileges management.",
+  "author": "Nicola Bello <nicola.bello.3@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicolabello/js-acl"
+  },
+  "keywords": [
+    "acl",
+    "permissions acl",
+    "access control list",
+    "privileges management"
+  ],
+  "license": "GPL-2.0-or-later"
 }

@@ -1,1 +1,1 @@
-export * from './lib/js-acl';
+export * from './lib/acl';
