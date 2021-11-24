@@ -32,3 +32,33 @@ jobs:
         continue-on-error: true
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+
+      - name: Test js-helpers
+        run: yarn test js-helpers
+      - name: Build js-helpers
+        run: yarn build js-helpers
+      - name: Publish js-helpers
+        run: cd dist/libs/js-helpers && npm publish --access public
+        continue-on-error: true
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+
+      - name: Test ng-dynamic-router
+        run: yarn test ng-dynamic-router
+      - name: Build ng-dynamic-router
+        run: yarn build ng-dynamic-router
+      - name: Publish ng-dynamic-router
+        run: cd dist/libs/ng-dynamic-router && npm publish --access public
+        continue-on-error: true
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+
+      - name: Test ng-helpers
+        run: yarn test ng-helpers
+      - name: Build ng-helpers
+        run: yarn build ng-helpers
+      - name: Publish ng-helpers
+        run: cd dist/libs/ng-helpers && npm publish --access public
+        continue-on-error: true
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
