@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Directive, Host, Input, Optional, SkipSelf} from '@angular/core';
+import { ChangeDetectorRef, Directive, Host, Input, Optional, SkipSelf } from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -6,7 +6,7 @@ import {
   FormControl,
   ValidationErrors,
   Validator,
-  ValidatorFn,
+  ValidatorFn
 } from '@angular/forms';
 
 /* In your child component add:
@@ -16,32 +16,28 @@ providers: [
 ]
 */
 
-const emptyFunction = () => {
-};
+const emptyFunction = () => {};
 
 @Directive()
 // tslint:disable-next-line: directive-class-suffix
 export class CommonValueAccessor<T> implements ControlValueAccessor, Validator {
-
+  @Input() public formControlName?: string;
   protected validators: ValidatorFn[] = [];
   protected onChange: (value: T) => void = emptyFunction;
   protected onTouch: () => void = emptyFunction;
   protected onValidatorChange: () => void = emptyFunction;
 
-  @Input() public formControlName?: string;
-
   constructor(
     protected cdr: ChangeDetectorRef,
     // @Optional() private formGroupDirective: FormGroupDirective,
     // @Optional() private formGroupNameDirective: FormGroupName,
-    @Host() @SkipSelf() @Optional() private controlContainer: ControlContainer) {
-  }
+    @Host() @SkipSelf() @Optional() private controlContainer: ControlContainer
+  ) {}
 
   // tslint:disable-next-line: no-input-rename
   @Input('formControl') private _formControl?: FormControl;
 
   public get formControl(): AbstractControl | null {
-
     // If instantiated with [formGroup] > formGroupName > formControlName
     // if (this.formGroupNameDirective && this.formControlName) {
     //   const control = this.formGroupNameDirective.control.get(this.formControlName);
@@ -63,7 +59,9 @@ export class CommonValueAccessor<T> implements ControlValueAccessor, Validator {
     if (this.controlContainer?.control && this.formControlName) {
       const control = this.controlContainer.control.get(this.formControlName);
       if (!control) {
-        throw new Error(`CommonValueAccessor: unable to get the control '${this.formControlName}' from the parent 'formGroup'`);
+        throw new Error(
+          `CommonValueAccessor: unable to get the control '${this.formControlName}' from the parent 'formGroup'`
+        );
       }
       return control;
     }
@@ -75,7 +73,6 @@ export class CommonValueAccessor<T> implements ControlValueAccessor, Validator {
 
     // If instantiated with [(ngModel)]
     return new FormControl(this.value, this.validators);
-
   }
 
   private _disabled = false;
@@ -129,16 +126,14 @@ export class CommonValueAccessor<T> implements ControlValueAccessor, Validator {
   }
 
   public validate(control: FormControl): ValidationErrors | null {
-
     let errors = {};
 
-    this.validators.forEach(validator => {
+    this.validators.forEach((validator) => {
       const result = validator(control);
-      errors = result ? {...errors, ...result} : errors;
+      errors = result ? { ...errors, ...result } : errors;
     });
 
     return Object.keys(errors).length ? errors : null;
-
   }
 
   public registerOnValidatorChange(onValidatorChange: () => void): void {
@@ -152,5 +147,4 @@ export class CommonValueAccessor<T> implements ControlValueAccessor, Validator {
   protected formatValueOutput(value: T): any {
     return value;
   }
-
 }

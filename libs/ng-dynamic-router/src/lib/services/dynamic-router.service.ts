@@ -1,13 +1,25 @@
-import {Injectable, OnDestroy} from '@angular/core';
-import {ActivatedRoute, ActivatedRouteSnapshot, NavigationExtras, Params} from '@angular/router';
-import {Base64, Typings} from '@nicolabello/js-helpers';
-import {BehaviorSubject, Observable, of} from 'rxjs';
-import {distinctUntilChanged, filter, map, pairwise, startWith, switchMap} from 'rxjs/operators';
-import {CanComponentDeactivate} from '../helpers/can-component-deactivate';
-import {HistoryRoute} from '../helpers/history-route';
-import {NavigationDirection} from '../models/navigation-direction';
-import {Subview, SubviewWithParams} from '../models/subview';
-import {HistoryRouterService} from './history-router.service';
+import { Injectable, OnDestroy } from '@angular/core';
+import {
+  ActivatedRoute,
+  ActivatedRouteSnapshot,
+  NavigationExtras,
+  Params,
+} from '@angular/router';
+import { Base64, Typings } from '@nicolabello/js-helpers';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import {
+  distinctUntilChanged,
+  filter,
+  map,
+  pairwise,
+  startWith,
+  switchMap,
+} from 'rxjs/operators';
+import { CanComponentDeactivate } from '../helpers/can-component-deactivate';
+import { HistoryRoute } from '../helpers/history-route';
+import { NavigationDirection } from '../models/navigation-direction';
+import { Subview, SubviewWithParams } from '../models/subview';
+import { HistoryRouterService } from './history-router.service';
 
 declare type GlobalParams = {
   [key: string]: string | null;
@@ -15,29 +27,26 @@ declare type GlobalParams = {
 
 @Injectable()
 export class DynamicRouterService implements OnDestroy {
-
-  private static activeComponents: { [level: number]: CanComponentDeactivate } = {};
+  private static activeComponents: { [level: number]: CanComponentDeactivate } =
+    {};
 
   // private readonly subviews: Subview[] = Object.keys(Subview).map(key => Subview[key]);
   public readonly animatingSubject = new BehaviorSubject<boolean>(false);
   public level = 0;
 
-  constructor(private historyRouterService: HistoryRouterService) {
-  }
+  constructor(private historyRouterService: HistoryRouterService) {}
 
   public get subviewLevel(): number {
     return this.level + 1;
   }
 
   public get animating(): Observable<boolean> {
-    return this.animatingSubject.asObservable().pipe(
-      distinctUntilChanged(),
-    );
+    return this.animatingSubject.asObservable().pipe(distinctUntilChanged());
   }
 
   public get route(): Observable<HistoryRoute> {
     return this.historyRouterService.route.pipe(
-      filter((route: HistoryRoute | null): route is HistoryRoute => !!route),
+      filter((route: HistoryRoute | null): route is HistoryRoute => !!route)
     );
   }
 
@@ -46,9 +55,7 @@ export class DynamicRouterService implements OnDestroy {
   }
 
   public get activatedRoute(): Observable<ActivatedRoute> {
-    return this.route.pipe(
-      map((route: HistoryRoute) => route.activatedRoute),
-    );
+    return this.route.pipe(map((route: HistoryRoute) => route.activatedRoute));
   }
 
   public get activatedRouteSnapshot(): ActivatedRouteSnapshot | null {
@@ -65,8 +72,8 @@ export class DynamicRouterService implements OnDestroy {
 
   public get backAllowed(): Observable<boolean> {
     return this.route.pipe(
-      map(route => route?.backAllowed || false),
-      startWith(false),
+      map((route) => route?.backAllowed || false),
+      startWith(false)
     );
   }
 
@@ -76,7 +83,7 @@ export class DynamicRouterService implements OnDestroy {
 
   public get globalParams(): Observable<GlobalParams> {
     return this.activatedRoute.pipe(
-      switchMap(activatedRoute => activatedRoute.params),
+      switchMap((activatedRoute) => activatedRoute.params)
     );
   }
 
@@ -102,7 +109,7 @@ export class DynamicRouterService implements OnDestroy {
 
   public get globalQueryParams(): Observable<GlobalParams> {
     return this.activatedRoute.pipe(
-      switchMap(activatedRoute => activatedRoute.queryParams),
+      switchMap((activatedRoute) => activatedRoute.queryParams)
     );
   }
 
@@ -117,17 +124,19 @@ export class DynamicRouterService implements OnDestroy {
   public get queryParams(): Observable<Params> {
     const paramsKey = this.getSubviewParamsKey(this.level);
     return this.activatedRoute.pipe(
-      switchMap(activatedRoute => activatedRoute.queryParams),
-      map(queryParams => queryParams[paramsKey] || null),
+      switchMap((activatedRoute) => activatedRoute.queryParams),
+      map((queryParams) => queryParams[paramsKey] || null),
       distinctUntilChanged(),
-      map(encodedParams => encodedParams && Base64.decode(encodedParams) || {}),
+      map(
+        (encodedParams) => (encodedParams && Base64.decode(encodedParams)) || {}
+      )
     );
   }
 
   public get queryParamsSnapshot(): Params {
     const paramsKey = this.getSubviewParamsKey(this.level);
     const encodedParams = this.activatedRouteSnapshot?.queryParams[paramsKey];
-    return encodedParams && Base64.decode(encodedParams) || {};
+    return (encodedParams && Base64.decode(encodedParams)) || {};
   }
 
   /*
@@ -138,9 +147,9 @@ export class DynamicRouterService implements OnDestroy {
     if (this.level) {
       const subviewKey = this.getSubviewKey(this.level);
       return this.activatedRoute.pipe(
-        switchMap(activatedRoute => activatedRoute.queryParams),
-        map(queryParams => queryParams[subviewKey] || null),
-        distinctUntilChanged(),
+        switchMap((activatedRoute) => activatedRoute.queryParams),
+        map((queryParams) => queryParams[subviewKey] || null),
+        distinctUntilChanged()
       );
     }
     return of(null);
@@ -154,14 +163,17 @@ export class DynamicRouterService implements OnDestroy {
     return null;
   }
 
-  public navigate(commands: any[], extras?: NavigationExtras): Promise<boolean> {
+  public navigate(
+    commands: any[],
+    extras?: NavigationExtras
+  ): Promise<boolean> {
     return this.historyRouterService.navigate(commands, extras);
   }
 
   public isActive(url: string): Observable<boolean> {
     return this.route.pipe(
-      map(route => route.url === url),
-      distinctUntilChanged(),
+      map((route) => route.url === url),
+      distinctUntilChanged()
     );
   }
 
@@ -173,15 +185,23 @@ export class DynamicRouterService implements OnDestroy {
    * Set global query params
    */
 
-  public setGlobalQueryParam(key: string, value: string | null = null, replace: boolean = true): Promise<boolean> {
+  public setGlobalQueryParam(
+    key: string,
+    value: string | null = null,
+    replace: boolean = true
+  ): Promise<boolean> {
     const previousValue = this.globalQueryParamsSnapshot[key];
     if (value !== (Typings.isDefined(previousValue) ? previousValue : null)) {
-      return this.setGlobalQueryParams({[key]: value}, replace, true);
+      return this.setGlobalQueryParams({ [key]: value }, replace, true);
     }
-    return new Promise<boolean>(resolve => resolve(true));
+    return new Promise<boolean>((resolve) => resolve(true));
   }
 
-  public setGlobalQueryParams(params: GlobalParams, replace: boolean = true, merge: boolean = false): Promise<boolean> {
+  public setGlobalQueryParams(
+    params: GlobalParams,
+    replace: boolean = true,
+    merge: boolean = false
+  ): Promise<boolean> {
     return this.navigate([this.url], {
       queryParams: params,
       replaceUrl: replace,
@@ -193,25 +213,37 @@ export class DynamicRouterService implements OnDestroy {
    * Set query params
    */
 
-  public setQueryParam(key: string, value: any = null, replace: boolean = true): Promise<boolean> {
+  public setQueryParam(
+    key: string,
+    value: any = null,
+    replace: boolean = true
+  ): Promise<boolean> {
     const previousValue = this.queryParamsSnapshot[key];
     if (value !== (Typings.isDefined(previousValue) ? previousValue : null)) {
-      return this.setQueryParams({[key]: value}, replace, true);
+      return this.setQueryParams({ [key]: value }, replace, true);
     }
-    return new Promise<boolean>(resolve => resolve(true));
+    return new Promise<boolean>((resolve) => resolve(true));
   }
 
-  public setQueryParams(params: Params, replace: boolean = true, merge: boolean = false): Promise<boolean> {
+  public setQueryParams(
+    params: Params,
+    replace: boolean = true,
+    merge: boolean = false
+  ): Promise<boolean> {
     const paramsKey = this.getSubviewParamsKey(this.level);
-    params = merge ? {...this.queryParamsSnapshot, ...(params || {})} : {...(params || {})};
+    params = merge
+      ? { ...this.queryParamsSnapshot, ...(params || {}) }
+      : { ...(params || {}) };
 
-    Object.keys(params).forEach(key => {
+    Object.keys(params).forEach((key) => {
       if (!Typings.isDefined(params[key]) || params[key] === null) {
         delete params[key];
       }
     });
 
-    params = {[paramsKey]: Object.keys(params).length ? Base64.encode(params) : null};
+    params = {
+      [paramsKey]: Object.keys(params).length ? Base64.encode(params) : null,
+    };
 
     return this.navigate([this.url], {
       queryParams: params,
@@ -224,8 +256,12 @@ export class DynamicRouterService implements OnDestroy {
    * Next level subview
    */
 
-  public showSubview(level: number, subview: Subview, params?: Params, replace?: boolean): Promise<boolean> {
-
+  public showSubview(
+    level: number,
+    subview: Subview,
+    params?: Params,
+    replace?: boolean
+  ): Promise<boolean> {
     level = level || this.subviewLevel;
 
     const subviewKey = this.getSubviewKey(level);
@@ -233,21 +269,23 @@ export class DynamicRouterService implements OnDestroy {
 
     const queryParams = this.activatedRouteSnapshot?.queryParams;
 
-    const activeSubview = queryParams && queryParams[subviewKey] || null;
-    const activeParams = queryParams && queryParams[paramsKey] || null;
+    const activeSubview = (queryParams && queryParams[subviewKey]) || null;
+    const activeParams = (queryParams && queryParams[paramsKey]) || null;
 
     const encodedParams = params ? Base64.encode(params) : null;
 
     if (subview !== activeSubview || encodedParams !== activeParams) {
       return this.navigate([this.url], {
-        queryParams: {[subviewKey]: subview, [paramsKey]: encodedParams},
-        replaceUrl: (replace === true || replace === false) ? replace : !subview || !!activeSubview,
+        queryParams: { [subviewKey]: subview, [paramsKey]: encodedParams },
+        replaceUrl:
+          replace === true || replace === false
+            ? replace
+            : !subview || !!activeSubview,
         queryParamsHandling: 'merge',
       });
     }
 
-    return new Promise<boolean>(resolve => resolve(true));
-
+    return new Promise<boolean>((resolve) => resolve(true));
   }
 
   public hideSubview(level?: number, subview?: Subview): void {
@@ -258,24 +296,26 @@ export class DynamicRouterService implements OnDestroy {
   }
 
   public subviewHidden(level?: number): Observable<Subview> {
-
     level = level || this.subviewLevel;
 
     const subviewKey = this.getSubviewKey(level);
 
     return this.activatedRoute.pipe(
-      switchMap(activatedRoute => activatedRoute.queryParams),
-      map(queryParams => queryParams[subviewKey] || null),
+      switchMap((activatedRoute) => activatedRoute.queryParams),
+      map((queryParams) => queryParams[subviewKey] || null),
       distinctUntilChanged(),
       pairwise(),
-      filter(([previousSubview, currentSubview]) => previousSubview && !currentSubview),
-      map(([previousSubview]) => previousSubview),
+      filter(
+        ([previousSubview, currentSubview]) =>
+          previousSubview && !currentSubview
+      ),
+      map(([previousSubview]) => previousSubview)
     );
-
   }
 
-  public getSubviewWithParamsSnapshot<T = Subview, U = Params>(level?: number): SubviewWithParams<T, U> {
-
+  public getSubviewWithParamsSnapshot<T = Subview, U = Params>(
+    level?: number
+  ): SubviewWithParams<T, U> {
     level = level || this.subviewLevel;
 
     const subviewKey = this.getSubviewKey(level);
@@ -288,20 +328,17 @@ export class DynamicRouterService implements OnDestroy {
 
     return {
       subview,
-      params: encodedParams ? Base64.decode(encodedParams) as U : null,
+      params: encodedParams ? (Base64.decode(encodedParams) as U) : null,
     };
-
   }
 
   public getSubviewSnapshot<T = Subview>(level?: number): T {
-
     level = level || this.subviewLevel;
 
     const subviewKey = this.getSubviewKey(level);
     const queryParams = this.activatedRouteSnapshot?.queryParams;
 
     return queryParams && queryParams[subviewKey];
-
   }
 
   /*
@@ -311,24 +348,29 @@ export class DynamicRouterService implements OnDestroy {
     DynamicRouterService.activeComponents[this.level] = component;
   }
 
-  public getDeactivatingComponent(currentRoute: ActivatedRouteSnapshot, nextRoute: ActivatedRouteSnapshot): CanComponentDeactivate | null {
-
+  public getDeactivatingComponent(
+    currentRoute: ActivatedRouteSnapshot,
+    nextRoute: ActivatedRouteSnapshot
+  ): CanComponentDeactivate | null {
     let deactivatingLevel: number | null = null;
 
     if (currentRoute.url.join() !== nextRoute.url.join()) {
       deactivatingLevel = 0;
     } else {
       const nextRouteKeys = Object.keys(nextRoute.queryParams);
-      const closedSubviews = Object.keys(currentRoute.queryParams).filter(
-        key => key.match(/s[1-9]+/)).filter(key => !nextRouteKeys.includes(key),
-      );
+      const closedSubviews = Object.keys(currentRoute.queryParams)
+        .filter((key) => key.match(/s[1-9]+/))
+        .filter((key) => !nextRouteKeys.includes(key));
       if (closedSubviews.length) {
-        deactivatingLevel = closedSubviews.map(key => parseInt(key.replace('s', ''), 10)).sort()[0];
+        deactivatingLevel = closedSubviews
+          .map((key) => parseInt(key.replace('s', ''), 10))
+          .sort()[0];
       }
     }
 
-    return deactivatingLevel !== null ? DynamicRouterService.activeComponents[deactivatingLevel] : null;
-
+    return deactivatingLevel !== null
+      ? DynamicRouterService.activeComponents[deactivatingLevel]
+      : null;
   }
 
   public ngOnDestroy(): void {
@@ -342,6 +384,4 @@ export class DynamicRouterService implements OnDestroy {
   private getSubviewParamsKey(level: number): string {
     return `q${level || ''}`;
   }
-
 }
-

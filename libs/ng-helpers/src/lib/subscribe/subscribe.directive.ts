@@ -1,5 +1,13 @@
-import {ChangeDetectorRef, Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
-import {Observable, Subscription} from 'rxjs';
+import {
+  ChangeDetectorRef,
+  Directive,
+  Input,
+  OnDestroy,
+  OnInit,
+  TemplateRef,
+  ViewContainerRef,
+} from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 
 class Context<T> {
   nbSubscribe?: T;
@@ -7,10 +15,9 @@ class Context<T> {
 
 // Use as <ng-container *nbSubscribe="interval$ as value;">{{ value }}</ng-container>
 @Directive({
-  selector: '[nbSubscribe]'
+  selector: '[nbSubscribe]',
 })
 export class SubscribeDirective<T> implements OnInit, OnDestroy {
-
   private observable?: Observable<any>;
   private context: Context<T> = new Context();
   private subscription?: Subscription;
@@ -19,22 +26,24 @@ export class SubscribeDirective<T> implements OnInit, OnDestroy {
     private viewContainer: ViewContainerRef,
     private cdr: ChangeDetectorRef,
     private templateRef: TemplateRef<Context<T>>
-  ) {
-  }
+  ) {}
 
   @Input()
   set nbSubscribe(observable: Observable<T>) {
     if (observable !== this.observable) {
       this.observable = observable;
       this.subscription?.unsubscribe();
-      this.subscription = this.observable.subscribe(value => {
+      this.subscription = this.observable.subscribe((value) => {
         this.context.nbSubscribe = value;
         this.cdr.markForCheck();
       });
     }
   }
 
-  public static ngTemplateContextGuard<T>(dir: SubscribeDirective<T>, ctx: unknown): ctx is Context<T> {
+  public static ngTemplateContextGuard<T>(
+    dir: SubscribeDirective<T>,
+    ctx: unknown
+  ): ctx is Context<T> {
     return true;
   }
 

@@ -6,7 +6,9 @@
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",
-      "outputs": ["dist/libs/ng-helpers"],
+      "outputs": [
+        "dist/libs/ng-helpers"
+      ],
       "options": {
         "project": "libs/ng-helpers/ng-package.json"
       },
@@ -22,7 +24,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/ng-helpers"],
+      "outputs": [
+        "coverage/libs/ng-helpers"
+      ],
       "options": {
         "jestConfig": "libs/ng-helpers/jest.config.js",
         "passWithNoTests": true

@@ -1,5 +1,4 @@
 export class Dom {
-
   public static get focusedElement(): Element | null {
     return window.document.activeElement;
   }
@@ -16,7 +15,6 @@ export class Dom {
   }
 
   public static getScrollingParent(element: Element | null): Element | null {
-
     if (!element) {
       return null;
     }
@@ -26,7 +24,5 @@ export class Dom {
     } else {
       return this.getScrollingParent(element.parentElement);
     }
-
   }
-
 }

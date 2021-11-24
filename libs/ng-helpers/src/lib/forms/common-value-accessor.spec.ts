@@ -1,5 +1,11 @@
-import {Component, ViewChild} from '@angular/core';
-import {ComponentFixture, fakeAsync, TestBed, tick, waitForAsync} from '@angular/core/testing';
+import { Component, ViewChild } from '@angular/core';
+import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+  waitForAsync,
+} from '@angular/core/testing';
 import {
   AbstractControl,
   FormControl,
@@ -10,19 +16,17 @@ import {
   ReactiveFormsModule,
   ValidatorFn,
 } from '@angular/forms';
-import {CommonValueAccessor} from './common-value-accessor';
+import { CommonValueAccessor } from './common-value-accessor';
 
 describe('InputComponent', () => {
-
   @Component({
-    template: ` `,
+    template: ``,
     providers: [
-      {provide: NG_VALUE_ACCESSOR, useExisting: InputComponent, multi: true},
-      {provide: NG_VALIDATORS, useExisting: InputComponent, multi: true},
+      { provide: NG_VALUE_ACCESSOR, useExisting: InputComponent, multi: true },
+      { provide: NG_VALIDATORS, useExisting: InputComponent, multi: true },
     ],
   })
-  class InputComponent extends CommonValueAccessor<string> {
-  }
+  class InputComponent extends CommonValueAccessor<string> {}
 
   let component: InputComponent;
   let fixture: ComponentFixture<InputComponent>;
@@ -32,7 +36,7 @@ describe('InputComponent', () => {
       TestBed.configureTestingModule({
         declarations: [InputComponent],
       }).compileComponents();
-    }),
+    })
   );
 
   beforeEach(() => {
@@ -44,45 +48,49 @@ describe('InputComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
 });
 
 describe('InputWrapperComponent', () => {
-
   @Component({
-    template: ` `,
+    template: ``,
     selector: `nb-input`,
     providers: [
-      {provide: NG_VALUE_ACCESSOR, useExisting: InputComponent, multi: true},
-      {provide: NG_VALIDATORS, useExisting: InputComponent, multi: true},
+      { provide: NG_VALUE_ACCESSOR, useExisting: InputComponent, multi: true },
+      { provide: NG_VALIDATORS, useExisting: InputComponent, multi: true },
     ],
   })
-  class InputComponent extends CommonValueAccessor<string> {
-  }
+  class InputComponent extends CommonValueAccessor<string> {}
 
   @Component({
     template: `
       <nb-input [(ngModel)]="value" #inputComponentByModel></nb-input>
 
-      <nb-input [formControl]="formControl" #inputComponentByFormControl></nb-input>
+      <nb-input
+        [formControl]="formControl"
+        #inputComponentByFormControl
+      ></nb-input>
 
       <form [formGroup]="formGroup">
-        <nb-input formControlName="formControl" #inputComponentByFormControlName></nb-input>
+        <nb-input
+          formControlName="formControl"
+          #inputComponentByFormControlName
+        ></nb-input>
       </form>
     `,
   })
   class InputWrapperComponent {
-
     public value = '';
     public formControl = new FormControl('');
     public formGroup = new FormGroup({
       formControl: new FormControl(''),
     });
 
-    @ViewChild('inputComponentByModel') public inputComponentByModel?: InputComponent;
-    @ViewChild('inputComponentByFormControl') public inputComponentByFormControl?: InputComponent;
-    @ViewChild('inputComponentByFormControlName') public inputComponentByFormControlName?: InputComponent;
-
+    @ViewChild('inputComponentByModel')
+    public inputComponentByModel?: InputComponent;
+    @ViewChild('inputComponentByFormControl')
+    public inputComponentByFormControl?: InputComponent;
+    @ViewChild('inputComponentByFormControlName')
+    public inputComponentByFormControlName?: InputComponent;
   }
 
   let component: InputWrapperComponent;
@@ -94,7 +102,7 @@ describe('InputWrapperComponent', () => {
         declarations: [InputComponent, InputWrapperComponent],
         imports: [FormsModule, ReactiveFormsModule],
       }).compileComponents();
-    }),
+    })
   );
 
   beforeEach(() => {
@@ -118,45 +126,49 @@ describe('InputWrapperComponent', () => {
   it('should instantiate inputComponentByFormControlName', () => {
     expect(component.inputComponentByFormControlName).toBeTruthy();
   });
-
 });
 
 describe('InputComponent value', () => {
-
   @Component({
-    template: ` `,
+    template: ``,
     selector: `nb-input`,
     providers: [
-      {provide: NG_VALUE_ACCESSOR, useExisting: InputComponent, multi: true},
-      {provide: NG_VALIDATORS, useExisting: InputComponent, multi: true},
+      { provide: NG_VALUE_ACCESSOR, useExisting: InputComponent, multi: true },
+      { provide: NG_VALIDATORS, useExisting: InputComponent, multi: true },
     ],
   })
-  class InputComponent extends CommonValueAccessor<string> {
-  }
+  class InputComponent extends CommonValueAccessor<string> {}
 
   @Component({
     template: `
       <nb-input [(ngModel)]="model" #inputComponentByModel></nb-input>
 
-      <nb-input [formControl]="formControl" #inputComponentByFormControl></nb-input>
+      <nb-input
+        [formControl]="formControl"
+        #inputComponentByFormControl
+      ></nb-input>
 
       <form [formGroup]="formGroup">
-        <nb-input formControlName="formControl" #inputComponentByFormControlName></nb-input>
+        <nb-input
+          formControlName="formControl"
+          #inputComponentByFormControlName
+        ></nb-input>
       </form>
     `,
   })
   class InputWrapperComponent {
-
     public model = '';
     public formControl = new FormControl('');
     public formGroup = new FormGroup({
       formControl: new FormControl(''),
     });
 
-    @ViewChild('inputComponentByModel') public inputComponentByModel?: InputComponent;
-    @ViewChild('inputComponentByFormControl') public inputComponentByFormControl?: InputComponent;
-    @ViewChild('inputComponentByFormControlName') public inputComponentByFormControlName?: InputComponent;
-
+    @ViewChild('inputComponentByModel')
+    public inputComponentByModel?: InputComponent;
+    @ViewChild('inputComponentByFormControl')
+    public inputComponentByFormControl?: InputComponent;
+    @ViewChild('inputComponentByFormControlName')
+    public inputComponentByFormControlName?: InputComponent;
   }
 
   let component: InputWrapperComponent;
@@ -168,7 +180,7 @@ describe('InputComponent value', () => {
         declarations: [InputComponent, InputWrapperComponent],
         imports: [FormsModule, ReactiveFormsModule],
       }).compileComponents();
-    }),
+    })
   );
 
   beforeEach(() => {
@@ -195,7 +207,7 @@ describe('InputComponent value', () => {
 
   it('should input value properly for inputComponentByFormControlName', () => {
     const value = 'test input';
-    component.formGroup.setValue({formControl: value});
+    component.formGroup.setValue({ formControl: value });
     fixture.detectChanges();
     expect(component.inputComponentByFormControlName?.value).toEqual(value);
   });
@@ -224,22 +236,20 @@ describe('InputComponent value', () => {
       component.inputComponentByFormControlName.value = value;
     }
     fixture.detectChanges();
-    expect(component.formGroup?.value).toEqual({formControl: value});
+    expect(component.formGroup?.value).toEqual({ formControl: value });
   });
-
 });
 
 describe('InputComponent formatters', () => {
-
   const formatValueInputSuffix = '_input';
   const formatValueOutputSuffix = '_output';
 
   @Component({
-    template: ` `,
+    template: ``,
     selector: `nb-input`,
     providers: [
-      {provide: NG_VALUE_ACCESSOR, useExisting: InputComponent, multi: true},
-      {provide: NG_VALIDATORS, useExisting: InputComponent, multi: true},
+      { provide: NG_VALUE_ACCESSOR, useExisting: InputComponent, multi: true },
+      { provide: NG_VALIDATORS, useExisting: InputComponent, multi: true },
     ],
   })
   class InputComponent extends CommonValueAccessor<string> {
@@ -256,25 +266,32 @@ describe('InputComponent formatters', () => {
     template: `
       <nb-input [(ngModel)]="model" #inputComponentByModel></nb-input>
 
-      <nb-input [formControl]="formControl" #inputComponentByFormControl></nb-input>
+      <nb-input
+        [formControl]="formControl"
+        #inputComponentByFormControl
+      ></nb-input>
 
       <form [formGroup]="formGroup">
-        <nb-input formControlName="formControl" #inputComponentByFormControlName></nb-input>
+        <nb-input
+          formControlName="formControl"
+          #inputComponentByFormControlName
+        ></nb-input>
       </form>
     `,
   })
   class InputWrapperComponent {
-
     public model = '';
     public formControl = new FormControl('');
     public formGroup = new FormGroup({
       formControl: new FormControl(''),
     });
 
-    @ViewChild('inputComponentByModel') public inputComponentByModel?: InputComponent;
-    @ViewChild('inputComponentByFormControl') public inputComponentByFormControl?: InputComponent;
-    @ViewChild('inputComponentByFormControlName') public inputComponentByFormControlName?: InputComponent;
-
+    @ViewChild('inputComponentByModel')
+    public inputComponentByModel?: InputComponent;
+    @ViewChild('inputComponentByFormControl')
+    public inputComponentByFormControl?: InputComponent;
+    @ViewChild('inputComponentByFormControlName')
+    public inputComponentByFormControlName?: InputComponent;
   }
 
   let component: InputWrapperComponent;
@@ -286,7 +303,7 @@ describe('InputComponent formatters', () => {
         declarations: [InputComponent, InputWrapperComponent],
         imports: [FormsModule, ReactiveFormsModule],
       }).compileComponents();
-    }),
+    })
   );
 
   beforeEach(() => {
@@ -301,21 +318,27 @@ describe('InputComponent formatters', () => {
     component.model = value;
     fixture.detectChanges();
     tick(50);
-    expect(component.inputComponentByModel?.value).toEqual(`${value}${formatValueInputSuffix}`);
+    expect(component.inputComponentByModel?.value).toEqual(
+      `${value}${formatValueInputSuffix}`
+    );
   }));
 
   it('should format input value properly for inputComponentByFormControl', () => {
     const value = 'test input';
     component.formControl.setValue(value);
     fixture.detectChanges();
-    expect(component.inputComponentByFormControl?.value).toEqual(`${value}${formatValueInputSuffix}`);
+    expect(component.inputComponentByFormControl?.value).toEqual(
+      `${value}${formatValueInputSuffix}`
+    );
   });
 
   it('should format input value properly for inputComponentByFormControlName', () => {
     const value = 'test input';
-    component.formGroup.setValue({formControl: value});
+    component.formGroup.setValue({ formControl: value });
     fixture.detectChanges();
-    expect(component.inputComponentByFormControlName?.value).toEqual(`${value}${formatValueInputSuffix}`);
+    expect(component.inputComponentByFormControlName?.value).toEqual(
+      `${value}${formatValueInputSuffix}`
+    );
   });
 
   it('should format output value properly for inputComponentByModel', () => {
@@ -333,7 +356,9 @@ describe('InputComponent formatters', () => {
       component.inputComponentByFormControl.value = value;
     }
     fixture.detectChanges();
-    expect(component.formControl?.value).toEqual(`${value}${formatValueOutputSuffix}`);
+    expect(component.formControl?.value).toEqual(
+      `${value}${formatValueOutputSuffix}`
+    );
   });
 
   it('should format output value properly for inputComponentByFormControlName ', () => {
@@ -342,28 +367,32 @@ describe('InputComponent formatters', () => {
       component.inputComponentByFormControlName.value = value;
     }
     fixture.detectChanges();
-    expect(component.formGroup?.value).toEqual({formControl: `${value}${formatValueOutputSuffix}`});
+    expect(component.formGroup?.value).toEqual({
+      formControl: `${value}${formatValueOutputSuffix}`,
+    });
   });
-
 });
 
 describe('InputComponent validators', () => {
-
   const formControlValidators: ValidatorFn[] = [
-    (formControl: AbstractControl) => ((formControl.value || '').match(/a/ig) ? null : {a: true}),
-    (formControl: AbstractControl) => ((formControl.value || '').match(/b/ig) ? null : {b: true}),
+    (formControl: AbstractControl) =>
+      (formControl.value || '').match(/a/gi) ? null : { a: true },
+    (formControl: AbstractControl) =>
+      (formControl.value || '').match(/b/gi) ? null : { b: true },
   ];
   const inputValidators = [
-    (formControl: AbstractControl) => ((formControl.value || '').match(/c/ig) ? null : {c: true}),
-    (formControl: AbstractControl) => ((formControl.value || '').match(/d/ig) ? null : {d: true}),
+    (formControl: AbstractControl) =>
+      (formControl.value || '').match(/c/gi) ? null : { c: true },
+    (formControl: AbstractControl) =>
+      (formControl.value || '').match(/d/gi) ? null : { d: true },
   ];
 
   @Component({
-    template: ` `,
+    template: ``,
     selector: `nb-input`,
     providers: [
-      {provide: NG_VALUE_ACCESSOR, useExisting: InputComponent, multi: true},
-      {provide: NG_VALIDATORS, useExisting: InputComponent, multi: true},
+      { provide: NG_VALUE_ACCESSOR, useExisting: InputComponent, multi: true },
+      { provide: NG_VALIDATORS, useExisting: InputComponent, multi: true },
     ],
   })
   class InputComponent extends CommonValueAccessor<string> {
@@ -374,25 +403,32 @@ describe('InputComponent validators', () => {
     template: `
       <nb-input [(ngModel)]="model" #inputComponentByModel></nb-input>
 
-      <nb-input [formControl]="formControl" #inputComponentByFormControl></nb-input>
+      <nb-input
+        [formControl]="formControl"
+        #inputComponentByFormControl
+      ></nb-input>
 
       <form [formGroup]="formGroup">
-        <nb-input formControlName="formControl" #inputComponentByFormControlName></nb-input>
+        <nb-input
+          formControlName="formControl"
+          #inputComponentByFormControlName
+        ></nb-input>
       </form>
     `,
   })
   class InputWrapperComponent {
-
     public model = '';
     public formControl = new FormControl('', formControlValidators);
     public formGroup = new FormGroup({
       formControl: new FormControl('', formControlValidators),
     });
 
-    @ViewChild('inputComponentByModel') public inputComponentByModel?: InputComponent;
-    @ViewChild('inputComponentByFormControl') public inputComponentByFormControl?: InputComponent;
-    @ViewChild('inputComponentByFormControlName') public inputComponentByFormControlName?: InputComponent;
-
+    @ViewChild('inputComponentByModel')
+    public inputComponentByModel?: InputComponent;
+    @ViewChild('inputComponentByFormControl')
+    public inputComponentByFormControl?: InputComponent;
+    @ViewChild('inputComponentByFormControlName')
+    public inputComponentByFormControlName?: InputComponent;
   }
 
   let component: InputWrapperComponent;
@@ -404,7 +440,7 @@ describe('InputComponent validators', () => {
         declarations: [InputComponent, InputWrapperComponent],
         imports: [FormsModule, ReactiveFormsModule],
       }).compileComponents();
-    }),
+    })
   );
 
   beforeEach(() => {
@@ -421,7 +457,7 @@ describe('InputComponent validators', () => {
     tick(50);
     expect(component.inputComponentByModel?.invalid).toBe(true);
     const errors = component.inputComponentByModel?.errors;
-    expect(errors).toEqual({d: true});
+    expect(errors).toEqual({ d: true });
   }));
 
   // Test failing with "Cannot read property 'assertPresent' of null" if run with npm test
@@ -441,7 +477,7 @@ describe('InputComponent validators', () => {
     fixture.detectChanges();
     expect(component.inputComponentByFormControl?.invalid).toBe(true);
     const errors = component.inputComponentByFormControl?.errors;
-    expect(errors).toEqual({b: true, d: true});
+    expect(errors).toEqual({ b: true, d: true });
   });
 
   it('should format input value properly for inputComponentByFormControl', () => {
@@ -455,16 +491,16 @@ describe('InputComponent validators', () => {
 
   it('should format input value properly for inputComponentByFormControlName', () => {
     const value = 'ac';
-    component.formGroup.setValue({formControl: value});
+    component.formGroup.setValue({ formControl: value });
     fixture.detectChanges();
     expect(component.inputComponentByFormControlName?.invalid).toBe(true);
     const errors = component.inputComponentByFormControlName?.errors;
-    expect(errors).toEqual({b: true, d: true});
+    expect(errors).toEqual({ b: true, d: true });
   });
 
   it('should format input value properly for inputComponentByFormControlName', () => {
     const value = 'abcd';
-    component.formGroup.setValue({formControl: value});
+    component.formGroup.setValue({ formControl: value });
     fixture.detectChanges();
     expect(component.inputComponentByFormControlName?.invalid).toBe(false);
     const errors = component.inputComponentByFormControlName?.errors;

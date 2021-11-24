@@ -1,5 +1,4 @@
 export class Typings {
-
   public static isDefined(value: any): boolean {
     return typeof value !== 'undefined';
   }
@@ -27,5 +26,4 @@ export class Typings {
   public static toString(value: any): string {
     return this.isDefined(value) && value !== null ? `${value}` : '';
   }
-
 }

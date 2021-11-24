@@ -1,4 +1,4 @@
-import {SubscribeDirective} from './subscribe.directive';
+import { SubscribeDirective } from './subscribe.directive';
 
 describe('SubscribeDirective', () => {
   it('should create an instance', () => {

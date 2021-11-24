@@ -1,26 +1,28 @@
-import {Observable, of} from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 export function fromIntersectionObserver(
   target: Element,
-  options?: IntersectionObserverInit,
+  options?: IntersectionObserverInit
 ): Observable<Partial<IntersectionObserverEntry>> {
-
   if (window && 'IntersectionObserver' in window) {
-
-    return new Observable<IntersectionObserverEntry>(observer => {
-
-      const intersectionObserver = new IntersectionObserver(entries => entries.forEach(entry => observer.next(entry)), options);
+    return new Observable<IntersectionObserverEntry>((observer) => {
+      const intersectionObserver = new IntersectionObserver(
+        (entries) => entries.forEach((entry) => observer.next(entry)),
+        options
+      );
       intersectionObserver.observe(target);
 
       // Cleanup
       return () => intersectionObserver.disconnect();
-
     });
-
   } else {
-
     const targetRect = target.getBoundingClientRect();
-    const rootRect = new DOMRectReadOnly(0, 0, window.innerWidth, window.innerHeight);
+    const rootRect = new DOMRectReadOnly(
+      0,
+      0,
+      window.innerWidth,
+      window.innerHeight
+    );
 
     return of({
       boundingClientRect: targetRect,
@@ -31,7 +33,5 @@ export function fromIntersectionObserver(
       target,
       time: 0,
     });
-
   }
-
 }

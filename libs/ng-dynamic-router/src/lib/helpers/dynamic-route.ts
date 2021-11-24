@@ -1,6 +1,6 @@
-import {Route} from '@angular/router';
-import {DynamicRouterComponent} from '../components/dynamic-router/dynamic-router.component';
-import {CanDeactivateGuard} from '../services/guards/can-deactivate.guard';
+import { Route } from '@angular/router';
+import { DynamicRouterComponent } from '../components/dynamic-router/dynamic-router.component';
+import { CanDeactivateGuard } from '../services/guards/can-deactivate.guard';
 
 export function dynamicRoute(route: Route): Route {
   return {
@@ -12,7 +12,11 @@ export function dynamicRoute(route: Route): Route {
     component: DynamicRouterComponent,
     canDeactivate: [
       CanDeactivateGuard,
-      ...(route.canDeactivate ? (Array.isArray(route.canDeactivate) ? route.canDeactivate : [route.canDeactivate]) : []),
+      ...(route.canDeactivate
+        ? Array.isArray(route.canDeactivate)
+          ? route.canDeactivate
+          : [route.canDeactivate]
+        : []),
     ],
     runGuardsAndResolvers: 'paramsOrQueryParamsChange',
   };

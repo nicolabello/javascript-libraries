@@ -1,5 +1,5 @@
-import {NavigationDirection} from './navigation-direction';
-import {ParentRoute} from './parent-route';
+import { NavigationDirection } from './navigation-direction';
+import { ParentRoute } from './parent-route';
 
 export interface HistoryState {
   url: string;
@@ -8,5 +8,3 @@ export interface HistoryState {
   direction?: NavigationDirection | null;
   replaced: boolean;
 }
-
-

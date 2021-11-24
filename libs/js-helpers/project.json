@@ -5,14 +5,20 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["libs/js-helpers/**/*.ts"]
+        "lintFilePatterns": [
+          "libs/js-helpers/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/js-helpers"],
+      "outputs": [
+        "coverage/libs/js-helpers"
+      ],
       "options": {
         "jestConfig": "libs/js-helpers/jest.config.js",
         "passWithNoTests": true
@@ -20,13 +26,17 @@
     },
     "build": {
       "executor": "@nrwl/node:package",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/libs/js-helpers",
         "tsConfig": "libs/js-helpers/tsconfig.lib.json",
         "packageJson": "libs/js-helpers/package.json",
         "main": "libs/js-helpers/src/index.ts",
-        "assets": ["libs/js-helpers/*.md"]
+        "assets": [
+          "libs/js-helpers/*.md"
+        ]
       }
     }
   },

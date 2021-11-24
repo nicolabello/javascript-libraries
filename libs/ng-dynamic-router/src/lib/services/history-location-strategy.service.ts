@@ -1,9 +1,13 @@
-import {LocationChangeEvent, PathLocationStrategy, PlatformLocation} from '@angular/common';
-import {Injectable} from '@angular/core';
-import {Params} from '@angular/router';
-import {HistoryState} from '../models/history-state';
-import {NavigationDirection} from '../models/navigation-direction';
-import {ParentRoute} from '../models/parent-route';
+import {
+  LocationChangeEvent,
+  PathLocationStrategy,
+  PlatformLocation,
+} from '@angular/common';
+import { Injectable } from '@angular/core';
+import { Params } from '@angular/router';
+import { HistoryState } from '../models/history-state';
+import { NavigationDirection } from '../models/navigation-direction';
+import { ParentRoute } from '../models/parent-route';
 
 export interface StateData extends Params {
   parents?: ParentRoute[];
@@ -19,7 +23,6 @@ Possible calls:
 
 @Injectable()
 export class HistoryLocationStrategy extends PathLocationStrategy {
-
   private state: HistoryState | null = null;
 
   constructor(platformLocation: PlatformLocation) {
@@ -28,11 +31,15 @@ export class HistoryLocationStrategy extends PathLocationStrategy {
   }
 
   public getState(): HistoryState | null {
-    return this.state ? {...this.state} : null;
+    return this.state ? { ...this.state } : null;
   }
 
-  public pushState(state: StateData, title: string, url: string, queryParams: string): void {
-
+  public pushState(
+    state: StateData,
+    title: string,
+    url: string,
+    queryParams: string
+  ): void {
     // console.group('pushState');
     // console.log(state, title, url, queryParams);
 
@@ -41,16 +48,18 @@ export class HistoryLocationStrategy extends PathLocationStrategy {
 
     // console.log('Pushed', {...state});
     // console.groupEnd();
-
   }
 
-  public replaceState(state: StateData, title: string, url: string, queryParams: string): void {
-
+  public replaceState(
+    state: StateData,
+    title: string,
+    url: string,
+    queryParams: string
+  ): void {
     // console.group('replaceState');
     // console.log(state, title, url, queryParams);
 
     if (this.state) {
-
       // If url === this.state.url the replaceState has been called straight after a popState
       if (url !== this.state.url) {
         this.state.url = url;
@@ -59,19 +68,15 @@ export class HistoryLocationStrategy extends PathLocationStrategy {
       }
 
       // console.log('Replaced current', {...this.state});
-
     } else {
-
       this.state = this.getHistoryState(state, url);
 
       // console.log('Replaced with new', {...this.state});
-
     }
 
     super.replaceState(this.state, title, url, queryParams);
 
     // console.groupEnd();
-
   }
 
   private getHistoryState(state: StateData, url: string): HistoryState {
@@ -85,7 +90,6 @@ export class HistoryLocationStrategy extends PathLocationStrategy {
   }
 
   private getNewDirection(state: HistoryState): NavigationDirection | null {
-
     const stateTimestamp = this.state?.timestamp || 0;
 
     if (state.timestamp < stateTimestamp) {
@@ -94,33 +98,26 @@ export class HistoryLocationStrategy extends PathLocationStrategy {
 
     if (state.timestamp > stateTimestamp) {
       return NavigationDirection.Forward;
-
     }
 
     // This should never happen
     return null;
-
   }
 
   private popState(event: LocationChangeEvent): void {
-
     // console.group('popState');
     // console.log(event.state);
 
     // First state when app loads is undefined
     if (event.state) {
-
       this.state = {
         ...event.state,
         direction: this.getNewDirection(event.state),
         replaced: false,
       };
-
     }
 
     // console.log('Popped', {...this.state});
     // console.groupEnd();
-
   }
-
 }
