@@ -72,3 +72,13 @@ jobs:
         continue-on-error: true
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+
+      - name: Test ng-flex
+        run: yarn test ng-flex
+      - name: Build ng-flex
+        run: yarn build ng-flex
+      - name: Publish ng-flex
+        run: cd dist/libs/ng-flex && npm publish --access public
+        continue-on-error: true
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}

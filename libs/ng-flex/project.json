@@ -1,0 +1,46 @@
+{
+  "projectType": "library",
+  "root": "libs/ng-flex",
+  "sourceRoot": "libs/ng-flex/src",
+  "prefix": "nb",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": [
+        "dist/libs/ng-flex"
+      ],
+      "options": {
+        "project": "libs/ng-flex/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/ng-flex/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/ng-flex/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/ng-flex"
+      ],
+      "options": {
+        "jestConfig": "libs/ng-flex/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ng-flex/src/**/*.ts",
+          "libs/ng-flex/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

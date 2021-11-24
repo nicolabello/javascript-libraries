@@ -18,6 +18,7 @@
       "@nicolabello/js-acl": ["libs/js-acl/src/index.ts"],
       "@nicolabello/js-helpers": ["libs/js-helpers/src/index.ts"],
       "@nicolabello/ng-dynamic-router": ["libs/ng-dynamic-router/src/index.ts"],
+      "@nicolabello/ng-flex": ["libs/ng-flex/src/index.ts"],
       "@nicolabello/ng-helpers": ["libs/ng-helpers/src/index.ts"],
       "@nicolabello/ng-suspense": ["libs/ng-suspense/src/index.ts"]
     }
