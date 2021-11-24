@@ -17,17 +17,17 @@ These capabilities include generating applications, libraries, etc as well as th
 Below are our core plugins:
 
 - [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
+  - `yarn add --dev @nrwl/react`
 - Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
+  - `yarn add --dev @nrwl/web`
 - [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
+  - `yarn add --dev @nrwl/angular`
 - [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
+  - `yarn add --dev @nrwl/nest`
 - [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
+  - `yarn add --dev @nrwl/express`
 - [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
+  - `yarn add --dev @nrwl/node`
 
 There are also many [community plugins](https://nx.dev/community) you could add.
 
@@ -42,6 +42,8 @@ When using Nx, you can create multiple applications and libraries in the same wo
 ## Generate a library
 
 Run `nx g @nrwl/react:lib my-lib` to generate a library.
+
+Run `nx g @nrwl/node:library my-lib --publishable true --importPath @my-org/my-lib --dry-run` to generate a publishable node library.
 
 > You can also use any of the plugins above to generate libraries as well.
 

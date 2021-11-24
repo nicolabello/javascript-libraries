@@ -1,0 +1,34 @@
+{
+  "root": "libs/js-acl",
+  "sourceRoot": "libs/js-acl/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/js-acl/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/js-acl"],
+      "options": {
+        "jestConfig": "libs/js-acl/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/node:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/js-acl",
+        "tsConfig": "libs/js-acl/tsconfig.lib.json",
+        "packageJson": "libs/js-acl/package.json",
+        "main": "libs/js-acl/src/index.ts",
+        "assets": ["libs/js-acl/*.md"]
+      }
+    }
+  },
+  "tags": []
+}
