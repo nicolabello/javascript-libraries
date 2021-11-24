@@ -1,0 +1,42 @@
+{
+  "projectType": "library",
+  "root": "libs/ng-helpers",
+  "sourceRoot": "libs/ng-helpers/src",
+  "prefix": "javacript-libraries",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/ng-helpers"],
+      "options": {
+        "project": "libs/ng-helpers/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/ng-helpers/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/ng-helpers/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/ng-helpers"],
+      "options": {
+        "jestConfig": "libs/ng-helpers/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ng-helpers/src/**/*.ts",
+          "libs/ng-helpers/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
