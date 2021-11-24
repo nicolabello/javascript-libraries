@@ -4,6 +4,7 @@
     "js-acl": "libs/js-acl",
     "js-helpers": "libs/js-helpers",
     "ng-dynamic-router": "libs/ng-dynamic-router",
-    "ng-helpers": "libs/ng-helpers"
+    "ng-helpers": "libs/ng-helpers",
+    "ng-suspense": "libs/ng-suspense"
   }
 }

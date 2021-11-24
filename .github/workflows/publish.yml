@@ -62,3 +62,13 @@ jobs:
         continue-on-error: true
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+
+      - name: Test ng-suspense
+        run: yarn test ng-suspense
+      - name: Build ng-suspense
+        run: yarn build ng-suspense
+      - name: Publish ng-suspense
+        run: cd dist/libs/ng-suspense && npm publish --access public
+        continue-on-error: true
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}

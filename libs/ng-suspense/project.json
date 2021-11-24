@@ -1,0 +1,42 @@
+{
+  "projectType": "library",
+  "root": "libs/ng-suspense",
+  "sourceRoot": "libs/ng-suspense/src",
+  "prefix": "nb",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/ng-suspense"],
+      "options": {
+        "project": "libs/ng-suspense/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/ng-suspense/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/ng-suspense/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/ng-suspense"],
+      "options": {
+        "jestConfig": "libs/ng-suspense/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ng-suspense/src/**/*.ts",
+          "libs/ng-suspense/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
