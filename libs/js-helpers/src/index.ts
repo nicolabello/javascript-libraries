@@ -1,1 +1,3 @@
-export * from './lib/js-helpers';
+export * from './lib/base64';
+export * from './lib/regexp';
+export * from './lib/typings';

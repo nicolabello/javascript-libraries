@@ -1,6 +1,6 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {ActivatedRoute, ActivatedRouteSnapshot, NavigationExtras, Params} from '@angular/router';
-import {Base64, Typings} from '@nicolabello/ng-helpers';
+import {Base64, Typings} from '@nicolabello/js-helpers';
 import {BehaviorSubject, Observable, of} from 'rxjs';
 import {distinctUntilChanged, filter, map, pairwise, startWith, switchMap} from 'rxjs/operators';
 import {CanComponentDeactivate} from '../helpers/can-component-deactivate';

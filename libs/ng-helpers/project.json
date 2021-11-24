@@ -2,7 +2,7 @@
   "projectType": "library",
   "root": "libs/ng-helpers",
   "sourceRoot": "libs/ng-helpers/src",
-  "prefix": "javacript-libraries",
+  "prefix": "nb",
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",
