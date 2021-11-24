@@ -1,7 +1,7 @@
-import {Component, ViewChild} from '@angular/core';
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {SuspenseComponent} from '../components/suspense.component';
-import {SuspenseIfErrorDirective} from './suspense-if-error.directive';
+import { Component, ViewChild } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { SuspenseComponent } from '../components/suspense.component';
+import { SuspenseIfErrorDirective } from './suspense-if-error.directive';
 
 const testCases = [
   {
@@ -57,7 +57,9 @@ const testCases = [
 @Component({
   template: `
     <nb-suspense [data]="data" [loading]="loading" [error]="error">
-      <ng-container *nbSuspenseIfError="let error">Error: {{ error }}</ng-container>
+      <ng-container *nbSuspenseIfError="let error"
+        >Error: {{ error }}</ng-container
+      >
     </nb-suspense>
   `,
 })
@@ -66,11 +68,11 @@ class TestComponent {
   public loading: any;
   public error: any;
 
-  @ViewChild(SuspenseIfErrorDirective) public suspenseIfDirective?: SuspenseIfErrorDirective<any>;
+  @ViewChild(SuspenseIfErrorDirective)
+  public suspenseIfDirective?: SuspenseIfErrorDirective<any>;
 }
 
 describe('SuspenseIfErrorDirective', () => {
-
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
   let directive: SuspenseIfErrorDirective<any> | undefined;
@@ -78,9 +80,13 @@ describe('SuspenseIfErrorDirective', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [TestComponent, SuspenseComponent, SuspenseIfErrorDirective],
+        declarations: [
+          TestComponent,
+          SuspenseComponent,
+          SuspenseIfErrorDirective,
+        ],
       }).compileComponents();
-    }),
+    })
   );
 
   beforeEach(() => {
@@ -106,8 +112,9 @@ describe('SuspenseIfErrorDirective', () => {
       fixture.whenStable();
 
       expect(directive?.value).toBe(testCase.error);
-      testCase.visible ? expect(directive?.isVisible).toBeTruthy() : expect(directive?.isVisible).toBeFalsy();
+      testCase.visible
+        ? expect(directive?.isVisible).toBeTruthy()
+        : expect(directive?.isVisible).toBeFalsy();
     }
   });
-
 });

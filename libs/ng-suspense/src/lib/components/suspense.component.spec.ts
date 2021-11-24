@@ -1,18 +1,18 @@
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import {SuspenseComponent} from './suspense.component';
+import { SuspenseComponent } from './suspense.component';
 
 describe('SuspenseComponent', () => {
-
   let component: SuspenseComponent;
   let fixture: ComponentFixture<SuspenseComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [SuspenseComponent],
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [SuspenseComponent],
+      }).compileComponents();
     })
-      .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SuspenseComponent);
@@ -23,5 +23,4 @@ describe('SuspenseComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
 });

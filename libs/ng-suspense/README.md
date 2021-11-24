@@ -1,4 +1,5 @@
 # NG Suspense
+
 Suspense for Angular
 
 ## Usage

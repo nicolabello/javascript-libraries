@@ -1,7 +1,7 @@
-import {Component, ViewChild} from '@angular/core';
-import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
-import {SuspenseComponent} from '../components/suspense.component';
-import {SuspenseIfDataDirective} from './suspense-if-data.directive';
+import { Component, ViewChild } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { SuspenseComponent } from '../components/suspense.component';
+import { SuspenseIfDataDirective } from './suspense-if-data.directive';
 
 const testCases = [
   {
@@ -66,11 +66,11 @@ class TestComponent {
   public loading: any;
   public error: any;
 
-  @ViewChild(SuspenseIfDataDirective) public suspenseIfDirective?: SuspenseIfDataDirective<any>;
+  @ViewChild(SuspenseIfDataDirective)
+  public suspenseIfDirective?: SuspenseIfDataDirective<any>;
 }
 
 describe('SuspenseIfDataDirective', () => {
-
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
   let directive: SuspenseIfDataDirective<any> | undefined;
@@ -78,9 +78,13 @@ describe('SuspenseIfDataDirective', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [TestComponent, SuspenseComponent, SuspenseIfDataDirective],
+        declarations: [
+          TestComponent,
+          SuspenseComponent,
+          SuspenseIfDataDirective,
+        ],
       }).compileComponents();
-    }),
+    })
   );
 
   beforeEach(() => {
@@ -106,8 +110,9 @@ describe('SuspenseIfDataDirective', () => {
       fixture.whenStable();
 
       expect(directive?.value).toBe(testCase.data);
-      testCase.visible ? expect(directive?.isVisible).toBeTruthy() : expect(directive?.isVisible).toBeFalsy();
+      testCase.visible
+        ? expect(directive?.isVisible).toBeTruthy()
+        : expect(directive?.isVisible).toBeFalsy();
     }
   });
-
 });

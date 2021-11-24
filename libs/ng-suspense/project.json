@@ -6,7 +6,9 @@
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",
-      "outputs": ["dist/libs/ng-suspense"],
+      "outputs": [
+        "dist/libs/ng-suspense"
+      ],
       "options": {
         "project": "libs/ng-suspense/ng-package.json"
       },
@@ -22,7 +24,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/ng-suspense"],
+      "outputs": [
+        "coverage/libs/ng-suspense"
+      ],
       "options": {
         "jestConfig": "libs/ng-suspense/jest.config.js",
         "passWithNoTests": true

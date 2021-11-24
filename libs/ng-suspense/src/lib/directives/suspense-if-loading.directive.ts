@@ -1,13 +1,22 @@
-import {Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef} from '@angular/core';
-import {SuspenseIfContext, SuspenseInput} from '../types/suspense';
-import {SuspenseIfDirective} from './suspense-if.directive';
-import {SuspenseService} from '../services/suspense.service';
+import {
+  Directive,
+  Input,
+  OnDestroy,
+  OnInit,
+  TemplateRef,
+  ViewContainerRef,
+} from '@angular/core';
+import { SuspenseIfContext, SuspenseInput } from '../types/suspense';
+import { SuspenseIfDirective } from './suspense-if.directive';
+import { SuspenseService } from '../services/suspense.service';
 
 @Directive({
   selector: '[nbSuspenseIfLoading]',
 })
-export class SuspenseIfLoadingDirective<T> extends SuspenseIfDirective<T> implements OnInit, OnDestroy {
-
+export class SuspenseIfLoadingDirective<T>
+  extends SuspenseIfDirective<T>
+  implements OnInit, OnDestroy
+{
   @Input() public nbSuspenseIfLoadingOfType?: SuspenseInput<T>;
 
   constructor(
@@ -26,8 +35,10 @@ export class SuspenseIfLoadingDirective<T> extends SuspenseIfDirective<T> implem
     return this.suspenseService.loading.value;
   }
 
-  public static ngTemplateContextGuard<T>(dir: SuspenseIfLoadingDirective<T>, ctx: unknown): ctx is SuspenseIfContext<T> {
+  public static ngTemplateContextGuard<T>(
+    dir: SuspenseIfLoadingDirective<T>,
+    ctx: unknown
+  ): ctx is SuspenseIfContext<T> {
     return true;
   }
-
 }
