@@ -1,0 +1,16 @@
+:host {
+
+  // The following is necessary to display the internal animations
+  overflow: hidden;
+
+  // The following are necessary to display properly the pane-dialog
+  position: relative;
+  display: block;
+
+  .router-outlet {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    display: none;
+  }
+}

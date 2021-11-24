@@ -2,7 +2,7 @@
   "projectType": "library",
   "root": "libs/ng-dynamic-router",
   "sourceRoot": "libs/ng-dynamic-router/src",
-  "prefix": "javacript-libraries",
+  "prefix": "nb",
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",

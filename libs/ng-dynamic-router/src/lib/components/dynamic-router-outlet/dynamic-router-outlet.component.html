@@ -1,0 +1,7 @@
+<div (@slide.done)="onAnimationDone()" [@slide]="animationDirection">
+  <ng-template #outlet></ng-template>
+</div>
+
+<div class="router-outlet">
+  <router-outlet></router-outlet>
+</div>
