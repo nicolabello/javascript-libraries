@@ -20,6 +20,9 @@
       "@nicolabello/ng-dynamic-router": ["libs/ng-dynamic-router/src/index.ts"],
       "@nicolabello/ng-flex": ["libs/ng-flex/src/index.ts"],
       "@nicolabello/ng-helpers": ["libs/ng-helpers/src/index.ts"],
+      "@nicolabello/ng-material-components-web": [
+        "libs/ng-material-components-web/src/index.ts"
+      ],
       "@nicolabello/ng-suspense": ["libs/ng-suspense/src/index.ts"]
     }
   },

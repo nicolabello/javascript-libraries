@@ -82,3 +82,13 @@ jobs:
         continue-on-error: true
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+
+      - name: Test ng-material-components-web
+        run: yarn test ng-material-components-web
+      - name: Build ng-material-components-web
+        run: yarn build ng-material-components-web
+      - name: Publish ng-material-components-web
+        run: cd dist/libs/ng-material-components-web && npm publish --access public
+        continue-on-error: true
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}

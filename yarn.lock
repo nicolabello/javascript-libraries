@@ -1521,6 +1521,13 @@
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-13.0.3.tgz#ec31dfa49dae79aeee68cc970fea6f5fd9ebc76d"
   integrity sha512-sVi1Xk8pyy6Y6JODySucYfvuxb5k3IIX/oIWy8QxlFVzpeB2UMqEOevrgvtmiEbQNB1W+aYSTph6oeV+PRX5YA==
 
+"@nicolabello/material-components-web@^13.0.11":
+  version "13.0.11"
+  resolved "https://registry.yarnpkg.com/@nicolabello/material-components-web/-/material-components-web-13.0.11.tgz#c8d369d0fbfaada51152e24a6586b9edf37721ef"
+  integrity sha512-wvIEH7AIQkDWuhL1lLamvCsVz9ZikFQ6Ji3HNNOzFip9IBprZV1KUuMyCxmskO5IHsyPUmmxq3ur6E4PgFj7SA==
+  dependencies:
+    "@types/resize-observer-browser" "^0.1.3"
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
@@ -1954,6 +1961,11 @@
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.4.2.tgz#4c62fae93eb479660c3bd93f9d24d561597a8281"
   integrity sha512-ekoj4qOQYp7CvjX8ZDBgN86w3MqQhLE1hczEJbEIjgFEumDy+na/4AJAbLXfgEWFNB2pKadM5rPFtuSGMWK7xA==
+
+"@types/resize-observer-browser@^0.1.3":
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/@types/resize-observer-browser/-/resize-observer-browser-0.1.6.tgz#d8e6c2f830e2650dc06fe74464472ff64b54a302"
+  integrity sha512-61IfTac0s9jvNtBCpyo86QeaN8qqpMGHdK0uGKCCIy2dt5/Yk84VduHIdWAcmkC5QvdkPL0p5eWYgUZtHKKUVg==
 
 "@types/resolve@1.17.1":
   version "1.17.1"

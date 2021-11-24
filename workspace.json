@@ -6,6 +6,7 @@
     "ng-dynamic-router": "libs/ng-dynamic-router",
     "ng-flex": "libs/ng-flex",
     "ng-helpers": "libs/ng-helpers",
+    "ng-material-components-web": "libs/ng-material-components-web",
     "ng-suspense": "libs/ng-suspense"
   }
 }
