@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "express-http-error": "libs/express-http-error",
     "js-acl": "libs/js-acl",
     "js-helpers": "libs/js-helpers",
     "ng-dynamic-router": "libs/ng-dynamic-router",

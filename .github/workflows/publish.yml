@@ -92,3 +92,13 @@ jobs:
         continue-on-error: true
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+
+      - name: Test express-http-error
+        run: yarn test express-http-error
+      - name: Build express-http-error
+        run: yarn build express-http-error
+      - name: Publish express-http-error
+        run: cd dist/libs/express-http-error && npm publish --access public
+        continue-on-error: true
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}

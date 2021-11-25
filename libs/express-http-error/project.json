@@ -1,0 +1,34 @@
+{
+  "root": "libs/express-http-error",
+  "sourceRoot": "libs/express-http-error/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/express-http-error/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/express-http-error"],
+      "options": {
+        "jestConfig": "libs/express-http-error/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/node:package",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/express-http-error",
+        "tsConfig": "libs/express-http-error/tsconfig.lib.json",
+        "packageJson": "libs/express-http-error/package.json",
+        "main": "libs/express-http-error/src/index.ts",
+        "assets": ["libs/express-http-error/*.md"]
+      }
+    }
+  },
+  "tags": []
+}
