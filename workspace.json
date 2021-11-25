@@ -3,6 +3,7 @@
   "projects": {
     "express-helpers": "libs/express-helpers",
     "express-http-error": "libs/express-http-error",
+    "express-mysql": "libs/express-mysql",
     "express-params": "libs/express-params",
     "js-acl": "libs/js-acl",
     "js-helpers": "libs/js-helpers",

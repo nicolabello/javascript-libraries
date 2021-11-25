@@ -1,0 +1,13 @@
+{
+  "name": "@nicolabello/express-mysql",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Nicola Bello <nicola.bello.3@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicolabello/javascript-libraries",
+    "directory": "libs/express-mysql"
+  },
+  "keywords": [],
+  "license": "GPL-2.0-or-later"
+}

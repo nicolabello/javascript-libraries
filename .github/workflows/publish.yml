@@ -122,3 +122,13 @@ jobs:
         continue-on-error: true
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+
+      - name: Test express-mysql
+        run: yarn test express-mysql
+      - name: Build express-mysql
+        run: yarn build express-mysql
+      - name: Publish express-mysql
+        run: cd dist/libs/express-mysql && npm publish --access public
+        continue-on-error: true
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
