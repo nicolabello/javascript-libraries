@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@nicolabello/express-helpers": ["libs/express-helpers/src/index.ts"],
       "@nicolabello/express-http-error": [
         "libs/express-http-error/src/index.ts"
       ],

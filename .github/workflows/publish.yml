@@ -112,3 +112,13 @@ jobs:
         continue-on-error: true
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+
+      - name: Test express-helpers
+        run: yarn test express-helpers
+      - name: Build express-helpers
+        run: yarn build express-helpers
+      - name: Publish express-helpers
+        run: cd dist/libs/express-helpers && npm publish --access public
+        continue-on-error: true
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}

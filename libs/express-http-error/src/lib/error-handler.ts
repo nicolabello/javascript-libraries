@@ -1,6 +1,7 @@
 import { ErrorRequestHandler } from 'express';
 import { HttpError } from './http-error';
 import { HttpStatusCode } from './http-status-code';
+import { isNodeEnvProduction } from '@nicolabello/js-helpers';
 
 interface ErrorResponse {
   type: 'error';
@@ -38,12 +39,8 @@ function getErrorResponse<T extends Error>(
   };
 }
 
-function isNodeProduction(): boolean {
-  return !!process.env.NODE_ENV?.match(/prod/gi);
-}
-
 export function errorHandler({
-  isProduction = isNodeProduction(),
+  isProduction = isNodeEnvProduction(),
 }: {
   isProduction?: boolean;
 }): ErrorRequestHandler {
