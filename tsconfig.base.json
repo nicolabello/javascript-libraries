@@ -18,6 +18,7 @@
       "@nicolabello/express-http-error": [
         "libs/express-http-error/src/index.ts"
       ],
+      "@nicolabello/express-params": ["libs/express-params/src/index.ts"],
       "@nicolabello/js-acl": ["libs/js-acl/src/index.ts"],
       "@nicolabello/js-helpers": ["libs/js-helpers/src/index.ts"],
       "@nicolabello/ng-dynamic-router": ["libs/ng-dynamic-router/src/index.ts"],

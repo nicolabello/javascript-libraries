@@ -1,0 +1,44 @@
+{
+  "root": "libs/express-params",
+  "sourceRoot": "libs/express-params/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "libs/express-params/**/*.ts"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/express-params"
+      ],
+      "options": {
+        "jestConfig": "libs/express-params/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/node:package",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/libs/express-params",
+        "tsConfig": "libs/express-params/tsconfig.lib.json",
+        "packageJson": "libs/express-params/package.json",
+        "main": "libs/express-params/src/index.ts",
+        "assets": [
+          "libs/express-params/*.md"
+        ]
+      }
+    }
+  },
+  "tags": []
+}
