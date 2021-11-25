@@ -44,7 +44,7 @@ export function errorHandler({
 }: {
   isProduction?: boolean;
 }): ErrorRequestHandler {
-  return (err, req, res, next): ErrorRequestHandler => {
+  return (err, req, res, next) => {
     const error = getErrorResponse(err, isProduction);
     res.status(error.status).send(error);
   };
