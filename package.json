@@ -1,7 +1,14 @@
 {
   "name": "javacript-libraries",
   "version": "0.0.0",
-  "license": "MIT",
+  "description": "",
+  "author": "Nicola Bello <nicola.bello.3@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicolabello/javascript-libraries"
+  },
+  "keywords": [],
+  "license": "GPL-2.0-or-later",
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
@@ -19,6 +26,7 @@
     "@angular/platform-browser-dynamic": "^13.0.0",
     "@angular/router": "^13.0.0",
     "@nicolabello/material-components-web": "^13.0.11",
+    "express": "^4.17.1",
     "rxjs": "~7.4.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
