@@ -5,14 +5,20 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["libs/express-mysql/**/*.ts"]
+        "lintFilePatterns": [
+          "libs/express-mysql/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/express-mysql"],
+      "outputs": [
+        "coverage/libs/express-mysql"
+      ],
       "options": {
         "jestConfig": "libs/express-mysql/jest.config.js",
         "passWithNoTests": true
@@ -20,13 +26,17 @@
     },
     "build": {
       "executor": "@nrwl/node:package",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/libs/express-mysql",
         "tsConfig": "libs/express-mysql/tsconfig.lib.json",
         "packageJson": "libs/express-mysql/package.json",
         "main": "libs/express-mysql/src/index.ts",
-        "assets": ["libs/express-mysql/*.md"]
+        "assets": [
+          "libs/express-mysql/*.md"
+        ]
       }
     }
   },

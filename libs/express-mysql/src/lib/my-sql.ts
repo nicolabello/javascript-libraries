@@ -29,12 +29,11 @@ export class MySql {
     await this.checkConnection();
   }
 
-  private static checkConnection(): Promise<void> {
+  public static getConnection(): Promise<PoolConnection> {
     return new Promise((resolve, reject) => {
       this.pool.getConnection((error, connection) => {
         if (error) reject(error);
-        connection?.release();
-        resolve();
+        resolve(connection);
       });
     });
   }
@@ -48,11 +47,12 @@ export class MySql {
   //   });
   // }
 
-  public static getConnection(): Promise<PoolConnection> {
+  private static checkConnection(): Promise<void> {
     return new Promise((resolve, reject) => {
       this.pool.getConnection((error, connection) => {
         if (error) reject(error);
-        resolve(connection);
+        connection?.release();
+        resolve();
       });
     });
   }

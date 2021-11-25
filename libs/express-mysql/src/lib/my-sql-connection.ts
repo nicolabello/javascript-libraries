@@ -25,7 +25,10 @@ export class MySqlConnection {
     this.connection?.release();
   }
 
-  public async query<T = any>(sql: string, useNewConnection?: boolean): Promise<T> {
+  public async query<T = any>(
+    sql: string,
+    useNewConnection?: boolean
+  ): Promise<T> {
     await this.initConnection(useNewConnection);
     if (this.connection) {
       return new Promise((resolve, reject) => {
