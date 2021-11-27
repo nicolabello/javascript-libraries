@@ -43,7 +43,7 @@ export function errorHandler({
   isProduction = isNodeEnvProduction(),
 }: {
   isProduction?: boolean;
-}): ErrorRequestHandler {
+} = {}): ErrorRequestHandler {
   return (err, req, res, next) => {
     const error = getErrorResponse(err, isProduction);
     res.status(error.status).send(error);

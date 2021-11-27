@@ -1,9 +1,9 @@
 import { createPool, Pool, PoolConnection } from 'mysql2';
 
-export class MySql {
-  private static pool: Pool;
+class MySql {
+  private pool: Pool;
 
-  public static async connect({
+  public async connect({
     connectionLimit = 10,
     host,
     user,
@@ -29,7 +29,7 @@ export class MySql {
     await this.checkConnection();
   }
 
-  public static getConnection(): Promise<PoolConnection> {
+  public getConnection(): Promise<PoolConnection> {
     return new Promise((resolve, reject) => {
       this.pool.getConnection((error, connection) => {
         if (error) reject(error);
@@ -38,7 +38,7 @@ export class MySql {
     });
   }
 
-  // public static async query<T = any>(sql: string): Promise<T> {
+  // public async query<T = any>(sql: string): Promise<T> {
   //   return new Promise((resolve, reject) => {
   //     this.pool.query(sql, (error, result: T) => {
   //       if (error) reject(error);
@@ -47,7 +47,7 @@ export class MySql {
   //   });
   // }
 
-  private static checkConnection(): Promise<void> {
+  private checkConnection(): Promise<void> {
     return new Promise((resolve, reject) => {
       this.pool.getConnection((error, connection) => {
         if (error) reject(error);
@@ -57,7 +57,7 @@ export class MySql {
     });
   }
 
-  // public static disconnect(): Promise<void> {
+  // public disconnect(): Promise<void> {
   //   return new Promise((resolve, reject) => {
   //     this.pool.end((error) => {
   //       if (error) reject(error);
@@ -66,3 +66,6 @@ export class MySql {
   //   });
   // }
 }
+
+// Singleton
+export const mySql = new MySql();
