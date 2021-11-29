@@ -1,0 +1,20 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# https://stackoverflow.com/a/41553472/5631003
+for DIR in ./libs/*/ ; do (
+
+# Detect changes in the last commit
+# If exit code is 1 then changes have been made
+CHANGED=false
+#git diff HEAD~1 HEAD --quiet -- "$DIR" ":!package.json" || CHANGED=true
+#git diff --quiet -- "$DIR" ":!${DIR}package.json"  || CHANGED=true
+DIR_SRC="${DIR}src/"
+git diff HEAD~1 HEAD --quiet -- "$DIR_SRC" || CHANGED=true
+
+if [ $CHANGED = true ] ; then
+  #echo "$DIR changed, bumping version"
+  cd "$DIR" && yarn version --patch --no-commit-hooks
+fi
+
+); done
