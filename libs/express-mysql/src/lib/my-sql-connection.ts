@@ -1,6 +1,7 @@
 import { Response } from 'express';
 import { escape, PoolConnection } from 'mysql2';
-import { MySql } from './my-sql';
+import { mySql } from './my-sql';
+import { HttpError, HttpStatusCode } from '@nicolabello/express-http-error';
 
 export class MySqlConnection {
   private connection?: PoolConnection;
@@ -33,7 +34,17 @@ export class MySqlConnection {
     if (this.connection) {
       return new Promise((resolve, reject) => {
         this.connection.query(sql, (error, result: T) => {
-          if (error) reject(error);
+          if (error)
+            reject(
+              new HttpError(
+                HttpStatusCode.InternalServerError,
+                error.message,
+                null,
+                {
+                  query: sql,
+                }
+              )
+            );
           resolve(result);
         });
       });
@@ -43,10 +54,10 @@ export class MySqlConnection {
 
   private async initConnection(useNewConnection?: boolean): Promise<void> {
     if (!this.connection) {
-      this.connection = await MySql.getConnection();
+      this.connection = await mySql.getConnection();
     } else if (useNewConnection) {
       this.release();
-      this.connection = await MySql.getConnection();
+      this.connection = await mySql.getConnection();
     }
   }
 }

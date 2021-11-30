@@ -1,31 +1,13 @@
-import { createPool, Pool, PoolConnection } from 'mysql2';
+import { createPool, Pool, PoolConnection, PoolOptions } from 'mysql2';
 
 class MySql {
   private pool: Pool;
 
-  public async connect({
-    connectionLimit = 10,
-    host,
-    user,
-    password,
-    database,
-  }: {
-    connectionLimit?: number;
-    host: string;
-    user: string;
-    password: string;
-    database: string;
-  }): Promise<void> {
+  public async connect(config: PoolOptions): Promise<void> {
     if (this.pool) {
       return Promise.resolve();
     }
-    this.pool = createPool({
-      connectionLimit,
-      host,
-      user,
-      password,
-      database,
-    });
+    this.pool = createPool(config);
     await this.checkConnection();
   }
 

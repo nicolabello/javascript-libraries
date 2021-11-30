@@ -20,6 +20,7 @@ function getErrorResponse<T extends Error>(
       status: err.status,
       message: err.message,
       ...(err.data ? { data: err.data } : null),
+      ...(!isProduction && err.debugData ? { debugData: err.debugData } : null),
     };
   }
 
@@ -31,7 +32,7 @@ function getErrorResponse<T extends Error>(
       ? null
       : {
           message: err.message,
-          data: {
+          debugData: {
             name: err.name,
             stack: err.stack,
           },
