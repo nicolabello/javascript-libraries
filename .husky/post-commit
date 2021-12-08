@@ -1,20 +1,24 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+# Hash of the last commit
+PREVIOUS_COMMIT=$(git rev-parse HEAD~1)
+CURRENT_COMMIT=$(git rev-parse HEAD)
+
 # https://stackoverflow.com/a/41553472/5631003
 for DIR in ./libs/*/ ; do (
 
-# Detect changes in the last commit
-# If exit code is 1 then changes have been made
-CHANGED=false
-#git diff HEAD~1 HEAD --quiet -- "$DIR" ":!package.json" || CHANGED=true
-#git diff --quiet -- "$DIR" ":!${DIR}package.json"  || CHANGED=true
+# This is necessary to avoid loops when `yarn version` commits
+# as --no-commit-hooks does not work
 DIR_SRC="${DIR}src/"
-git diff HEAD~1 HEAD --quiet -- "$DIR_SRC" || CHANGED=true
+
+# Detect changes in the last commit
+CHANGED=false
+# If exit code is 1 then changes have been made
+git diff "$PREVIOUS_COMMIT" "$CURRENT_COMMIT" --quiet -- "$DIR_SRC" || CHANGED=true
 
 if [ $CHANGED = true ] ; then
-  #echo "$DIR changed, bumping version"
-  cd "$DIR" && yarn version --patch --no-commit-hooks
+  yarn --cwd "$DIR" version --patch --no-commit-hooks
 fi
 
 ); done
