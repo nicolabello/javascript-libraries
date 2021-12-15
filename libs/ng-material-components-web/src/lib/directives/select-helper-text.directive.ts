@@ -2,7 +2,7 @@ import { AfterViewInit, Directive, ElementRef, OnDestroy } from '@angular/core';
 import { MDCSelectHelperText } from '@nicolabello/material-components-web';
 
 @Directive({
-  selector: '.mdc-select-helper-text',
+  selector: '.mdc-select-helper-text:not([mdc-no-auto-init])',
   exportAs: 'mdcSelectHelperText',
 })
 export class SelectHelperTextDirective implements AfterViewInit, OnDestroy {

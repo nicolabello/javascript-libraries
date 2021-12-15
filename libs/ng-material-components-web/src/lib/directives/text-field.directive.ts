@@ -9,7 +9,7 @@ import { MDCTextField } from '@nicolabello/material-components-web';
 import { InputDirective } from '../helpers/input.directive';
 
 @Directive({
-  selector: '.mdc-text-field',
+  selector: '.mdc-text-field:not([mdc-no-auto-init])',
   exportAs: 'mdcTextField',
 })
 export class TextFieldDirective

@@ -9,7 +9,7 @@ import { MDCSwitch } from '@nicolabello/material-components-web';
 import { ToggleDirective } from '../helpers/toggle.directive';
 
 @Directive({
-  selector: '.mdc-switch',
+  selector: '.mdc-switch:not([mdc-no-auto-init])',
   exportAs: 'mdcSwitch',
 })
 export class SwitchDirective

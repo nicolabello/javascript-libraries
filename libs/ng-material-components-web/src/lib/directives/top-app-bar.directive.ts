@@ -2,7 +2,7 @@ import { AfterViewInit, Directive, ElementRef, OnDestroy } from '@angular/core';
 import { MDCTopAppBar } from '@nicolabello/material-components-web';
 
 @Directive({
-  selector: '.mdc-top-app-bar',
+  selector: '.mdc-top-app-bar:not([mdc-no-auto-init])',
   exportAs: 'mdcTopAppBar',
 })
 export class TopAppBarDirective implements AfterViewInit, OnDestroy {

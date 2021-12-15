@@ -11,7 +11,7 @@ import { MDCSelect } from '@nicolabello/material-components-web';
 import { InputDirective } from '../helpers/input.directive';
 
 @Directive({
-  selector: '.mdc-select',
+  selector: '.mdc-select:not([mdc-no-auto-init])',
   exportAs: 'mdcSelect',
 })
 export class SelectDirective

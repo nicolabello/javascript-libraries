@@ -2,7 +2,7 @@ import { AfterViewInit, Directive, ElementRef, OnDestroy } from '@angular/core';
 import { MDCTextFieldHelperText } from '@nicolabello/material-components-web';
 
 @Directive({
-  selector: '.mdc-text-field-helper-text',
+  selector: '.mdc-text-field-helper-text:not([mdc-no-auto-init])',
   exportAs: 'mdcTextFieldHelperText',
 })
 export class TextFieldHelperTextDirective implements AfterViewInit, OnDestroy {

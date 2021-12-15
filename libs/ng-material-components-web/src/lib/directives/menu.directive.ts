@@ -8,7 +8,7 @@ import {
 import { MDCMenu } from '@nicolabello/material-components-web';
 
 @Directive({
-  selector: '.mdc-menu',
+  selector: '.mdc-menu:not([mdc-no-auto-init])',
   exportAs: 'mdcMenu',
 })
 export class MenuDirective implements AfterViewInit, OnDestroy {
