@@ -20,7 +20,7 @@ export class SuspenseIfErrorDirective<T>
   @Input() public nbSuspenseIfErrorOfType?: SuspenseInput<T>;
 
   constructor(
-    templateRef: TemplateRef<SuspenseIfContext<T>>,
+    templateRef: TemplateRef<SuspenseIfContext<NonNullable<T>>>,
     viewContainer: ViewContainerRef,
     suspenseService: SuspenseService
   ) {
@@ -41,7 +41,7 @@ export class SuspenseIfErrorDirective<T>
   public static ngTemplateContextGuard<T>(
     dir: SuspenseIfErrorDirective<T>,
     ctx: unknown
-  ): ctx is SuspenseIfContext<T> {
+  ): ctx is SuspenseIfContext<NonNullable<T>> {
     return true;
   }
 }
