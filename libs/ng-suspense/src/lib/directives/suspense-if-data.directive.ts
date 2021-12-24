@@ -28,11 +28,7 @@ export class SuspenseIfDataDirective<T>
   }
 
   public get isVisible(): boolean {
-    return (
-      !this.suspenseService.loading.booleanValue &&
-      !this.suspenseService.error.booleanValue &&
-      this.suspenseService.data.booleanValue
-    );
+    return this.suspenseService.visibility.data
   }
 
   public get value(): T {

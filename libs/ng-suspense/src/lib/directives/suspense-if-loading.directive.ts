@@ -28,7 +28,7 @@ export class SuspenseIfLoadingDirective<T>
   }
 
   public get isVisible(): boolean {
-    return this.suspenseService.loading.booleanValue;
+    return this.suspenseService.visibility.loading
   }
 
   public get value(): T {

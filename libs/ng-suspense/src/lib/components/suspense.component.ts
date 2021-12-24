@@ -44,6 +44,16 @@ export class SuspenseComponent implements OnInit, OnDestroy {
     this.suspenseService.error.init(value);
   }
 
+  @Input()
+  public set prioritizeDataOverLoading(value: boolean) {
+    this.suspenseService.setConfig('prioritizeDataOverLoading', value);
+  }
+
+  @Input()
+  public set prioritizeDataOverError(value: boolean) {
+    this.suspenseService.setConfig('prioritizeDataOverError', value);
+  }
+
   public ngOnInit(): void {
     this.changesSubscription = this.suspenseService.valuesChanges.subscribe(
       () => this.cdr.markForCheck()
