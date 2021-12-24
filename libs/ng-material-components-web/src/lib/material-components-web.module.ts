@@ -9,8 +9,10 @@ import { TabBarDirective } from './directives/tab-bar.directive';
 import { TextFieldDirective } from './directives/text-field.directive';
 import { TextFieldHelperTextDirective } from './directives/text-field-helper-text.directive';
 import { TopAppBarDirective } from './directives/top-app-bar.directive';
+import { LinearProgressDirective } from './directives/linear-progress.directive';
+import { CircularProgressDirective } from './directives/circular-progress.directive';
 
-const items = [
+const directives = [
   ListDirective,
   MenuDirective,
   RippleDirective,
@@ -21,10 +23,12 @@ const items = [
   TextFieldDirective,
   TextFieldHelperTextDirective,
   TopAppBarDirective,
+  LinearProgressDirective,
+  CircularProgressDirective
 ];
 
 @NgModule({
-  declarations: items,
-  exports: items,
+  declarations: directives,
+  exports: directives,
 })
 export class MaterialComponentsWebModule {}
