@@ -8,6 +8,7 @@ import {
 } from '../models/suspense';
 import { Config } from '../models/config';
 import { Visibility } from '../models/visibility';
+import { getVisibility } from '../helpers/get-visibility';
 
 @Injectable()
 export class SuspenseService implements OnDestroy {
@@ -44,27 +45,12 @@ export class SuspenseService implements OnDestroy {
   }
 
   public get visibility(): Visibility {
-    const data = this.data.booleanValue;
-    const loading = this.loading.booleanValue;
-    const error = this.data.booleanValue;
-    const prioritizeDataOverLoading = this.config.prioritizeDataOverLoading;
-    const prioritizeDataOverError = this.config.prioritizeDataOverError;
-
-    /*return {
-      data: !loading && !error && data,
-      empty: !loading && !error && !data,
-      loading: loading,
-      error: !loading && error,
-    }*/
-
-    return {
-      data:
-        data &&
-        (!loading || prioritizeDataOverLoading) &&
-        (!error || prioritizeDataOverError),
-      empty: !data && !loading && !error,
-      loading: loading && !(data && prioritizeDataOverLoading),
-      error: !loading && error && !(data && prioritizeDataOverError),
-    };
+    return getVisibility(
+      this.data.booleanValue,
+      this.loading.booleanValue,
+      this.error.booleanValue,
+      this.config.prioritizeDataOverLoading,
+      this.config.prioritizeDataOverError
+    );
   }
 }
