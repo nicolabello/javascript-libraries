@@ -41,7 +41,7 @@ Run `nx g @nrwl/react:lib my-lib` to generate a library.
 
 Run `nx g @nrwl/node:library my-lib --publishable true --importPath @my-org/my-lib` to generate a publishable node library.
 
-Run `nx g @nrwl/angular:library my-lib --publishable true --importPath @my-org/my-lib` to generate a publishable node library.
+Run `nx g @nrwl/angular:library my-lib --publishable true --importPath @my-org/my-lib` to generate a publishable angular library.
 
 > You can also use any of the plugins above to generate libraries as well.
 
