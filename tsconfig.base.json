@@ -29,6 +29,7 @@
       "@nicolabello/ng-material-components-web": [
         "libs/ng-material-components-web/src/index.ts"
       ],
+      "@nicolabello/ng-router-history": ["libs/ng-router-history/src/index.ts"],
       "@nicolabello/ng-suspense": ["libs/ng-suspense/src/index.ts"]
     }
   },

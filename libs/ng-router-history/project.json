@@ -1,0 +1,42 @@
+{
+  "projectType": "library",
+  "root": "libs/ng-router-history",
+  "sourceRoot": "libs/ng-router-history/src",
+  "prefix": "nb",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["dist/libs/ng-router-history"],
+      "options": {
+        "project": "libs/ng-router-history/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/ng-router-history/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/ng-router-history/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/ng-router-history"],
+      "options": {
+        "jestConfig": "libs/ng-router-history/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/ng-router-history/src/**/*.ts",
+          "libs/ng-router-history/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

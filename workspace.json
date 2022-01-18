@@ -11,6 +11,7 @@
     "ng-flex": "libs/ng-flex",
     "ng-helpers": "libs/ng-helpers",
     "ng-material-components-web": "libs/ng-material-components-web",
+    "ng-router-history": "libs/ng-router-history",
     "ng-suspense": "libs/ng-suspense"
   }
 }

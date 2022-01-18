@@ -132,3 +132,13 @@ jobs:
         continue-on-error: true
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+
+      - name: Test ng-router-history
+        run: yarn test ng-router-history
+      - name: Build ng-router-history
+        run: yarn build ng-router-history
+      - name: Publish ng-router-history
+        run: cd dist/libs/ng-router-history && npm publish --access public
+        continue-on-error: true
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}

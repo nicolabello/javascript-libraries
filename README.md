@@ -1,6 +1,4 @@
-
-
-# JavacriptLibraries
+# JavascriptLibraries
 
 This project was generated using [Nx](https://nx.dev).
 
@@ -45,7 +43,7 @@ Run `nx g @nrwl/angular:library my-lib --publishable true --importPath @my-org/m
 
 > You can also use any of the plugins above to generate libraries as well.
 
-Libraries are shareable across libraries and applications. They can be imported from `@javacript-libraries/mylib`.
+Libraries are shareable across libraries and applications. They can be imported from `@javascript-libraries/mylib`.
 
 Publishable libraries' documentation can be found [here](https://nx.dev/l/a/structure/buildable-and-publishable-libraries).
 
