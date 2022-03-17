@@ -5,38 +5,28 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/express-helpers/**/*.ts"
-        ]
+        "lintFilePatterns": ["libs/express-helpers/**/*.ts"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/express-helpers"
-      ],
+      "outputs": ["coverage/libs/express-helpers"],
       "options": {
         "jestConfig": "libs/express-helpers/jest.config.js",
         "passWithNoTests": true
       }
     },
     "build": {
-      "executor": "@nrwl/node:package",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/express-helpers",
         "tsConfig": "libs/express-helpers/tsconfig.lib.json",
         "packageJson": "libs/express-helpers/package.json",
         "main": "libs/express-helpers/src/index.ts",
-        "assets": [
-          "libs/express-helpers/*.md"
-        ]
+        "assets": ["libs/express-helpers/*.md"]
       }
     }
   },
