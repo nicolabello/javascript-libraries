@@ -1,5 +1,4 @@
 {
-  "root": "libs/js-helpers",
   "sourceRoot": "libs/js-helpers/src",
   "projectType": "library",
   "targets": {
@@ -14,7 +13,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/js-helpers"],
       "options": {
-        "jestConfig": "libs/js-helpers/jest.config.js",
+        "jestConfig": "libs/js-helpers/jest.config.ts",
         "passWithNoTests": true
       }
     },

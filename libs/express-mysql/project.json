@@ -1,5 +1,4 @@
 {
-  "root": "libs/express-mysql",
   "sourceRoot": "libs/express-mysql/src",
   "projectType": "library",
   "targets": {
@@ -14,7 +13,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/express-mysql"],
       "options": {
-        "jestConfig": "libs/express-mysql/jest.config.js",
+        "jestConfig": "libs/express-mysql/jest.config.ts",
         "passWithNoTests": true
       }
     },

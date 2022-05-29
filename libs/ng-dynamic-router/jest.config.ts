@@ -1,5 +1,6 @@
-module.exports = {
-  displayName: 'ng-suspense',
+/* eslint-disable */
+export default {
+  displayName: 'ng-dynamic-router',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -8,7 +9,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../coverage/libs/ng-suspense',
+  coverageDirectory: '../../coverage/libs/ng-dynamic-router',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },

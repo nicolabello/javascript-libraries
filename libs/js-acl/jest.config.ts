@@ -1,5 +1,6 @@
-module.exports = {
-  displayName: 'js-helpers',
+/* eslint-disable */
+export default {
+  displayName: 'js-acl',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -11,5 +12,5 @@ module.exports = {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../coverage/libs/js-helpers',
+  coverageDirectory: '../../coverage/libs/js-acl',
 };

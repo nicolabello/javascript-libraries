@@ -1,5 +1,6 @@
-module.exports = {
-  displayName: 'express-params',
+/* eslint-disable */
+export default {
+  displayName: 'express-http-error',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -11,5 +12,5 @@ module.exports = {
     '^.+\\.[tj]sx?$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-  coverageDirectory: '../../coverage/libs/express-params',
+  coverageDirectory: '../../coverage/libs/express-http-error',
 };

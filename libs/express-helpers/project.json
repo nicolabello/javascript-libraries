@@ -1,5 +1,4 @@
 {
-  "root": "libs/express-helpers",
   "sourceRoot": "libs/express-helpers/src",
   "projectType": "library",
   "targets": {
@@ -14,7 +13,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/express-helpers"],
       "options": {
-        "jestConfig": "libs/express-helpers/jest.config.js",
+        "jestConfig": "libs/express-helpers/jest.config.ts",
         "passWithNoTests": true
       }
     },

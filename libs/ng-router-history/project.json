@@ -1,6 +1,5 @@
 {
   "projectType": "library",
-  "root": "libs/ng-router-history",
   "sourceRoot": "libs/ng-router-history/src",
   "prefix": "nb",
   "targets": {
@@ -24,7 +23,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/ng-router-history"],
       "options": {
-        "jestConfig": "libs/ng-router-history/jest.config.js",
+        "jestConfig": "libs/ng-router-history/jest.config.ts",
         "passWithNoTests": true
       }
     },

@@ -1,5 +1,4 @@
 {
-  "root": "libs/js-acl",
   "sourceRoot": "libs/js-acl/src",
   "projectType": "library",
   "targets": {
@@ -14,7 +13,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/js-acl"],
       "options": {
-        "jestConfig": "libs/js-acl/jest.config.js",
+        "jestConfig": "libs/js-acl/jest.config.ts",
         "passWithNoTests": true
       }
     },

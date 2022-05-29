@@ -1,5 +1,4 @@
 {
-  "root": "libs/express-http-error",
   "sourceRoot": "libs/express-http-error/src",
   "projectType": "library",
   "targets": {
@@ -14,7 +13,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/express-http-error"],
       "options": {
-        "jestConfig": "libs/express-http-error/jest.config.js",
+        "jestConfig": "libs/express-http-error/jest.config.ts",
         "passWithNoTests": true
       }
     },

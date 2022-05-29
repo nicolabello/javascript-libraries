@@ -1,5 +1,6 @@
-module.exports = {
-  displayName: 'ng-router-history',
+/* eslint-disable */
+export default {
+  displayName: 'ng-material-components-web',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -8,7 +9,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../coverage/libs/ng-router-history',
+  coverageDirectory: '../../coverage/libs/ng-material-components-web',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },

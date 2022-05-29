@@ -1,14 +1,11 @@
 {
   "projectType": "library",
-  "root": "libs/ng-helpers",
   "sourceRoot": "libs/ng-helpers/src",
   "prefix": "nb",
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",
-      "outputs": [
-        "dist/libs/ng-helpers"
-      ],
+      "outputs": ["dist/libs/ng-helpers"],
       "options": {
         "project": "libs/ng-helpers/ng-package.json"
       },
@@ -24,11 +21,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/ng-helpers"
-      ],
+      "outputs": ["coverage/libs/ng-helpers"],
       "options": {
-        "jestConfig": "libs/ng-helpers/jest.config.js",
+        "jestConfig": "libs/ng-helpers/jest.config.ts",
         "passWithNoTests": true
       }
     },

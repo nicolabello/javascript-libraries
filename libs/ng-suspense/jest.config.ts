@@ -1,5 +1,6 @@
-module.exports = {
-  displayName: 'ng-helpers',
+/* eslint-disable */
+export default {
+  displayName: 'ng-suspense',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -8,7 +9,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../coverage/libs/ng-helpers',
+  coverageDirectory: '../../coverage/libs/ng-suspense',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
   },

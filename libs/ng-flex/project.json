@@ -1,14 +1,11 @@
 {
   "projectType": "library",
-  "root": "libs/ng-flex",
   "sourceRoot": "libs/ng-flex/src",
   "prefix": "nb",
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",
-      "outputs": [
-        "dist/libs/ng-flex"
-      ],
+      "outputs": ["dist/libs/ng-flex"],
       "options": {
         "project": "libs/ng-flex/ng-package.json"
       },
@@ -24,11 +21,9 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/ng-flex"
-      ],
+      "outputs": ["coverage/libs/ng-flex"],
       "options": {
-        "jestConfig": "libs/ng-flex/jest.config.js",
+        "jestConfig": "libs/ng-flex/jest.config.ts",
         "passWithNoTests": true
       }
     },
