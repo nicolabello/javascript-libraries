@@ -8,8 +8,8 @@ import {
 } from '@angular/core/testing';
 import {
   AbstractControl,
-  FormControl,
-  FormGroup,
+  UntypedFormControl,
+  UntypedFormGroup,
   FormsModule,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
@@ -80,9 +80,9 @@ describe('InputWrapperComponent', () => {
   })
   class InputWrapperComponent {
     public value = '';
-    public formControl = new FormControl('');
-    public formGroup = new FormGroup({
-      formControl: new FormControl(''),
+    public formControl = new UntypedFormControl('');
+    public formGroup = new UntypedFormGroup({
+      formControl: new UntypedFormControl(''),
     });
 
     @ViewChild('inputComponentByModel')
@@ -158,9 +158,9 @@ describe('InputComponent value', () => {
   })
   class InputWrapperComponent {
     public model = '';
-    public formControl = new FormControl('');
-    public formGroup = new FormGroup({
-      formControl: new FormControl(''),
+    public formControl = new UntypedFormControl('');
+    public formGroup = new UntypedFormGroup({
+      formControl: new UntypedFormControl(''),
     });
 
     @ViewChild('inputComponentByModel')
@@ -281,9 +281,9 @@ describe('InputComponent formatters', () => {
   })
   class InputWrapperComponent {
     public model = '';
-    public formControl = new FormControl('');
-    public formGroup = new FormGroup({
-      formControl: new FormControl(''),
+    public formControl = new UntypedFormControl('');
+    public formGroup = new UntypedFormGroup({
+      formControl: new UntypedFormControl(''),
     });
 
     @ViewChild('inputComponentByModel')
@@ -418,9 +418,9 @@ describe('InputComponent validators', () => {
   })
   class InputWrapperComponent {
     public model = '';
-    public formControl = new FormControl('', formControlValidators);
-    public formGroup = new FormGroup({
-      formControl: new FormControl('', formControlValidators),
+    public formControl = new UntypedFormControl('', formControlValidators);
+    public formGroup = new UntypedFormGroup({
+      formControl: new UntypedFormControl('', formControlValidators),
     });
 
     @ViewChild('inputComponentByModel')

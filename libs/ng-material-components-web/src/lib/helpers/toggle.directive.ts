@@ -1,5 +1,5 @@
 import { Directive, Input, OnChanges, OnDestroy } from '@angular/core';
-import { AbstractControl, FormControl } from '@angular/forms';
+import { AbstractControl, UntypedFormControl } from '@angular/forms';
 import { merge, Subscription } from 'rxjs';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
 import { MDCToggleComponent } from '../models/mdc-toggle-component';
@@ -12,12 +12,12 @@ export abstract class ToggleDirective<T extends MDCToggleComponent>
   @Input() public disabled?: boolean;
   @Input() public selected?: any;
   public instance?: T;
-  private formControl: FormControl | null = null;
+  private formControl: UntypedFormControl | null = null;
   private formControlSubscription?: Subscription;
 
   @Input()
   public set mdcFormControl(formControl: AbstractControl | null) {
-    if (formControl && formControl instanceof FormControl) {
+    if (formControl && formControl instanceof UntypedFormControl) {
       if (this.formControl !== formControl) {
         this.formControl = formControl;
         this.formControlSubscription?.unsubscribe();

@@ -3,7 +3,7 @@ import {
   AbstractControl,
   ControlContainer,
   ControlValueAccessor,
-  FormControl,
+  UntypedFormControl,
   ValidationErrors,
   Validator,
   ValidatorFn
@@ -35,7 +35,7 @@ export class CommonValueAccessor<T> implements ControlValueAccessor, Validator {
   ) {}
 
   // tslint:disable-next-line: no-input-rename
-  @Input('formControl') private _formControl?: FormControl;
+  @Input('formControl') private _formControl?: UntypedFormControl;
 
   public get formControl(): AbstractControl | null {
     // If instantiated with [formGroup] > formGroupName > formControlName
@@ -72,7 +72,7 @@ export class CommonValueAccessor<T> implements ControlValueAccessor, Validator {
     }
 
     // If instantiated with [(ngModel)]
-    return new FormControl(this.value, this.validators);
+    return new UntypedFormControl(this.value, this.validators);
   }
 
   private _disabled = false;
@@ -125,7 +125,7 @@ export class CommonValueAccessor<T> implements ControlValueAccessor, Validator {
     this._disabled = disabled;
   }
 
-  public validate(control: FormControl): ValidationErrors | null {
+  public validate(control: UntypedFormControl): ValidationErrors | null {
     let errors = {};
 
     this.validators.forEach((validator) => {

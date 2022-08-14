@@ -13,5 +13,6 @@
     "ng-material-components-web": "libs/ng-material-components-web",
     "ng-router-history": "libs/ng-router-history",
     "ng-suspense": "libs/ng-suspense"
-  }
+  },
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json"
 }

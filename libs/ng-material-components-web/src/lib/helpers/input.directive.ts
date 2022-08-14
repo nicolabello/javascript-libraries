@@ -1,7 +1,7 @@
 import { Directive, Input, OnChanges, OnDestroy } from '@angular/core';
 import { updateMDCInputInstance } from './update-mdc-input-instance';
 import { MDCInputComponent } from '../models/mdc-input-component';
-import { AbstractControl, FormControl } from '@angular/forms';
+import { AbstractControl, UntypedFormControl } from '@angular/forms';
 import { merge, Subscription } from 'rxjs';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
 
@@ -14,12 +14,12 @@ export abstract class InputDirective<T extends MDCInputComponent>
   @Input() public invalid?: boolean;
   @Input() public value?: any;
   public instance?: T;
-  private formControl: FormControl | null = null;
+  private formControl: UntypedFormControl | null = null;
   private formControlSubscription?: Subscription;
 
   @Input()
   public set mdcFormControl(formControl: AbstractControl | null) {
-    if (formControl && formControl instanceof FormControl) {
+    if (formControl && formControl instanceof UntypedFormControl) {
       if (this.formControl !== formControl) {
         this.formControl = formControl;
         this.formControlSubscription?.unsubscribe();
