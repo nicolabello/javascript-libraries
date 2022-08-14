@@ -5,7 +5,7 @@ import {
   Input,
   OnDestroy,
 } from '@angular/core';
-import { MDCMenu } from '@nicolabello/material-components-web';
+import { MDCMenu } from '@material/menu';
 
 @Directive({
   selector: '.mdc-menu:not([mdc-no-auto-init])',

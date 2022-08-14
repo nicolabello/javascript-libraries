@@ -1,5 +1,5 @@
 import { AfterViewInit, Directive, ElementRef, OnDestroy } from '@angular/core';
-import { MDCList } from '@nicolabello/material-components-web';
+import { MDCList } from '@material/list';
 
 @Directive({
   selector: '.mdc-list:not([mdc-no-auto-init])',

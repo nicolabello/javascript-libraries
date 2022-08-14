@@ -1,5 +1,5 @@
 import { AfterViewInit, Directive, ElementRef, OnDestroy } from '@angular/core';
-import { MDCLinearProgress } from '@nicolabello/material-components-web';
+import { MDCLinearProgress } from '@material/linear-progress';
 
 @Directive({
   selector: '.mdc-linear-progress:not([mdc-no-auto-init])',

@@ -5,7 +5,7 @@ import {
   HostListener,
   OnDestroy,
 } from '@angular/core';
-import { MDCSwitch } from '@nicolabello/material-components-web';
+import { MDCSwitch } from '@material/switch';
 import { ToggleDirective } from '../helpers/toggle.directive';
 
 @Directive({

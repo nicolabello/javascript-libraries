@@ -1,5 +1,5 @@
 import { AfterViewInit, Directive, ElementRef, OnDestroy } from '@angular/core';
-import { MDCSelectHelperText } from '@nicolabello/material-components-web';
+import { MDCSelectHelperText } from '@material/select';
 
 @Directive({
   selector: '.mdc-select-helper-text:not([mdc-no-auto-init])',

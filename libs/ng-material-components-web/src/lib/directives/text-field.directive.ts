@@ -5,7 +5,7 @@ import {
   OnChanges,
   OnDestroy,
 } from '@angular/core';
-import { MDCTextField } from '@nicolabello/material-components-web';
+import { MDCTextField } from '@material/textfield';
 import { InputDirective } from '../helpers/input.directive';
 
 @Directive({

@@ -1,5 +1,5 @@
 import { AfterViewInit, Directive, ElementRef, OnDestroy } from '@angular/core';
-import { MDCCircularProgress } from '@nicolabello/material-components-web';
+import {MDCCircularProgress} from '@material/circular-progress';
 
 @Directive({
   selector: '.mdc-circular-progress:not([mdc-no-auto-init])',

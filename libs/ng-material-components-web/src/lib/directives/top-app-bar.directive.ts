@@ -1,5 +1,5 @@
 import { AfterViewInit, Directive, ElementRef, OnDestroy } from '@angular/core';
-import { MDCTopAppBar } from '@nicolabello/material-components-web';
+import { MDCTopAppBar } from '@material/top-app-bar';
 
 @Directive({
   selector: '.mdc-top-app-bar:not([mdc-no-auto-init])',

@@ -1,5 +1,5 @@
 import { AfterViewInit, Directive, ElementRef, OnDestroy } from '@angular/core';
-import { MDCRipple } from '@nicolabello/material-components-web';
+import { MDCRipple } from '@material/ripple';
 
 @Directive({
   selector:

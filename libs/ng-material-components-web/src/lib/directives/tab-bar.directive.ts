@@ -1,5 +1,5 @@
 import { AfterViewInit, Directive, ElementRef, OnDestroy } from '@angular/core';
-import { MDCTabBar } from '@nicolabello/material-components-web';
+import { MDCTabBar } from '@material/tab-bar';
 
 @Directive({
   selector: '.mdc-tab-bar:not([mdc-no-auto-init])',
