@@ -3,59 +3,39 @@ import {
   AbstractControl,
   ControlContainer,
   ControlValueAccessor,
-  UntypedFormControl,
+  FormControl,
   ValidationErrors,
   Validator,
-  ValidatorFn
+  ValidatorFn,
 } from '@angular/forms';
 
-/* In your child component add:
+/* In your child component MyComponent add:
 providers: [
   { provide: NG_VALUE_ACCESSOR, useExisting: MyComponent, multi: true },
   { provide: NG_VALIDATORS, useExisting: MyComponent, multi: true }
 ]
 */
 
-const emptyFunction = () => {};
+const emptyFunction = () => undefined;
 
 @Directive()
-// tslint:disable-next-line: directive-class-suffix
-export class CommonValueAccessor<T> implements ControlValueAccessor, Validator {
+// T = FormControl type, U = UI type
+export class CommonValueAccessor<T, U = T> implements ControlValueAccessor, Validator {
+  // tslint:disable-next-line: no-input-rename
+  @Input('formControl') private _formControl?: FormControl<T>;
   @Input() public formControlName?: string;
+
   protected validators: ValidatorFn[] = [];
-  protected onChange: (value: T) => void = emptyFunction;
+  protected onChange: (value: U | undefined) => void = emptyFunction;
   protected onTouch: () => void = emptyFunction;
   protected onValidatorChange: () => void = emptyFunction;
 
   constructor(
     protected cdr: ChangeDetectorRef,
-    // @Optional() private formGroupDirective: FormGroupDirective,
-    // @Optional() private formGroupNameDirective: FormGroupName,
     @Host() @SkipSelf() @Optional() private controlContainer: ControlContainer
   ) {}
 
-  // tslint:disable-next-line: no-input-rename
-  @Input('formControl') private _formControl?: UntypedFormControl;
-
-  public get formControl(): AbstractControl | null {
-    // If instantiated with [formGroup] > formGroupName > formControlName
-    // if (this.formGroupNameDirective && this.formControlName) {
-    //   const control = this.formGroupNameDirective.control.get(this.formControlName);
-    //   if (!control) {
-    //     throw new Error(`CommonValueAccessor: unable to get the control '${this.formControlName}' from the parent 'formGroupName'`);
-    //   }
-    //   return control;
-    // }
-
-    // If instantiated with [formGroup] > formControlName
-    // if (this.formGroupDirective && this.formControlName) {
-    //   const control = this.formGroupDirective.control.get(this.formControlName);
-    //   if (!control) {
-    //     throw new Error(`CommonValueAccessor: unable to get the control '${this.formControlName}' from the parent 'formGroup'`);
-    //   }
-    //   return control;
-    // }
-
+  public get formControl(): FormControl<T> {
     if (this.controlContainer?.control && this.formControlName) {
       const control = this.controlContainer.control.get(this.formControlName);
       if (!control) {
@@ -63,7 +43,7 @@ export class CommonValueAccessor<T> implements ControlValueAccessor, Validator {
           `CommonValueAccessor: unable to get the control '${this.formControlName}' from the parent 'formGroup'`
         );
       }
-      return control;
+      return control as FormControl<T>;
     }
 
     // If instantiated with [formControl]
@@ -72,7 +52,10 @@ export class CommonValueAccessor<T> implements ControlValueAccessor, Validator {
     }
 
     // If instantiated with [(ngModel)]
-    return new UntypedFormControl(this.value, this.validators);
+    const value = this.formatValueOutput(this.value);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    return new FormControl<T>(value, this.validators);
   }
 
   private _disabled = false;
@@ -81,13 +64,13 @@ export class CommonValueAccessor<T> implements ControlValueAccessor, Validator {
     return this._disabled;
   }
 
-  private _value?: T;
+  private _value: U | undefined;
 
-  public get value(): T {
-    return this._value as T;
+  public get value(): U | undefined {
+    return this._value;
   }
 
-  public set value(value: T) {
+  public set value(value: U | undefined) {
     if (value !== this._value) {
       this._value = value;
       this.onChange(value);
@@ -105,14 +88,14 @@ export class CommonValueAccessor<T> implements ControlValueAccessor, Validator {
   }
 
   // Input for value
-  public writeValue(value: any): void {
+  public writeValue(value: T): void {
     this._value = this.formatValueInput(value);
     this.cdr.markForCheck();
   }
 
   public registerOnChange(onChange: (value: any) => void): void {
     // Output for value
-    this.onChange = (value: T) => onChange(this.formatValueOutput(value));
+    this.onChange = (value: U | undefined) => onChange(this.formatValueOutput(value));
   }
 
   public registerOnTouched(onTouched: () => void): void {
@@ -125,7 +108,7 @@ export class CommonValueAccessor<T> implements ControlValueAccessor, Validator {
     this._disabled = disabled;
   }
 
-  public validate(control: UntypedFormControl): ValidationErrors | null {
+  public validate(control: AbstractControl): ValidationErrors | null {
     let errors = {};
 
     this.validators.forEach((validator) => {
@@ -140,11 +123,11 @@ export class CommonValueAccessor<T> implements ControlValueAccessor, Validator {
     this.onValidatorChange = onValidatorChange;
   }
 
-  protected formatValueInput(value: any): T {
-    return value;
+  protected formatValueInput(value: T): U {
+    return value as unknown as U;
   }
 
-  protected formatValueOutput(value: T): any {
-    return value;
+  protected formatValueOutput(value: U | undefined): T {
+    return value as unknown as T;
   }
 }

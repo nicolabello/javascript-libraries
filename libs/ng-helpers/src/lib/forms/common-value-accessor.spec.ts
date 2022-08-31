@@ -1,15 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import {
-  ComponentFixture,
-  fakeAsync,
-  TestBed,
-  tick,
-  waitForAsync,
-} from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import {
   AbstractControl,
-  UntypedFormControl,
-  UntypedFormGroup,
+  FormControl,
+  FormGroup,
   FormsModule,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
@@ -31,13 +25,11 @@ describe('InputComponent', () => {
   let component: InputComponent;
   let fixture: ComponentFixture<InputComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [InputComponent],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [InputComponent],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(InputComponent);
@@ -65,24 +57,18 @@ describe('InputWrapperComponent', () => {
     template: `
       <nb-input [(ngModel)]="value" #inputComponentByModel></nb-input>
 
-      <nb-input
-        [formControl]="formControl"
-        #inputComponentByFormControl
-      ></nb-input>
+      <nb-input [formControl]="formControl" #inputComponentByFormControl></nb-input>
 
       <form [formGroup]="formGroup">
-        <nb-input
-          formControlName="formControl"
-          #inputComponentByFormControlName
-        ></nb-input>
+        <nb-input formControlName="formControl" #inputComponentByFormControlName></nb-input>
       </form>
     `,
   })
   class InputWrapperComponent {
     public value = '';
-    public formControl = new UntypedFormControl('');
-    public formGroup = new UntypedFormGroup({
-      formControl: new UntypedFormControl(''),
+    public formControl = new FormControl<string>('');
+    public formGroup = new FormGroup({
+      formControl: new FormControl<string>(''),
     });
 
     @ViewChild('inputComponentByModel')
@@ -96,14 +82,12 @@ describe('InputWrapperComponent', () => {
   let component: InputWrapperComponent;
   let fixture: ComponentFixture<InputWrapperComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [InputComponent, InputWrapperComponent],
-        imports: [FormsModule, ReactiveFormsModule],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [InputComponent, InputWrapperComponent],
+      imports: [FormsModule, ReactiveFormsModule],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(InputWrapperComponent);
@@ -143,24 +127,18 @@ describe('InputComponent value', () => {
     template: `
       <nb-input [(ngModel)]="model" #inputComponentByModel></nb-input>
 
-      <nb-input
-        [formControl]="formControl"
-        #inputComponentByFormControl
-      ></nb-input>
+      <nb-input [formControl]="formControl" #inputComponentByFormControl></nb-input>
 
       <form [formGroup]="formGroup">
-        <nb-input
-          formControlName="formControl"
-          #inputComponentByFormControlName
-        ></nb-input>
+        <nb-input formControlName="formControl" #inputComponentByFormControlName></nb-input>
       </form>
     `,
   })
   class InputWrapperComponent {
     public model = '';
-    public formControl = new UntypedFormControl('');
-    public formGroup = new UntypedFormGroup({
-      formControl: new UntypedFormControl(''),
+    public formControl = new FormControl<string>('');
+    public formGroup = new FormGroup({
+      formControl: new FormControl<string>(''),
     });
 
     @ViewChild('inputComponentByModel')
@@ -174,14 +152,12 @@ describe('InputComponent value', () => {
   let component: InputWrapperComponent;
   let fixture: ComponentFixture<InputWrapperComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [InputComponent, InputWrapperComponent],
-        imports: [FormsModule, ReactiveFormsModule],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [InputComponent, InputWrapperComponent],
+      imports: [FormsModule, ReactiveFormsModule],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(InputWrapperComponent);
@@ -189,8 +165,7 @@ describe('InputComponent value', () => {
     fixture.detectChanges();
   });
 
-  // Test failing with "Cannot read property 'assertPresent' of null" if run with npm test
-  xit('should input value properly for inputComponentByModel', fakeAsync(() => {
+  it('should input value properly for inputComponentByModel', fakeAsync(() => {
     const value = 'test input';
     component.model = value;
     fixture.detectChanges();
@@ -266,24 +241,18 @@ describe('InputComponent formatters', () => {
     template: `
       <nb-input [(ngModel)]="model" #inputComponentByModel></nb-input>
 
-      <nb-input
-        [formControl]="formControl"
-        #inputComponentByFormControl
-      ></nb-input>
+      <nb-input [formControl]="formControl" #inputComponentByFormControl></nb-input>
 
       <form [formGroup]="formGroup">
-        <nb-input
-          formControlName="formControl"
-          #inputComponentByFormControlName
-        ></nb-input>
+        <nb-input formControlName="formControl" #inputComponentByFormControlName></nb-input>
       </form>
     `,
   })
   class InputWrapperComponent {
     public model = '';
-    public formControl = new UntypedFormControl('');
-    public formGroup = new UntypedFormGroup({
-      formControl: new UntypedFormControl(''),
+    public formControl = new FormControl<string>('');
+    public formGroup = new FormGroup({
+      formControl: new FormControl<string>(''),
     });
 
     @ViewChild('inputComponentByModel')
@@ -297,14 +266,12 @@ describe('InputComponent formatters', () => {
   let component: InputWrapperComponent;
   let fixture: ComponentFixture<InputWrapperComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [InputComponent, InputWrapperComponent],
-        imports: [FormsModule, ReactiveFormsModule],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [InputComponent, InputWrapperComponent],
+      imports: [FormsModule, ReactiveFormsModule],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(InputWrapperComponent);
@@ -312,33 +279,26 @@ describe('InputComponent formatters', () => {
     fixture.detectChanges();
   });
 
-  // Test failing with "Cannot read property 'assertPresent' of null" if run with npm test
-  xit('should format input value properly for inputComponentByModel', fakeAsync(() => {
+  it('should format input value properly for inputComponentByModel', fakeAsync(() => {
     const value = 'test input';
     component.model = value;
     fixture.detectChanges();
     tick(50);
-    expect(component.inputComponentByModel?.value).toEqual(
-      `${value}${formatValueInputSuffix}`
-    );
+    expect(component.inputComponentByModel?.value).toEqual(`${value}${formatValueInputSuffix}`);
   }));
 
   it('should format input value properly for inputComponentByFormControl', () => {
     const value = 'test input';
     component.formControl.setValue(value);
     fixture.detectChanges();
-    expect(component.inputComponentByFormControl?.value).toEqual(
-      `${value}${formatValueInputSuffix}`
-    );
+    expect(component.inputComponentByFormControl?.value).toEqual(`${value}${formatValueInputSuffix}`);
   });
 
   it('should format input value properly for inputComponentByFormControlName', () => {
     const value = 'test input';
     component.formGroup.setValue({ formControl: value });
     fixture.detectChanges();
-    expect(component.inputComponentByFormControlName?.value).toEqual(
-      `${value}${formatValueInputSuffix}`
-    );
+    expect(component.inputComponentByFormControlName?.value).toEqual(`${value}${formatValueInputSuffix}`);
   });
 
   it('should format output value properly for inputComponentByModel', () => {
@@ -356,9 +316,7 @@ describe('InputComponent formatters', () => {
       component.inputComponentByFormControl.value = value;
     }
     fixture.detectChanges();
-    expect(component.formControl?.value).toEqual(
-      `${value}${formatValueOutputSuffix}`
-    );
+    expect(component.formControl?.value).toEqual(`${value}${formatValueOutputSuffix}`);
   });
 
   it('should format output value properly for inputComponentByFormControlName ', () => {
@@ -375,16 +333,12 @@ describe('InputComponent formatters', () => {
 
 describe('InputComponent validators', () => {
   const formControlValidators: ValidatorFn[] = [
-    (formControl: AbstractControl) =>
-      (formControl.value || '').match(/a/gi) ? null : { a: true },
-    (formControl: AbstractControl) =>
-      (formControl.value || '').match(/b/gi) ? null : { b: true },
+    (formControl: AbstractControl) => ((formControl.value || '').match(/a/gi) ? null : { a: true }),
+    (formControl: AbstractControl) => ((formControl.value || '').match(/b/gi) ? null : { b: true }),
   ];
   const inputValidators = [
-    (formControl: AbstractControl) =>
-      (formControl.value || '').match(/c/gi) ? null : { c: true },
-    (formControl: AbstractControl) =>
-      (formControl.value || '').match(/d/gi) ? null : { d: true },
+    (formControl: AbstractControl) => ((formControl.value || '').match(/c/gi) ? null : { c: true }),
+    (formControl: AbstractControl) => ((formControl.value || '').match(/d/gi) ? null : { d: true }),
   ];
 
   @Component({
@@ -403,24 +357,18 @@ describe('InputComponent validators', () => {
     template: `
       <nb-input [(ngModel)]="model" #inputComponentByModel></nb-input>
 
-      <nb-input
-        [formControl]="formControl"
-        #inputComponentByFormControl
-      ></nb-input>
+      <nb-input [formControl]="formControl" #inputComponentByFormControl></nb-input>
 
       <form [formGroup]="formGroup">
-        <nb-input
-          formControlName="formControl"
-          #inputComponentByFormControlName
-        ></nb-input>
+        <nb-input formControlName="formControl" #inputComponentByFormControlName></nb-input>
       </form>
     `,
   })
   class InputWrapperComponent {
     public model = '';
-    public formControl = new UntypedFormControl('', formControlValidators);
-    public formGroup = new UntypedFormGroup({
-      formControl: new UntypedFormControl('', formControlValidators),
+    public formControl = new FormControl<string>('', formControlValidators);
+    public formGroup = new FormGroup({
+      formControl: new FormControl<string>('', formControlValidators),
     });
 
     @ViewChild('inputComponentByModel')
@@ -434,14 +382,12 @@ describe('InputComponent validators', () => {
   let component: InputWrapperComponent;
   let fixture: ComponentFixture<InputWrapperComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [InputComponent, InputWrapperComponent],
-        imports: [FormsModule, ReactiveFormsModule],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [InputComponent, InputWrapperComponent],
+      imports: [FormsModule, ReactiveFormsModule],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(InputWrapperComponent);
@@ -449,8 +395,7 @@ describe('InputComponent validators', () => {
     fixture.detectChanges();
   });
 
-  // Test failing with "Cannot read property 'assertPresent' of null" if run with npm test
-  xit('should validate value properly for inputComponentByModel', fakeAsync(() => {
+  it('should validate value properly for inputComponentByModel', fakeAsync(() => {
     const value = 'ac';
     component.model = value;
     fixture.detectChanges();
@@ -460,8 +405,7 @@ describe('InputComponent validators', () => {
     expect(errors).toEqual({ d: true });
   }));
 
-  // Test failing with "Cannot read property 'assertPresent' of null" if run with npm test
-  xit('should validate value properly for inputComponentByModel', fakeAsync(() => {
+  it('should validate value properly for inputComponentByModel', fakeAsync(() => {
     const value = 'abcd';
     component.model = value;
     fixture.detectChanges();
