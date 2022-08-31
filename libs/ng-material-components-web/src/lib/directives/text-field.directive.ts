@@ -1,10 +1,4 @@
-import {
-  AfterViewInit,
-  Directive,
-  ElementRef,
-  OnChanges,
-  OnDestroy,
-} from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, OnChanges, OnDestroy } from '@angular/core';
 import { MDCTextField } from '@material/textfield';
 import { InputDirective } from '../helpers/input.directive';
 
@@ -12,10 +6,7 @@ import { InputDirective } from '../helpers/input.directive';
   selector: '.mdc-text-field:not([mdc-no-auto-init])',
   exportAs: 'mdcTextField',
 })
-export class TextFieldDirective
-  extends InputDirective<MDCTextField>
-  implements AfterViewInit, OnChanges, OnDestroy
-{
+export class TextFieldDirective extends InputDirective<MDCTextField> implements AfterViewInit, OnChanges, OnDestroy {
   constructor(private elementRef: ElementRef<HTMLElement>) {
     super();
   }

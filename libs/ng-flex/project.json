@@ -31,10 +31,7 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "libs/ng-flex/src/**/*.ts",
-          "libs/ng-flex/src/**/*.html"
-        ]
+        "lintFilePatterns": ["libs/ng-flex/src/**/*.ts", "libs/ng-flex/src/**/*.html"]
       }
     }
   },

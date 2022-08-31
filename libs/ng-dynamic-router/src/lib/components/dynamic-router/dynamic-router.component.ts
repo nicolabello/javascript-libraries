@@ -17,14 +17,8 @@ export class DynamicRouterComponent implements CanComponentDeactivate {
     historyRouterService.initActivatedRouteObserver(activatedRoute);
   }
 
-  public canDeactivate(
-    currentRoute: ActivatedRouteSnapshot,
-    nextRoute: ActivatedRouteSnapshot
-  ): Observable<boolean> {
-    const deactivatingComponent = this.routerService.getDeactivatingComponent(
-      currentRoute,
-      nextRoute
-    );
+  public canDeactivate(currentRoute: ActivatedRouteSnapshot, nextRoute: ActivatedRouteSnapshot): Observable<boolean> {
+    const deactivatingComponent = this.routerService.getDeactivatingComponent(currentRoute, nextRoute);
     return deactivatingComponent?.canDeactivate
       ? deactivatingComponent.canDeactivate(currentRoute, nextRoute)
       : of(true);

@@ -1,15 +1,5 @@
-import {
-  Directive,
-  ElementRef,
-  Input,
-  OnDestroy,
-  OnInit,
-  Optional,
-} from '@angular/core';
-import {
-  fromResizeObserver,
-  SubscriptionsBucket,
-} from '@nicolabello/ng-helpers';
+import { Directive, ElementRef, Input, OnDestroy, OnInit, Optional } from '@angular/core';
+import { fromResizeObserver, SubscriptionsBucket } from '@nicolabello/ng-helpers';
 import { Observable } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import { Size } from '../../models/size';
@@ -69,10 +59,7 @@ export abstract class FlexContainerDirective implements OnInit, OnDestroy {
       this.parentElement = this.flexRootService.hostElement;
       observable = fromResizeObserver(this.parentElement).pipe(
         map(() => this.parentElementInnerSize),
-        distinctUntilChanged(
-          (before, after) =>
-            before.width === after.width && before.height === after.height
-        )
+        distinctUntilChanged((before, after) => before.width === after.width && before.height === after.height)
       );
     } else {
       this._parentFlexPane = this.flexPaneService.flexPane;

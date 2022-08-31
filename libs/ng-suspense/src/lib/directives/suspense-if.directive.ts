@@ -1,11 +1,4 @@
-import {
-  Directive,
-  EmbeddedViewRef,
-  OnDestroy,
-  OnInit,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { Directive, EmbeddedViewRef, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { SuspenseService } from '../services/suspense.service';
 import { SuspenseIfContext } from '../models/suspense';
@@ -26,9 +19,7 @@ export abstract class SuspenseIfDirective<T> implements OnInit, OnDestroy {
   public abstract get value(): T;
 
   public ngOnInit(): void {
-    this.subscriptions.add(
-      this.suspenseService.valuesChanges.subscribe(() => this.updateView())
-    );
+    this.subscriptions.add(this.suspenseService.valuesChanges.subscribe(() => this.updateView()));
     this.updateView();
   }
 
@@ -43,10 +34,7 @@ export abstract class SuspenseIfDirective<T> implements OnInit, OnDestroy {
       if (this.embeddedViewRef) {
         this.embeddedViewRef.context = context;
       } else {
-        this.embeddedViewRef = this.viewContainer.createEmbeddedView(
-          this.templateRef,
-          context
-        );
+        this.embeddedViewRef = this.viewContainer.createEmbeddedView(this.templateRef, context);
       }
     } else if (this.embeddedViewRef) {
       this.viewContainer.clear();

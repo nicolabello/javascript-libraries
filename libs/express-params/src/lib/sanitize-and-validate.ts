@@ -14,9 +14,7 @@ function getParam(req: Request, paramName: string, defaultValue?: any): any {
   return defaultValue;
 }
 
-export function sanitizeAndValidate(params: {
-  [paramName: string]: Param;
-}): RequestHandler {
+export function sanitizeAndValidate(params: { [paramName: string]: Param }): RequestHandler {
   return (req, res, next): void => {
     const errors: { [paramName: string]: ValidationErrors } = {};
 
@@ -27,10 +25,7 @@ export function sanitizeAndValidate(params: {
 
       // Apply sanitizers
       if (param.sanitizers?.length) {
-        value = param.sanitizers.reduce(
-          (value: any, sanitizer) => sanitizer(value),
-          value
-        );
+        value = param.sanitizers.reduce((value: any, sanitizer) => sanitizer(value), value);
       }
 
       // Validate

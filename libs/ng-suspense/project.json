@@ -31,10 +31,7 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "libs/ng-suspense/src/**/*.ts",
-          "libs/ng-suspense/src/**/*.html"
-        ]
+        "lintFilePatterns": ["libs/ng-suspense/src/**/*.ts", "libs/ng-suspense/src/**/*.html"]
       }
     }
   },

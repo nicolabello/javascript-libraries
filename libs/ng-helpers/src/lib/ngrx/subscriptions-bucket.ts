@@ -35,9 +35,7 @@ export class SubscriptionsBucket {
   }
 
   public unsubscribeAll(): void {
-    this.subscriptionsArray.forEach((subscription) =>
-      SubscriptionsBucket.safelyUnsubscribe(subscription)
-    );
+    this.subscriptionsArray.forEach((subscription) => SubscriptionsBucket.safelyUnsubscribe(subscription));
     this.subscriptionsArray = [];
 
     for (const key of Object.keys(this.subscriptionsObject)) {

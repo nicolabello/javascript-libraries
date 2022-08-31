@@ -23,13 +23,13 @@ yarn add @nicolabello/js-acl
 Using _import_ (ES6 way, e.g. **Angular**, **React**)
 
 ```typescript
-import {Acl} from '@nicolabello/js-acl';
+import { Acl } from '@nicolabello/js-acl';
 ```
 
 Using _require_ (CommonJS way, e.g. **Node.js**)
 
 ```js
-const {Acl} = require('@nicolabello/js-acl');
+const { Acl } = require('@nicolabello/js-acl');
 ```
 
 ## Usage example
@@ -123,9 +123,23 @@ By default, you can use **string** or **number** types as **roles**, **resources
 If you are using typescript then you can define your own types.
 
 ```typescript
-enum Roles { Guest, Authenticated, Editor, Admin }
-enum Resources { RestrictedArea, AdminArea, Articles, CreatedArticles }
-enum Privileges {Navigate, Add, Like}
+enum Roles {
+  Guest,
+  Authenticated,
+  Editor,
+  Admin,
+}
+enum Resources {
+  RestrictedArea,
+  AdminArea,
+  Articles,
+  CreatedArticles,
+}
+enum Privileges {
+  Navigate,
+  Add,
+  Like,
+}
 
 const acl = new Acl<Roles, Resources, Privileges>();
 ```

@@ -26,24 +26,16 @@ export class MySqlConnection {
     this.connection?.release();
   }
 
-  public async query<T = any>(
-    sql: string,
-    useNewConnection?: boolean
-  ): Promise<T> {
+  public async query<T = any>(sql: string, useNewConnection?: boolean): Promise<T> {
     await this.initConnection(useNewConnection);
     if (this.connection) {
       return new Promise((resolve, reject) => {
         this.connection.query(sql, (error, result: T) => {
           if (error)
             reject(
-              new HttpError(
-                HttpStatusCode.InternalServerError,
-                error.message,
-                null,
-                {
-                  query: sql,
-                }
-              )
+              new HttpError(HttpStatusCode.InternalServerError, error.message, null, {
+                query: sql,
+              })
             );
           resolve(result);
         });

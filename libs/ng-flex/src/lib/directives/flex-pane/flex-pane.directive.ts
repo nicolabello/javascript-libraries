@@ -30,12 +30,7 @@ export abstract class FlexPaneDirective implements OnDestroy {
   public get innerSize(): Observable<Size> {
     return this.innerSizeSubject
       .asObservable()
-      .pipe(
-        distinctUntilChanged(
-          (before, after) =>
-            before.width === after.width && before.height === after.height
-        )
-      );
+      .pipe(distinctUntilChanged((before, after) => before.width === after.width && before.height === after.height));
   }
 
   public get innerWidth(): Observable<number> {

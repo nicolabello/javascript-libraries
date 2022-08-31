@@ -30,9 +30,7 @@ export class DynamicRouterSubviewComponent implements OnInit, OnDestroy {
 
   public ngOnInit(): void {
     this.routerService.level =
-      this.level >= this.parentRouterService.subviewLevel
-        ? this.level
-        : this.parentRouterService.subviewLevel;
+      this.level >= this.parentRouterService.subviewLevel ? this.level : this.parentRouterService.subviewLevel;
     this.subscriptions.push(
       this.routerService.currentSubview.subscribe((subview) => {
         this.active = subview;

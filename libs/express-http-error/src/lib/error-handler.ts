@@ -10,10 +10,7 @@ interface ErrorResponse {
   data?: { [key: string]: any };
 }
 
-function getErrorResponse<T extends Error>(
-  err: T,
-  isProduction: boolean
-): ErrorResponse {
+function getErrorResponse<T extends Error>(err: T, isProduction: boolean): ErrorResponse {
   if (err instanceof HttpError) {
     return {
       type: 'error',

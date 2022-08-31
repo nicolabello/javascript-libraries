@@ -1,10 +1,4 @@
-import {
-  AfterViewInit,
-  Directive,
-  ElementRef,
-  HostListener,
-  OnDestroy,
-} from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, HostListener, OnDestroy } from '@angular/core';
 import { MDCSwitch } from '@material/switch';
 import { ToggleDirective } from '../helpers/toggle.directive';
 
@@ -12,10 +6,7 @@ import { ToggleDirective } from '../helpers/toggle.directive';
   selector: '.mdc-switch:not([mdc-no-auto-init])',
   exportAs: 'mdcSwitch',
 })
-export class SwitchDirective
-  extends ToggleDirective<MDCSwitch>
-  implements AfterViewInit, OnDestroy
-{
+export class SwitchDirective extends ToggleDirective<MDCSwitch> implements AfterViewInit, OnDestroy {
   public instance?: MDCSwitch;
 
   constructor(private elementRef: ElementRef<HTMLButtonElement>) {

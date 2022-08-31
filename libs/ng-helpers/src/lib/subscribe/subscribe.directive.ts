@@ -1,12 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  Input,
-  OnDestroy,
-  OnInit,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { ChangeDetectorRef, Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 
 class Context<T> {
@@ -40,10 +32,7 @@ export class SubscribeDirective<T> implements OnInit, OnDestroy {
     }
   }
 
-  public static ngTemplateContextGuard<T>(
-    dir: SubscribeDirective<T>,
-    ctx: unknown
-  ): ctx is Context<T> {
+  public static ngTemplateContextGuard<T>(dir: SubscribeDirective<T>, ctx: unknown): ctx is Context<T> {
     return true;
   }
 

@@ -1,8 +1,4 @@
-import {
-  LocationChangeEvent,
-  PathLocationStrategy,
-  PlatformLocation,
-} from '@angular/common';
+import { LocationChangeEvent, PathLocationStrategy, PlatformLocation } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 import { HistoryState } from '../models/history-state';
@@ -34,12 +30,7 @@ export class HistoryLocationStrategy extends PathLocationStrategy {
     return this.state ? { ...this.state } : null;
   }
 
-  public pushState(
-    state: StateData,
-    title: string,
-    url: string,
-    queryParams: string
-  ): void {
+  public pushState(state: StateData, title: string, url: string, queryParams: string): void {
     // console.group('pushState');
     // console.log(state, title, url, queryParams);
 
@@ -50,12 +41,7 @@ export class HistoryLocationStrategy extends PathLocationStrategy {
     // console.groupEnd();
   }
 
-  public replaceState(
-    state: StateData,
-    title: string,
-    url: string,
-    queryParams: string
-  ): void {
+  public replaceState(state: StateData, title: string, url: string, queryParams: string): void {
     // console.group('replaceState');
     // console.log(state, title, url, queryParams);
 

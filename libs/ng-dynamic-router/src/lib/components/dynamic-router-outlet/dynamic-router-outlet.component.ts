@@ -57,17 +57,11 @@ export class DynamicRouterOutletComponent implements OnDestroy, OnInit {
     private cdr: ChangeDetectorRef
   ) {}
 
-  private static hasSameUrl(
-    currentRoute: HistoryRoute,
-    newRoute: HistoryRoute
-  ): boolean {
+  private static hasSameUrl(currentRoute: HistoryRoute, newRoute: HistoryRoute): boolean {
     return currentRoute.url === newRoute.url;
   }
 
-  private static hasBeenReplaced(
-    currentRoute: HistoryRoute,
-    newRoute: HistoryRoute
-  ): boolean {
+  private static hasBeenReplaced(currentRoute: HistoryRoute, newRoute: HistoryRoute): boolean {
     return (
       currentRoute.component === newRoute.component &&
       newRoute.replaced &&
@@ -75,10 +69,7 @@ export class DynamicRouterOutletComponent implements OnDestroy, OnInit {
     );
   }
 
-  private static closingSubviewAfterPersistingItem(
-    currentRoute: HistoryRoute,
-    newRoute: HistoryRoute
-  ): boolean {
+  private static closingSubviewAfterPersistingItem(currentRoute: HistoryRoute, newRoute: HistoryRoute): boolean {
     return (
       newRoute.params.id === 'new' &&
       newRoute.direction === NavigationDirection.Backward &&
@@ -86,10 +77,7 @@ export class DynamicRouterOutletComponent implements OnDestroy, OnInit {
     );
   }
 
-  private static similarRoutes(
-    currentRoute: HistoryRoute,
-    newRoute: HistoryRoute
-  ): boolean {
+  private static similarRoutes(currentRoute: HistoryRoute, newRoute: HistoryRoute): boolean {
     /*console.group('similarRoutes');
     console.log('hasSameUrl', this.hasSameUrl(currentRoute, newRoute));
     console.log('hasBeenReplaced', this.hasBeenReplaced(currentRoute, newRoute));
@@ -105,9 +93,7 @@ export class DynamicRouterOutletComponent implements OnDestroy, OnInit {
   }
 
   public ngOnInit(): void {
-    this.subscriptions.push(
-      this.routerService.route.subscribe((route) => this.showComponent(route))
-    );
+    this.subscriptions.push(this.routerService.route.subscribe((route) => this.showComponent(route)));
   }
 
   public ngOnDestroy(): void {
@@ -134,23 +120,15 @@ export class DynamicRouterOutletComponent implements OnDestroy, OnInit {
   }*/
 
   private showComponent(route: HistoryRoute): void {
-    if (
-      !(
-        this.route &&
-        DynamicRouterOutletComponent.similarRoutes(this.route, route)
-      )
-    ) {
+    if (!(this.route && DynamicRouterOutletComponent.similarRoutes(this.route, route))) {
       // Clear view, it destroys the component as well
       this.viewContainer.clear();
 
       // Create component
-      const componentFactory: ComponentFactory<any> =
-        this.componentFactoryResolver.resolveComponentFactory(route.component);
-      this.componentRef = this.viewContainer.createComponent(
-        componentFactory,
-        undefined,
-        this.injector
+      const componentFactory: ComponentFactory<any> = this.componentFactoryResolver.resolveComponentFactory(
+        route.component
       );
+      this.componentRef = this.viewContainer.createComponent(componentFactory, undefined, this.injector);
 
       // Animate only if view is not empty
       const animationDirection = this.route ? route.direction : null;

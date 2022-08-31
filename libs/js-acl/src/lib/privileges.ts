@@ -1,9 +1,4 @@
-import {
-  Modifier,
-  PrivilegeModifier,
-  ResourcePrivileges,
-  RoleResources,
-} from './models/privilege';
+import { Modifier, PrivilegeModifier, ResourcePrivileges, RoleResources } from './models/privilege';
 
 export class Privileges<Role, Resource, Privilege> {
   private data: RoleResources<Role, Resource, Privilege>[] = [];
@@ -24,36 +19,23 @@ export class Privileges<Role, Resource, Privilege> {
     this.setPrivileges(role, resource, privilege, Modifier.Deny);
   }
 
-  public getModifier(
-    role: Role | null,
-    resource: Resource | null,
-    privilege: Privilege | null
-  ): Modifier | undefined {
+  public getModifier(role: Role | null, resource: Resource | null, privilege: Privilege | null): Modifier | undefined {
     const resourcePrivileges = this.data
       .find((roleResources) => roleResources.role === role)
-      ?.resources.find(
-        (resourcePrivileges) => resourcePrivileges.resource === resource
-      );
+      ?.resources.find((resourcePrivileges) => resourcePrivileges.resource === resource);
 
     if (privilege === null) {
-      return resourcePrivileges?.privileges.find(
-        (privilegeModifier) => privilegeModifier.privilege === privilege
-      )?.modifier;
+      return resourcePrivileges?.privileges.find((privilegeModifier) => privilegeModifier.privilege === privilege)
+        ?.modifier;
     }
 
     return (
-      resourcePrivileges?.privileges.find(
-        (privilegeModifier) => privilegeModifier.privilege === privilege
-      ) ||
-      resourcePrivileges?.privileges.find(
-        (privilegeModifier) => privilegeModifier.privilege === null
-      )
+      resourcePrivileges?.privileges.find((privilegeModifier) => privilegeModifier.privilege === privilege) ||
+      resourcePrivileges?.privileges.find((privilegeModifier) => privilegeModifier.privilege === null)
     )?.modifier;
   }
 
-  private getRole(
-    role: Role | null
-  ): RoleResources<Role, Resource, Privilege> | undefined {
+  private getRole(role: Role | null): RoleResources<Role, Resource, Privilege> | undefined {
     return this.data.find((roleResources) => roleResources.role === role);
   }
 
@@ -70,9 +52,7 @@ export class Privileges<Role, Resource, Privilege> {
     role: RoleResources<Role, Resource, Privilege>,
     resource: Resource | null
   ): ResourcePrivileges<Resource, Privilege> | undefined {
-    return role.resources.find(
-      (resourcePrivileges) => resourcePrivileges.resource === resource
-    );
+    return role.resources.find((resourcePrivileges) => resourcePrivileges.resource === resource);
   }
 
   private addResource(
@@ -91,9 +71,7 @@ export class Privileges<Role, Resource, Privilege> {
     resource: ResourcePrivileges<Resource, Privilege>,
     privilege: Privilege | null
   ): PrivilegeModifier<Privilege> | undefined {
-    return resource.privileges.find(
-      (privilegeModifier) => privilegeModifier.privilege === privilege
-    );
+    return resource.privileges.find((privilegeModifier) => privilegeModifier.privilege === privilege);
   }
 
   private addPrivilege(
@@ -122,13 +100,11 @@ export class Privileges<Role, Resource, Privilege> {
 
       for (const resource of resources) {
         const resourcePrivileges =
-          this.getResource(roleResources, resource) ||
-          this.addResource(roleResources, resource);
+          this.getResource(roleResources, resource) || this.addResource(roleResources, resource);
 
         for (const privilege of privileges) {
           const privilegeModifier =
-            this.getPrivilege(resourcePrivileges, privilege) ||
-            this.addPrivilege(resourcePrivileges, privilege);
+            this.getPrivilege(resourcePrivileges, privilege) || this.addPrivilege(resourcePrivileges, privilege);
 
           if (privilegeModifier) {
             privilegeModifier.modifier = modifier;

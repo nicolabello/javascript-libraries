@@ -2,8 +2,7 @@ import { AfterViewInit, Directive, ElementRef, OnDestroy } from '@angular/core';
 import { MDCRipple } from '@material/ripple';
 
 @Directive({
-  selector:
-    '[mdcRipple], .mdc-card__primary-action, .mdc-list-item, .mdc-fab, .mdc-icon-button, .mdc-button',
+  selector: '[mdcRipple], .mdc-card__primary-action, .mdc-list-item, .mdc-fab, .mdc-icon-button, .mdc-button',
   exportAs: 'mdcRipple',
 })
 export class RippleDirective implements AfterViewInit, OnDestroy {

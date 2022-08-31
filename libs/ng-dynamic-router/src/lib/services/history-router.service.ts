@@ -12,10 +12,7 @@ export class HistoryRouterService implements OnDestroy {
   private subscriptions = new SubscriptionsBucket();
   private routeSubject = new BehaviorSubject<HistoryRoute | null>(null);
 
-  constructor(
-    private router: Router,
-    private location: HistoryLocationStrategy
-  ) {}
+  constructor(private router: Router, private location: HistoryLocationStrategy) {}
 
   public get route(): Observable<HistoryRoute | null> {
     return this.routeSubject.asObservable();
@@ -29,16 +26,10 @@ export class HistoryRouterService implements OnDestroy {
     this.subscriptions.unsubscribe('activatedRoute');
 
     this.subscriptions.push(
-      merge(
-        activatedRoute.url,
-        activatedRoute.params,
-        activatedRoute.queryParams
-      )
+      merge(activatedRoute.url, activatedRoute.params, activatedRoute.queryParams)
         .pipe(
           map(() => this.location.getState()),
-          distinctUntilChanged(
-            (before, after) => JSON.stringify(before) === JSON.stringify(after)
-          )
+          distinctUntilChanged((before, after) => JSON.stringify(before) === JSON.stringify(after))
         )
         .subscribe((state) => {
           if (state) {
@@ -55,10 +46,7 @@ export class HistoryRouterService implements OnDestroy {
     }
   }
 
-  public navigate(
-    commands: any[],
-    extras?: NavigationExtras
-  ): Promise<boolean> {
+  public navigate(commands: any[], extras?: NavigationExtras): Promise<boolean> {
     const route: HistoryRoute | null = this.routeSnapshot;
 
     const parents: ParentRoute[] | null = route

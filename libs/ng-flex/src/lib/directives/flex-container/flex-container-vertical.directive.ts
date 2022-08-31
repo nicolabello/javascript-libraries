@@ -23,8 +23,7 @@ export class FlexContainerVerticalDirective extends FlexContainerDirective {
 
     if (this.dynamicPane) {
       this.dynamicPane.width = size.width;
-      this.dynamicPane.height =
-        size.height - fixedPanesBeforeSize - fixedPanesAfterSize;
+      this.dynamicPane.height = size.height - fixedPanesBeforeSize - fixedPanesAfterSize;
     }
   }
 }

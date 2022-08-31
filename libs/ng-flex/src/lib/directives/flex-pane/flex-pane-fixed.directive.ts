@@ -8,10 +8,7 @@ import { FlexPaneDirective } from './flex-pane.directive';
   selector: '[nbFlexPaneFixed]',
   providers: [FlexPaneService],
 })
-export class FlexPaneFixedDirective
-  extends FlexPaneDirective
-  implements AfterViewInit, OnDestroy
-{
+export class FlexPaneFixedDirective extends FlexPaneDirective implements AfterViewInit, OnDestroy {
   @Input() public observeChanges = false;
 
   public ngAfterViewInit(): void {

@@ -31,10 +31,7 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "libs/ng-dynamic-router/src/**/*.ts",
-          "libs/ng-dynamic-router/src/**/*.html"
-        ]
+        "lintFilePatterns": ["libs/ng-dynamic-router/src/**/*.ts", "libs/ng-dynamic-router/src/**/*.html"]
       }
     }
   },

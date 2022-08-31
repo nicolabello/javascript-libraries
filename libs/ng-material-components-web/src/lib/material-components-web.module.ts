@@ -24,7 +24,7 @@ const directives = [
   TextFieldHelperTextDirective,
   TopAppBarDirective,
   LinearProgressDirective,
-  CircularProgressDirective
+  CircularProgressDirective,
 ];
 
 @NgModule({

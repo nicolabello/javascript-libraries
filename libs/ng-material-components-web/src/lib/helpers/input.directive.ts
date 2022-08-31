@@ -1,25 +1,23 @@
 import { Directive, Input, OnChanges, OnDestroy } from '@angular/core';
-import { updateMDCInputInstance } from './update-mdc-input-instance';
-import { MDCInputComponent } from '../models/mdc-input-component';
-import { AbstractControl, UntypedFormControl } from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
 import { merge, Subscription } from 'rxjs';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
+import { MDCInputComponent } from '../models/mdc-input-component';
+import { updateMDCInputInstance } from './update-mdc-input-instance';
 
 @Directive()
-export abstract class InputDirective<T extends MDCInputComponent>
-  implements OnChanges, OnDestroy
-{
+export abstract class InputDirective<T extends MDCInputComponent> implements OnChanges, OnDestroy {
   @Input() public required?: boolean;
   @Input() public disabled?: boolean;
   @Input() public invalid?: boolean;
   @Input() public value?: any;
   public instance?: T;
-  private formControl: UntypedFormControl | null = null;
+  private formControl: AbstractControl | null = null;
   private formControlSubscription?: Subscription;
 
   @Input()
   public set mdcFormControl(formControl: AbstractControl | null) {
-    if (formControl && formControl instanceof UntypedFormControl) {
+    if (formControl) {
       if (this.formControl !== formControl) {
         this.formControl = formControl;
         this.formControlSubscription?.unsubscribe();
@@ -42,10 +40,7 @@ export abstract class InputDirective<T extends MDCInputComponent>
       updateMDCInputInstance(this.instance, {
         required: !!this.required,
         disabled: this.formControl.disabled,
-        valid: !(
-          this.formControl.invalid &&
-          (this.formControl.dirty || this.formControl.touched)
-        ),
+        valid: !(this.formControl.invalid && (this.formControl.dirty || this.formControl.touched)),
         value: this.formControl.value,
       });
     } else {

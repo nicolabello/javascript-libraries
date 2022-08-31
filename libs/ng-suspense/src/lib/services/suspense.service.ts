@@ -1,11 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { merge, Observable, Subject } from 'rxjs';
 import { SuspenseValue } from '../helpers/suspense-value';
-import {
-  SuspenseData,
-  SuspenseError,
-  SuspenseLoading,
-} from '../models/suspense';
+import { SuspenseData, SuspenseError, SuspenseLoading } from '../models/suspense';
 import { Config } from '../models/config';
 import { Visibility } from '../models/visibility';
 import { getVisibility } from '../helpers/get-visibility';

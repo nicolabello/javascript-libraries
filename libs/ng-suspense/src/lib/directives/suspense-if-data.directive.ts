@@ -1,11 +1,4 @@
-import {
-  Directive,
-  Input,
-  OnDestroy,
-  OnInit,
-  TemplateRef,
-  ViewContainerRef,
-} from '@angular/core';
+import { Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { SuspenseIfContext, SuspenseInput } from '../models/suspense';
 import { SuspenseIfDirective } from './suspense-if.directive';
 import { SuspenseService } from '../services/suspense.service';
@@ -13,10 +6,7 @@ import { SuspenseService } from '../services/suspense.service';
 @Directive({
   selector: '[nbSuspenseIfData]',
 })
-export class SuspenseIfDataDirective<T>
-  extends SuspenseIfDirective<T>
-  implements OnInit, OnDestroy
-{
+export class SuspenseIfDataDirective<T> extends SuspenseIfDirective<T> implements OnInit, OnDestroy {
   @Input() public nbSuspenseIfDataOfType?: SuspenseInput<T>;
 
   constructor(
@@ -28,7 +18,7 @@ export class SuspenseIfDataDirective<T>
   }
 
   public get isVisible(): boolean {
-    return this.suspenseService.visibility.data
+    return this.suspenseService.visibility.data;
   }
 
   public get value(): T {

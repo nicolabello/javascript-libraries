@@ -28,8 +28,7 @@ export class FlexContainerHorizontalDirective extends FlexContainerDirective {
     }
 
     if (this.dynamicPane) {
-      this.dynamicPane.width =
-        size.width - fixedPanesBeforeSize - fixedPanesAfterSize;
+      this.dynamicPane.width = size.width - fixedPanesBeforeSize - fixedPanesAfterSize;
       this.dynamicPane.height = size.height;
       this.dynamicPane.position = 'absolute';
       this.dynamicPane.left = fixedPanesBeforeSize;

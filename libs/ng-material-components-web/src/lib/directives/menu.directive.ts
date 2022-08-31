@@ -1,10 +1,4 @@
-import {
-  AfterViewInit,
-  Directive,
-  ElementRef,
-  Input,
-  OnDestroy,
-} from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, Input, OnDestroy } from '@angular/core';
 import { MDCMenu } from '@material/menu';
 
 @Directive({
@@ -32,8 +26,7 @@ export class MenuDirective implements AfterViewInit, OnDestroy {
 
   public toggle(open?: boolean): void {
     if (this.instance) {
-      this.instance.open =
-        open === true || open === false ? open : !this.instance.open;
+      this.instance.open = open === true || open === false ? open : !this.instance.open;
     }
   }
 }

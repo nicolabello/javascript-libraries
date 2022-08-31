@@ -269,17 +269,11 @@ describe('SuspenseIfDataDirective', () => {
   let fixture: ComponentFixture<TestComponent>;
   let directive: SuspenseIfDataDirective<any> | undefined;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [
-          TestComponent,
-          SuspenseComponent,
-          SuspenseIfDataDirective,
-        ],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [TestComponent, SuspenseComponent, SuspenseIfDataDirective],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);
@@ -295,27 +289,18 @@ describe('SuspenseIfDataDirective', () => {
   });
 
   it('should be visible when expected', () => {
-    for (const testCase of [
-      ...testCases,
-      ...testCases2,
-      ...testCases3,
-      ...testCases4,
-    ]) {
+    for (const testCase of [...testCases, ...testCases2, ...testCases3, ...testCases4]) {
       component.data = testCase.data;
       component.loading = testCase.loading;
       component.error = testCase.error;
-      component.prioritizeDataOverLoading = !!(testCase as any)
-        .prioritizeDataOverLoading;
-      component.prioritizeDataOverError = !!(testCase as any)
-        .prioritizeDataOverError;
+      component.prioritizeDataOverLoading = !!(testCase as any).prioritizeDataOverLoading;
+      component.prioritizeDataOverError = !!(testCase as any).prioritizeDataOverError;
 
       fixture.detectChanges();
       fixture.whenStable();
 
       expect(directive?.value).toBe(testCase.data);
-      testCase.visible
-        ? expect(directive?.isVisible).toBeTruthy()
-        : expect(directive?.isVisible).toBeFalsy();
+      testCase.visible ? expect(directive?.isVisible).toBeTruthy() : expect(directive?.isVisible).toBeFalsy();
     }
   });
 });

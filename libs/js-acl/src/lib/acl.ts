@@ -4,11 +4,7 @@ import { Privileges } from './privileges';
 import { TreeNode } from './models/tree-node';
 import { Modifier } from './models/privilege';
 
-export class Acl<
-  Role = string | number,
-  Resource = string | number,
-  Privilege = string | number
-> {
+export class Acl<Role = string | number, Resource = string | number, Privilege = string | number> {
   private roles = new Roles<Role>();
   private resources = new Resources<Resource>();
   private privileges = new Privileges<Role, Resource, Privilege>();
@@ -20,10 +16,7 @@ export class Acl<
     return !!this.roles.push(role, parent);
   }
 
-  public addResource(
-    resource: Resource | Resource[],
-    parent?: Resource
-  ): boolean | boolean[] {
+  public addResource(resource: Resource | Resource[], parent?: Resource): boolean | boolean[] {
     if (Array.isArray(resource)) {
       return resource.map((r) => !!this.resources.push(r, parent));
     }
@@ -46,19 +39,12 @@ export class Acl<
     this.privileges.deny(role, resource, privilege);
   }
 
-  public isAllowed(
-    role: Role | null,
-    resource: Resource | null,
-    privilege: Privilege | null = null
-  ): boolean {
+  public isAllowed(role: Role | null, resource: Resource | null, privilege: Privilege | null = null): boolean {
     const roleNode = this.roles.find(role);
     const resourceNode = this.resources.find(resource);
 
     if (roleNode && resourceNode) {
-      return (
-        this.getRoleBranchModifier(roleNode, resourceNode, privilege) ===
-        Modifier.Allow
-      );
+      return this.getRoleBranchModifier(roleNode, resourceNode, privilege) === Modifier.Allow;
     }
 
     return false;
@@ -69,22 +55,14 @@ export class Acl<
     resourceNode: TreeNode<Resource>,
     privilege: Privilege | null
   ): Modifier | undefined {
-    const modifier = this.privileges.getModifier(
-      roleNode.id,
-      resourceNode.id,
-      privilege
-    );
+    const modifier = this.privileges.getModifier(roleNode.id, resourceNode.id, privilege);
 
     if (modifier === Modifier.Allow || modifier === Modifier.Deny) {
       return modifier;
     }
 
     if (resourceNode.parent) {
-      return this.getResourceBranchModifier(
-        roleNode,
-        resourceNode.parent,
-        privilege
-      );
+      return this.getResourceBranchModifier(roleNode, resourceNode.parent, privilege);
     }
   }
 
@@ -93,22 +71,14 @@ export class Acl<
     resourceNode: TreeNode<Resource>,
     privilege: Privilege | null
   ): Modifier | undefined {
-    const modifier = this.getResourceBranchModifier(
-      roleNode,
-      resourceNode,
-      privilege
-    );
+    const modifier = this.getResourceBranchModifier(roleNode, resourceNode, privilege);
 
     if (modifier === Modifier.Allow || modifier === Modifier.Deny) {
       return modifier;
     }
 
     if (roleNode.parent) {
-      return this.getRoleBranchModifier(
-        roleNode.parent,
-        resourceNode,
-        privilege
-      );
+      return this.getRoleBranchModifier(roleNode.parent, resourceNode, privilege);
     }
   }
 }

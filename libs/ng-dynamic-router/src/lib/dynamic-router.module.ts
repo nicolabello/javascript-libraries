@@ -32,10 +32,7 @@ export class DynamicRouterModule {
   public static forRoot(): ModuleWithProviders<DynamicRouterModule> {
     return {
       ngModule: DynamicRouterModule,
-      providers: [
-        HistoryLocationStrategy,
-        { provide: LocationStrategy, useExisting: HistoryLocationStrategy },
-      ],
+      providers: [HistoryLocationStrategy, { provide: LocationStrategy, useExisting: HistoryLocationStrategy }],
     };
   }
 

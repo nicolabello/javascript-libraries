@@ -1,14 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { filter, map, scan } from 'rxjs/operators';
-import {
-  ActivatedRoute,
-  Event,
-  NavigationEnd,
-  NavigationExtras,
-  NavigationStart,
-  Router,
-} from '@angular/router';
+import { ActivatedRoute, Event, NavigationEnd, NavigationExtras, NavigationStart, Router } from '@angular/router';
 import { RouterHistory } from '../models/router-history';
 import { LocationStrategy } from '@angular/common';
 
@@ -17,9 +10,7 @@ export class RouterHistoryService {
   private previousUrlSubject = new BehaviorSubject<string | null>(null);
   private currentUrlSubject = new BehaviorSubject<string | null>(null);
 
-  private activatedRouteSubject = new BehaviorSubject<ActivatedRoute | null>(
-    null
-  );
+  private activatedRouteSubject = new BehaviorSubject<ActivatedRoute | null>(null);
 
   constructor(private router: Router, private location: LocationStrategy) {}
 
@@ -100,9 +91,7 @@ export class RouterHistoryService {
         }
       ),
       // Filter out so we only act when navigation is done
-      filter(
-        ({ event, trigger }) => event instanceof NavigationEnd && !!trigger
-      ),
+      filter(({ event, trigger }) => event instanceof NavigationEnd && !!trigger),
       tap(({ history, currentIndex }) => {
         const previous = history[currentIndex - 1];
         const current = history[currentIndex];
@@ -116,9 +105,7 @@ export class RouterHistoryService {
 
   private activatedRouteObserver(): Observable<ActivatedRoute> {
     return this.router.events.pipe(
-      filter<Event, NavigationEnd>(
-        (event): event is NavigationEnd => event instanceof NavigationEnd
-      ),
+      filter<Event, NavigationEnd>((event): event is NavigationEnd => event instanceof NavigationEnd),
       map(() => {
         let activatedRoute = this.router.routerState.root;
         let firstChild = activatedRoute.firstChild;

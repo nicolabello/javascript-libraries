@@ -1,23 +1,21 @@
 import { Directive, Input, OnChanges, OnDestroy } from '@angular/core';
-import { AbstractControl, UntypedFormControl } from '@angular/forms';
+import { AbstractControl } from '@angular/forms';
 import { merge, Subscription } from 'rxjs';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
 import { MDCToggleComponent } from '../models/mdc-toggle-component';
 import { updateMDCToggleInstance } from './update-mdc-toggle-instance';
 
 @Directive()
-export abstract class ToggleDirective<T extends MDCToggleComponent>
-  implements OnChanges, OnDestroy
-{
+export abstract class ToggleDirective<T extends MDCToggleComponent> implements OnChanges, OnDestroy {
   @Input() public disabled?: boolean;
   @Input() public selected?: any;
   public instance?: T;
-  private formControl: UntypedFormControl | null = null;
+  private formControl: AbstractControl | null = null;
   private formControlSubscription?: Subscription;
 
   @Input()
   public set mdcFormControl(formControl: AbstractControl | null) {
-    if (formControl && formControl instanceof UntypedFormControl) {
+    if (formControl) {
       if (this.formControl !== formControl) {
         this.formControl = formControl;
         this.formControlSubscription?.unsubscribe();

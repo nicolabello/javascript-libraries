@@ -15,10 +15,7 @@ export function getVisibility(
     }*/
 
   return {
-    data:
-      data &&
-      (!loading || prioritizeDataOverLoading) &&
-      (!error || prioritizeDataOverError),
+    data: data && (!loading || prioritizeDataOverLoading) && (!error || prioritizeDataOverError),
     empty: !data && !loading && !error,
     loading: loading && !(data && prioritizeDataOverLoading),
     error: !loading && error && !(data && prioritizeDataOverError),

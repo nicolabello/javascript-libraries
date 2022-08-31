@@ -17,12 +17,7 @@ export function fromIntersectionObserver(
     });
   } else {
     const targetRect = target.getBoundingClientRect();
-    const rootRect = new DOMRectReadOnly(
-      0,
-      0,
-      window.innerWidth,
-      window.innerHeight
-    );
+    const rootRect = new DOMRectReadOnly(0, 0, window.innerWidth, window.innerHeight);
 
     return of({
       boundingClientRect: targetRect,

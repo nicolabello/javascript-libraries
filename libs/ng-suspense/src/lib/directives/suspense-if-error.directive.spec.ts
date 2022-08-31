@@ -248,9 +248,7 @@ const testCases4 = [
       [prioritizeDataOverLoading]="prioritizeDataOverLoading"
       [prioritizeDataOverError]="prioritizeDataOverError"
     >
-      <ng-container *nbSuspenseIfError="let error"
-        >Error: {{ error }}</ng-container
-      >
+      <ng-container *nbSuspenseIfError="let error">Error: {{ error }}</ng-container>
     </nb-suspense>
   `,
 })
@@ -271,17 +269,11 @@ describe('SuspenseIfErrorDirective', () => {
   let fixture: ComponentFixture<TestComponent>;
   let directive: SuspenseIfErrorDirective<any> | undefined;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [
-          TestComponent,
-          SuspenseComponent,
-          SuspenseIfErrorDirective,
-        ],
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [TestComponent, SuspenseComponent, SuspenseIfErrorDirective],
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);
@@ -297,27 +289,18 @@ describe('SuspenseIfErrorDirective', () => {
   });
 
   it('should be visible when expected', () => {
-    for (const testCase of [
-      ...testCases,
-      ...testCases2,
-      ...testCases3,
-      ...testCases4,
-    ]) {
+    for (const testCase of [...testCases, ...testCases2, ...testCases3, ...testCases4]) {
       component.data = testCase.data;
       component.loading = testCase.loading;
       component.error = testCase.error;
-      component.prioritizeDataOverLoading = !!(testCase as any)
-        .prioritizeDataOverLoading;
-      component.prioritizeDataOverError = !!(testCase as any)
-        .prioritizeDataOverError;
+      component.prioritizeDataOverLoading = !!(testCase as any).prioritizeDataOverLoading;
+      component.prioritizeDataOverError = !!(testCase as any).prioritizeDataOverError;
 
       fixture.detectChanges();
       fixture.whenStable();
 
       expect(directive?.value).toBe(testCase.error);
-      testCase.visible
-        ? expect(directive?.isVisible).toBeTruthy()
-        : expect(directive?.isVisible).toBeFalsy();
+      testCase.visible ? expect(directive?.isVisible).toBeTruthy() : expect(directive?.isVisible).toBeFalsy();
     }
   });
 });
