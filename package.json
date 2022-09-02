@@ -18,7 +18,8 @@
     "test": "nx test",
     "postinstall": "ngcc --properties es2020 browser module main",
     "prepare": "husky install",
-    "bump-all": "sh tools/bump-all.sh"
+    "bump-all": "sh tools/bump-all.sh",
+    "browserslist:update": "npx browserslist --update-db"
   },
   "private": true,
   "dependencies": {
