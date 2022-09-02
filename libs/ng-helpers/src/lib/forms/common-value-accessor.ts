@@ -25,9 +25,12 @@ export class CommonValueAccessor<T, U = T> implements ControlValueAccessor, Vali
   @Input('formControl') private _formControl?: FormControl<T>;
   @Input() public formControlName?: string;
 
+  private localFormControl?: FormControl<T>;
+  private isLocalFormControlCustom = false;
+
   protected validators: ValidatorFn[] = [];
   protected onChange: (value: U | undefined) => void = emptyFunction;
-  protected onTouch: () => void = emptyFunction;
+  protected onTouched: () => void = emptyFunction;
   protected onValidatorChange: () => void = emptyFunction;
 
   constructor(
@@ -36,26 +39,9 @@ export class CommonValueAccessor<T, U = T> implements ControlValueAccessor, Vali
   ) {}
 
   public get formControl(): FormControl<T> {
-    if (this.controlContainer?.control && this.formControlName) {
-      const control = this.controlContainer.control.get(this.formControlName);
-      if (!control) {
-        throw new Error(
-          `CommonValueAccessor: unable to get the control '${this.formControlName}' from the parent 'formGroup'`
-        );
-      }
-      return control as FormControl<T>;
-    }
-
-    // If instantiated with [formControl]
-    if (this._formControl) {
-      return this._formControl;
-    }
-
-    // If instantiated with [(ngModel)]
-    const value = this.formatValueOutput(this.value);
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    return new FormControl<T>(value, this.validators);
+    this.initFormControl();
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    return this.localFormControl!;
   }
 
   private _disabled = false;
@@ -74,9 +60,39 @@ export class CommonValueAccessor<T, U = T> implements ControlValueAccessor, Vali
     if (value !== this._value) {
       this._value = value;
       this.onChange(value);
-      this.onTouch();
       this.onValidatorChange();
     }
+  }
+
+  private initFormControl(): void {
+    if (!this.localFormControl) {
+      if (this.controlContainer?.control && this.formControlName) {
+        this.localFormControl = this.controlContainer.control.get(this.formControlName) as FormControl<T>;
+        this.isLocalFormControlCustom = false;
+        if (!this.localFormControl) {
+          throw new Error(
+            `CommonValueAccessor: unable to get the control '${this.formControlName}' from the parent 'formGroup'`
+          );
+        }
+        return;
+      }
+
+      // If instantiated with [formControl]
+      if (this._formControl) {
+        this.localFormControl = this._formControl;
+        this.isLocalFormControlCustom = false;
+        return;
+      }
+
+      // If instantiated with [(ngModel)]
+      const value = this.formatValueOutput(this.value);
+      this.localFormControl = new FormControl<T>(value, this.validators) as FormControl<T>;
+      this.isLocalFormControlCustom = true;
+    }
+  }
+
+  public onBlur(): void {
+    this.onTouched();
   }
 
   public get invalid(): boolean {
@@ -93,19 +109,36 @@ export class CommonValueAccessor<T, U = T> implements ControlValueAccessor, Vali
     this.cdr.markForCheck();
   }
 
-  public registerOnChange(onChange: (value: any) => void): void {
+  public registerOnChange(onChange: (value: T) => void): void {
     // Output for value
-    this.onChange = (value: U | undefined) => onChange(this.formatValueOutput(value));
+    this.onChange = (value: U | undefined) => {
+      const formattedValue = this.formatValueOutput(value);
+
+      this.initFormControl();
+      if (this.isLocalFormControlCustom) {
+        this.localFormControl?.setValue(formattedValue);
+      }
+
+      onChange(formattedValue);
+    };
   }
 
   public registerOnTouched(onTouched: () => void): void {
     // Output for touched
-    this.onTouch = onTouched;
+    this.onTouched = () => {
+      this.initFormControl();
+      if (this.isLocalFormControlCustom) {
+        this.localFormControl?.markAsTouched();
+      }
+
+      onTouched();
+    };
   }
 
   // Input for disabled
   public setDisabledState(disabled: boolean): void {
     this._disabled = disabled;
+    this.cdr.markForCheck();
   }
 
   public validate(control: AbstractControl): ValidationErrors | null {
