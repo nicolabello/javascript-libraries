@@ -6,11 +6,12 @@ class Context<T> {
 }
 
 // Use as <ng-container *nbSubscribe="interval$ as value;">{{ value }}</ng-container>
+// https://netbasal.com/diy-subscription-handling-directive-in-angular-c8f6e762697f
 @Directive({
   selector: '[nbSubscribe]',
 })
 export class SubscribeDirective<T> implements OnInit, OnDestroy {
-  private observable?: Observable<any>;
+  private observable?: Observable<T>;
   private context: Context<T> = new Context();
   private subscription?: Subscription;
 

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Directive, Host, Input, Optional, SkipSelf } from '@angular/core';
+import { ChangeDetectorRef, Directive, DoCheck, inject, Input } from '@angular/core';
 import {
   AbstractControl,
   ControlContainer,
@@ -20,23 +20,21 @@ const emptyFunction = () => undefined;
 
 @Directive()
 // T = FormControl type, U = UI type
-export class CommonValueAccessor<T, U = T> implements ControlValueAccessor, Validator {
+export class CommonValueAccessor<T, U = T> implements ControlValueAccessor, Validator, DoCheck {
   // tslint:disable-next-line: no-input-rename
   @Input('formControl') private _formControl?: FormControl<T>;
   @Input() public formControlName?: string;
 
+  private controlContainer = inject(ControlContainer, { host: true, skipSelf: true, optional: true });
   private localFormControl?: FormControl<T>;
   private isLocalFormControlCustom = false;
+
+  protected cdr = inject(ChangeDetectorRef);
 
   protected validators: ValidatorFn[] = [];
   protected onChange: (value: U | undefined) => void = emptyFunction;
   protected onTouched: () => void = emptyFunction;
   protected onValidatorChange: () => void = emptyFunction;
-
-  constructor(
-    protected cdr: ChangeDetectorRef,
-    @Host() @SkipSelf() @Optional() private controlContainer: ControlContainer
-  ) {}
 
   public get formControl(): FormControl<T> {
     this.initFormControl();
@@ -63,6 +61,8 @@ export class CommonValueAccessor<T, U = T> implements ControlValueAccessor, Vali
       this.onValidatorChange();
     }
   }
+
+  private _errorsVisible = false;
 
   private initFormControl(): void {
     if (!this.localFormControl) {
@@ -99,8 +99,43 @@ export class CommonValueAccessor<T, U = T> implements ControlValueAccessor, Vali
     return this.formControl?.invalid || false;
   }
 
+  public get errorsVisible(): boolean {
+    return this.formControl?.invalid && (this.formControl?.dirty || this.formControl?.touched);
+  }
+
   public get errors(): ValidationErrors | null {
     return this.formControl?.errors || null;
+  }
+
+  public getError<T extends Record<string, unknown> = Record<string, unknown>>(
+    priority?: string[]
+  ): {
+    key: string;
+    details: T;
+  } | void {
+    const errors = this.errors;
+
+    if (!errors) {
+      return;
+    }
+
+    if (priority?.length) {
+      for (const key of priority) {
+        if (errors[key]) {
+          return {
+            key: key,
+            details: errors[key],
+          };
+        }
+      }
+    }
+
+    for (const key of Object.keys(errors)) {
+      return {
+        key: key,
+        details: errors[key],
+      };
+    }
   }
 
   // Input for value
@@ -156,11 +191,23 @@ export class CommonValueAccessor<T, U = T> implements ControlValueAccessor, Vali
     this.onValidatorChange = onValidatorChange;
   }
 
+  public ngDoCheck() {
+    const errorsVisible = this.errorsVisible;
+    if (errorsVisible !== this._errorsVisible) {
+      this._errorsVisible = errorsVisible;
+      this.errorsVisibilityChange(errorsVisible);
+    }
+  }
+
   protected formatValueInput(value: T): U {
     return value as unknown as U;
   }
 
   protected formatValueOutput(value: U | undefined): T {
     return value as unknown as T;
+  }
+
+  protected errorsVisibilityChange(value: boolean): void {
+    return;
   }
 }
