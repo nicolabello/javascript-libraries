@@ -1,4 +1,13 @@
-import { AfterViewInit, Directive, ElementRef, EventEmitter, OnChanges, OnDestroy, Output } from '@angular/core';
+import {
+  AfterViewInit,
+  Directive,
+  ElementRef,
+  EventEmitter,
+  inject,
+  OnChanges,
+  OnDestroy,
+  Output,
+} from '@angular/core';
 import { MDCSelect } from '@material/select';
 import { InputDirective } from '../helpers/input.directive';
 
@@ -9,9 +18,7 @@ import { InputDirective } from '../helpers/input.directive';
 export class SelectDirective extends InputDirective<MDCSelect> implements AfterViewInit, OnChanges, OnDestroy {
   @Output() private valueChange = new EventEmitter<string>();
 
-  constructor(private elementRef: ElementRef<HTMLElement>) {
-    super();
-  }
+  private elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
   public ngAfterViewInit(): void {
     this.instance = new MDCSelect(this.elementRef.nativeElement);

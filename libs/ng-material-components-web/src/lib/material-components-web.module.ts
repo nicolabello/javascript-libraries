@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ListDirective } from './directives/list.directive';
 import { MenuDirective } from './directives/menu.directive';
+import { RippleUnboundedDirective } from './directives/ripple-unbounded.directive';
 import { RippleDirective } from './directives/ripple.directive';
 import { SelectDirective } from './directives/select.directive';
 import { SelectHelperTextDirective } from './directives/select-helper-text.directive';
@@ -25,6 +26,7 @@ const directives = [
   TopAppBarDirective,
   LinearProgressDirective,
   CircularProgressDirective,
+  RippleUnboundedDirective,
 ];
 
 @NgModule({

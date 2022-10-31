@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, ElementRef, OnDestroy } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, inject, OnDestroy } from '@angular/core';
 import { MDCTextFieldHelperText } from '@material/textfield';
 
 @Directive({
@@ -8,7 +8,7 @@ import { MDCTextFieldHelperText } from '@material/textfield';
 export class TextFieldHelperTextDirective implements AfterViewInit, OnDestroy {
   public instance?: MDCTextFieldHelperText;
 
-  constructor(private elementRef: ElementRef<HTMLElement>) {}
+  private elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
   public ngAfterViewInit(): void {
     this.instance = new MDCTextFieldHelperText(this.elementRef.nativeElement);

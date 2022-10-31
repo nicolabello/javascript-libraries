@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, ElementRef, OnDestroy } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, inject, OnDestroy } from '@angular/core';
 import { MDCCircularProgress } from '@material/circular-progress';
 
 @Directive({
@@ -8,7 +8,7 @@ import { MDCCircularProgress } from '@material/circular-progress';
 export class CircularProgressDirective implements AfterViewInit, OnDestroy {
   public instance?: MDCCircularProgress;
 
-  constructor(private elementRef: ElementRef<HTMLElement>) {}
+  private elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
   public ngAfterViewInit(): void {
     this.instance = new MDCCircularProgress(this.elementRef.nativeElement);

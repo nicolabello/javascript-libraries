@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, ElementRef, OnDestroy } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, inject, OnDestroy } from '@angular/core';
 import { MDCTopAppBar } from '@material/top-app-bar';
 
 @Directive({
@@ -8,7 +8,7 @@ import { MDCTopAppBar } from '@material/top-app-bar';
 export class TopAppBarDirective implements AfterViewInit, OnDestroy {
   public instance?: MDCTopAppBar;
 
-  constructor(private elementRef: ElementRef<HTMLElement>) {}
+  private elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
   public ngAfterViewInit(): void {
     this.instance = new MDCTopAppBar(this.elementRef.nativeElement);

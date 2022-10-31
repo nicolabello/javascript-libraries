@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, ElementRef, OnDestroy } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, inject, OnDestroy } from '@angular/core';
 import { MDCList } from '@material/list';
 
 @Directive({
@@ -8,7 +8,7 @@ import { MDCList } from '@material/list';
 export class ListDirective implements AfterViewInit, OnDestroy {
   public instance?: MDCList;
 
-  constructor(private elementRef: ElementRef<HTMLElement>) {}
+  private elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
   public ngAfterViewInit(): void {
     this.instance = new MDCList(this.elementRef.nativeElement);

@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, ElementRef, Input, OnDestroy } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, inject, Input, OnDestroy } from '@angular/core';
 import { MDCMenu } from '@material/menu';
 
 @Directive({
@@ -10,7 +10,7 @@ export class MenuDirective implements AfterViewInit, OnDestroy {
 
   public instance?: MDCMenu;
 
-  constructor(private elementRef: ElementRef<HTMLElement>) {}
+  private elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
   public ngAfterViewInit(): void {
     this.instance = new MDCMenu(this.elementRef.nativeElement);

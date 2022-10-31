@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, ElementRef, OnDestroy } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, inject, OnDestroy } from '@angular/core';
 import { MDCSelectHelperText } from '@material/select';
 
 @Directive({
@@ -8,7 +8,7 @@ import { MDCSelectHelperText } from '@material/select';
 export class SelectHelperTextDirective implements AfterViewInit, OnDestroy {
   public instance?: MDCSelectHelperText;
 
-  constructor(private elementRef: ElementRef<HTMLElement>) {}
+  private elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
   public ngAfterViewInit(): void {
     this.instance = new MDCSelectHelperText(this.elementRef.nativeElement);

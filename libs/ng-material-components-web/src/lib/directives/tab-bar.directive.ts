@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, ElementRef, OnDestroy } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, inject, OnDestroy } from '@angular/core';
 import { MDCTabBar } from '@material/tab-bar';
 
 @Directive({
@@ -8,7 +8,7 @@ import { MDCTabBar } from '@material/tab-bar';
 export class TabBarDirective implements AfterViewInit, OnDestroy {
   public instance?: MDCTabBar;
 
-  constructor(private elementRef: ElementRef<HTMLElement>) {}
+  private elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
   public ngAfterViewInit(): void {
     this.instance = new MDCTabBar(this.elementRef.nativeElement);

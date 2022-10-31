@@ -1,4 +1,4 @@
-import { AfterViewInit, Directive, ElementRef, HostListener, OnDestroy } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, HostListener, inject, OnDestroy } from '@angular/core';
 import { MDCSwitch } from '@material/switch';
 import { ToggleDirective } from '../helpers/toggle.directive';
 
@@ -9,9 +9,7 @@ import { ToggleDirective } from '../helpers/toggle.directive';
 export class SwitchDirective extends ToggleDirective<MDCSwitch> implements AfterViewInit, OnDestroy {
   public instance?: MDCSwitch;
 
-  constructor(private elementRef: ElementRef<HTMLButtonElement>) {
-    super();
-  }
+  private elementRef = inject<ElementRef<HTMLButtonElement>>(ElementRef);
 
   public ngAfterViewInit(): void {
     this.instance = new MDCSwitch(this.elementRef.nativeElement);

@@ -1,21 +1,12 @@
-import { Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, Input, OnDestroy, OnInit } from '@angular/core';
 import { SuspenseIfContext, SuspenseInput } from '../models/suspense';
 import { SuspenseIfDirective } from './suspense-if.directive';
-import { SuspenseService } from '../services/suspense.service';
 
 @Directive({
   selector: '[nbSuspenseIfError]',
 })
 export class SuspenseIfErrorDirective<T> extends SuspenseIfDirective<T> implements OnInit, OnDestroy {
   @Input() public nbSuspenseIfErrorOfType?: SuspenseInput<T>;
-
-  constructor(
-    templateRef: TemplateRef<SuspenseIfContext<NonNullable<T>>>,
-    viewContainer: ViewContainerRef,
-    suspenseService: SuspenseService
-  ) {
-    super(templateRef, viewContainer, suspenseService);
-  }
 
   public get isVisible(): boolean {
     return this.suspenseService.visibility.error;

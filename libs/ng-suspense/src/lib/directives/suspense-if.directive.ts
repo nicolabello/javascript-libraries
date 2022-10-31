@@ -1,18 +1,16 @@
-import { Directive, EmbeddedViewRef, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, EmbeddedViewRef, inject, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { SuspenseService } from '../services/suspense.service';
 import { SuspenseIfContext } from '../models/suspense';
+import { SuspenseService } from '../services/suspense.service';
 
 @Directive()
 export abstract class SuspenseIfDirective<T> implements OnInit, OnDestroy {
   private subscriptions = new Subscription();
   private embeddedViewRef: EmbeddedViewRef<SuspenseIfContext<T>> | null = null;
 
-  constructor(
-    protected templateRef: TemplateRef<SuspenseIfContext<T>>,
-    protected viewContainer: ViewContainerRef,
-    protected suspenseService: SuspenseService
-  ) {}
+  protected templateRef = inject<TemplateRef<SuspenseIfContext<T>>>(TemplateRef);
+  protected viewContainer = inject(ViewContainerRef);
+  protected suspenseService = inject(SuspenseService);
 
   public abstract get isVisible(): boolean;
 
