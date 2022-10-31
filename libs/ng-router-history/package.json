@@ -1,9 +1,18 @@
 {
   "name": "@nicolabello/ng-router-history",
   "version": "0.0.8",
+  "description": "",
+  "author": "Nicola Bello <nicola.bello.3@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nicolabello/javascript-libraries",
+    "directory": "libs/ng-router-history"
+  },
+  "keywords": [],
+  "license": "GPL-2.0-or-later",
   "peerDependencies": {
-    "@angular/common": "^14.1.0",
-    "@angular/core": "^14.1.0"
+    "@angular/common": "^14.0.0",
+    "@angular/core": "^14.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
