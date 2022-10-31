@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class FlexRootService {
-  // @ts-ignore
-  private _hostElement: HTMLElement;
+  private _hostElement!: HTMLElement;
 
   public get hostElement(): HTMLElement {
     return this._hostElement;

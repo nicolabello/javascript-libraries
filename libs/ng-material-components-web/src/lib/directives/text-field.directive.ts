@@ -3,6 +3,7 @@ import { MDCTextField } from '@material/textfield';
 import { InputDirective } from '../helpers/input.directive';
 
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '.mdc-text-field:not([mdc-no-auto-init])',
   exportAs: 'mdcTextField',
 })

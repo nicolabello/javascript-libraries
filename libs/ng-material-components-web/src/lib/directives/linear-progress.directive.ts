@@ -2,6 +2,7 @@ import { AfterViewInit, Directive, ElementRef, inject, OnDestroy } from '@angula
 import { MDCLinearProgress } from '@material/linear-progress';
 
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '.mdc-linear-progress:not([mdc-no-auto-init])',
   exportAs: 'mdcLinearProgress',
 })

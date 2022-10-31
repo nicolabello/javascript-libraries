@@ -2,6 +2,7 @@ import { AfterViewInit, Directive, ElementRef, inject, OnDestroy } from '@angula
 import { MDCTextFieldHelperText } from '@material/textfield';
 
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '.mdc-text-field-helper-text:not([mdc-no-auto-init])',
   exportAs: 'mdcTextFieldHelperText',
 })

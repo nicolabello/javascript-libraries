@@ -2,6 +2,7 @@ import { AfterViewInit, Directive, ElementRef, inject, Input, OnDestroy } from '
 import { MDCMenu } from '@material/menu';
 
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '.mdc-menu:not([mdc-no-auto-init])',
   exportAs: 'mdcMenu',
 })

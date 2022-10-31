@@ -12,6 +12,7 @@ import { MDCSelect } from '@material/select';
 import { InputDirective } from '../helpers/input.directive';
 
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '.mdc-select:not([mdc-no-auto-init])',
   exportAs: 'mdcSelect',
 })

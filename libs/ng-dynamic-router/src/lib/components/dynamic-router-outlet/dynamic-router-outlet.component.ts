@@ -3,8 +3,6 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ComponentFactory,
-  ComponentFactoryResolver,
   ComponentRef,
   Injector,
   OnDestroy,
@@ -44,7 +42,7 @@ export class DynamicRouterOutletComponent implements OnDestroy, OnInit {
   public animationDirection: NavigationDirection | null = null;
 
   @ViewChild('outlet', { read: ViewContainerRef, static: true })
-  private viewContainer!: ViewContainerRef;
+  private viewContainerRef!: ViewContainerRef;
 
   private subscriptions = new SubscriptionsBucket();
   private route?: HistoryRoute;
@@ -52,7 +50,6 @@ export class DynamicRouterOutletComponent implements OnDestroy, OnInit {
 
   constructor(
     private routerService: DynamicRouterService,
-    private componentFactoryResolver: ComponentFactoryResolver,
     private injector: Injector,
     private cdr: ChangeDetectorRef
   ) {}
@@ -122,13 +119,10 @@ export class DynamicRouterOutletComponent implements OnDestroy, OnInit {
   private showComponent(route: HistoryRoute): void {
     if (!(this.route && DynamicRouterOutletComponent.similarRoutes(this.route, route))) {
       // Clear view, it destroys the component as well
-      this.viewContainer.clear();
+      this.viewContainerRef.clear();
 
       // Create component
-      const componentFactory: ComponentFactory<any> = this.componentFactoryResolver.resolveComponentFactory(
-        route.component
-      );
-      this.componentRef = this.viewContainer.createComponent(componentFactory, undefined, this.injector);
+      this.componentRef = this.viewContainerRef.createComponent(route.component, { injector: this.injector });
 
       // Animate only if view is not empty
       const animationDirection = this.route ? route.direction : null;

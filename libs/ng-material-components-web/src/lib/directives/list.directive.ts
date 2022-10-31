@@ -2,6 +2,7 @@ import { AfterViewInit, Directive, ElementRef, inject, OnDestroy } from '@angula
 import { MDCList } from '@material/list';
 
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '.mdc-list:not([mdc-no-auto-init])',
   exportAs: 'mdcList',
 })

@@ -2,6 +2,7 @@ import { AfterViewInit, Directive, ElementRef, inject, OnDestroy } from '@angula
 import { MDCRipple } from '@material/ripple';
 
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '.mdc-icon-button',
   exportAs: 'mdcRipple',
 })

@@ -2,6 +2,7 @@ import { AfterViewInit, Directive, ElementRef, inject, OnDestroy } from '@angula
 import { MDCSelectHelperText } from '@material/select';
 
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '.mdc-select-helper-text:not([mdc-no-auto-init])',
   exportAs: 'mdcSelectHelperText',
 })

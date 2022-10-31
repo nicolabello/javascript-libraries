@@ -3,8 +3,7 @@ import { FlexContainerDirective } from '../directives/flex-container/flex-contai
 
 @Injectable()
 export class FlexContainerService {
-  // @ts-ignore
-  private _flexContainer: FlexContainerDirective;
+  private _flexContainer!: FlexContainerDirective;
 
   public get flexContainer(): FlexContainerDirective {
     return this._flexContainer;

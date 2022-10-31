@@ -2,6 +2,7 @@ import { AfterViewInit, Directive, ElementRef, inject, OnDestroy } from '@angula
 import { MDCTabBar } from '@material/tab-bar';
 
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '.mdc-tab-bar:not([mdc-no-auto-init])',
   exportAs: 'mdcTabBar',
 })

@@ -2,6 +2,7 @@ import { AfterViewInit, Directive, ElementRef, inject, OnDestroy } from '@angula
 import { MDCTopAppBar } from '@material/top-app-bar';
 
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '.mdc-top-app-bar:not([mdc-no-auto-init])',
   exportAs: 'mdcTopAppBar',
 })

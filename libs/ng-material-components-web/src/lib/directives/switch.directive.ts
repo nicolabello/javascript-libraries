@@ -3,6 +3,7 @@ import { MDCSwitch } from '@material/switch';
 import { ToggleDirective } from '../helpers/toggle.directive';
 
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '.mdc-switch:not([mdc-no-auto-init])',
   exportAs: 'mdcSwitch',
 })

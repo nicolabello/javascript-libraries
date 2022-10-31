@@ -17,8 +17,7 @@ export abstract class FlexContainerDirective implements OnInit, OnDestroy {
   protected dynamicPane?: FlexPaneDynamicDirective;
   protected fixedPanesAfter: FlexPaneFixedDirective[] = [];
   private subscriptions = new SubscriptionsBucket();
-  // @ts-ignore
-  private parentElement: HTMLElement;
+  private parentElement!: HTMLElement;
   private hostElement: HTMLElement;
 
   constructor(
@@ -37,8 +36,7 @@ export abstract class FlexContainerDirective implements OnInit, OnDestroy {
     this.hostElement.style.border = '0';
   }
 
-  // @ts-ignore
-  private _parentFlexPane: FlexPaneDirective;
+  private _parentFlexPane!: FlexPaneDirective;
 
   public get parentFlexPane(): FlexPaneDirective {
     return this._parentFlexPane;

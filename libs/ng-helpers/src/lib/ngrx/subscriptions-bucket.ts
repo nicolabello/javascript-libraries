@@ -7,7 +7,9 @@ export class SubscriptionsBucket {
   private static safelyUnsubscribe(subscription: Subscription): void {
     try {
       subscription.unsubscribe();
-    } catch (e) {}
+    } catch (e) {
+      return;
+    }
   }
 
   public push(subscription: Subscription, key?: string): void {

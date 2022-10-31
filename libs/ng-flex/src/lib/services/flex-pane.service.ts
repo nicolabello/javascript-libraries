@@ -3,8 +3,7 @@ import { FlexPaneDirective } from '../directives/flex-pane/flex-pane.directive';
 
 @Injectable()
 export class FlexPaneService {
-  // @ts-ignore
-  private _flexPane: FlexPaneDirective;
+  private _flexPane!: FlexPaneDirective;
 
   public get flexPane(): FlexPaneDirective {
     return this._flexPane;

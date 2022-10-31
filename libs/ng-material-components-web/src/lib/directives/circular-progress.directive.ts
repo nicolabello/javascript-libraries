@@ -2,6 +2,7 @@ import { AfterViewInit, Directive, ElementRef, inject, OnDestroy } from '@angula
 import { MDCCircularProgress } from '@material/circular-progress';
 
 @Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '.mdc-circular-progress:not([mdc-no-auto-init])',
   exportAs: 'mdcCircularProgress',
 })

@@ -21,7 +21,7 @@ const emptyFunction = () => undefined;
 @Directive()
 // T = FormControl type, U = UI type
 export class CommonValueAccessor<T, U = T> implements ControlValueAccessor, Validator, DoCheck {
-  // tslint:disable-next-line: no-input-rename
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('formControl') private _formControl?: FormControl<T>;
   @Input() public formControlName?: string;
 

@@ -32,7 +32,7 @@ export class Device {
     // return window.matchMedia('(pointer: coarse)').matches; // Not working for firefox
 
     if (!this._isTouch) {
-      const isTouch = window.hasOwnProperty('ontouchstart');
+      const isTouch = window && 'ontouchstart' in window;
 
       this._isTouch = new BehaviorSubject<boolean>(isTouch);
 

@@ -257,8 +257,8 @@ class TestComponent {
   public loading: any;
   public error: any;
 
-  public prioritizeDataOverLoading: boolean = false;
-  public prioritizeDataOverError: boolean = false;
+  public prioritizeDataOverLoading = false;
+  public prioritizeDataOverError = false;
 
   @ViewChild(SuspenseIfDataDirective)
   public suspenseIfDirective?: SuspenseIfDataDirective<any>;
