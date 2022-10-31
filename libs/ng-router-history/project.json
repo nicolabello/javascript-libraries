@@ -6,7 +6,7 @@
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",
-      "outputs": ["dist/libs/ng-router-history"],
+      "outputs": ["{workspaceRoot}/dist/libs/ng-router-history"],
       "options": {
         "project": "libs/ng-router-history/ng-package.json"
       },
@@ -22,7 +22,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/ng-router-history"],
+      "outputs": ["{workspaceRoot}/coverage/libs/ng-router-history"],
       "options": {
         "jestConfig": "libs/ng-router-history/jest.config.ts",
         "passWithNoTests": true

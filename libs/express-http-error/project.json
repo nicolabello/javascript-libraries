@@ -12,7 +12,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/express-http-error"],
+      "outputs": ["{workspaceRoot}/coverage/libs/express-http-error"],
       "options": {
         "jestConfig": "libs/express-http-error/jest.config.ts",
         "passWithNoTests": true

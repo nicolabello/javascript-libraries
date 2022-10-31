@@ -16,9 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@nicolabello/express-helpers": ["libs/express-helpers/src/index.ts"],
-      "@nicolabello/express-http-error": [
-        "libs/express-http-error/src/index.ts"
-      ],
+      "@nicolabello/express-http-error": ["libs/express-http-error/src/index.ts"],
       "@nicolabello/express-mysql": ["libs/express-mysql/src/index.ts"],
       "@nicolabello/express-params": ["libs/express-params/src/index.ts"],
       "@nicolabello/js-acl": ["libs/js-acl/src/index.ts"],
@@ -26,9 +24,7 @@
       "@nicolabello/ng-dynamic-router": ["libs/ng-dynamic-router/src/index.ts"],
       "@nicolabello/ng-flex": ["libs/ng-flex/src/index.ts"],
       "@nicolabello/ng-helpers": ["libs/ng-helpers/src/index.ts"],
-      "@nicolabello/ng-material-components-web": [
-        "libs/ng-material-components-web/src/index.ts"
-      ],
+      "@nicolabello/ng-material-components-web": ["libs/ng-material-components-web/src/index.ts"],
       "@nicolabello/ng-router-history": ["libs/ng-router-history/src/index.ts"],
       "@nicolabello/ng-suspense": ["libs/ng-suspense/src/index.ts"]
     }

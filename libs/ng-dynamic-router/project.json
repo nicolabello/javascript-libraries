@@ -6,7 +6,7 @@
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",
-      "outputs": ["dist/libs/ng-dynamic-router"],
+      "outputs": ["{workspaceRoot}/dist/libs/ng-dynamic-router"],
       "options": {
         "project": "libs/ng-dynamic-router/ng-package.json"
       },
@@ -22,7 +22,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/ng-dynamic-router"],
+      "outputs": ["{workspaceRoot}/coverage/libs/ng-dynamic-router"],
       "options": {
         "jestConfig": "libs/ng-dynamic-router/jest.config.ts",
         "passWithNoTests": true

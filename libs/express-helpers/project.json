@@ -12,7 +12,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/express-helpers"],
+      "outputs": ["{workspaceRoot}/coverage/libs/express-helpers"],
       "options": {
         "jestConfig": "libs/express-helpers/jest.config.ts",
         "passWithNoTests": true

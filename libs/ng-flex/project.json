@@ -6,7 +6,7 @@
   "targets": {
     "build": {
       "executor": "@nrwl/angular:package",
-      "outputs": ["dist/libs/ng-flex"],
+      "outputs": ["{workspaceRoot}/dist/libs/ng-flex"],
       "options": {
         "project": "libs/ng-flex/ng-package.json"
       },
@@ -22,7 +22,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/ng-flex"],
+      "outputs": ["{workspaceRoot}/coverage/libs/ng-flex"],
       "options": {
         "jestConfig": "libs/ng-flex/jest.config.ts",
         "passWithNoTests": true
