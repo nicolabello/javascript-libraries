@@ -1,6 +1,6 @@
 {
   "name": "@nicolabello/ng-router-history",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "peerDependencies": {
     "@angular/common": "^14.1.0",
     "@angular/core": "^14.1.0"
