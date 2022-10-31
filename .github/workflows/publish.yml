@@ -9,25 +9,20 @@ on:
       - master
 
 jobs:
-  set-up:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2
         with:
           node-version: 16.x
           registry-url: "https://registry.npmjs.org"
-          cache: 'yarn'
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-  js-acl:
-    needs: set-up
-
-    steps:
       - name: Test js-acl
         run: yarn test js-acl
       - name: Build js-acl
@@ -38,10 +33,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
-  js-helpers:
-    needs: set-up
-
-    steps:
       - name: Test js-helpers
         run: yarn test js-helpers
       - name: Build js-helpers
@@ -52,10 +43,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
-  js-dynamic-router:
-    needs: set-up
-
-    steps:
       - name: Test ng-dynamic-router
         run: yarn test ng-dynamic-router
       - name: Build ng-dynamic-router
@@ -66,10 +53,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
-  ng-helpers:
-    needs: set-up
-
-    steps:
       - name: Test ng-helpers
         run: yarn test ng-helpers
       - name: Build ng-helpers
@@ -80,10 +63,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
-  ng-suspense:
-    needs: set-up
-
-    steps:
       - name: Test ng-suspense
         run: yarn test ng-suspense
       - name: Build ng-suspense
@@ -94,10 +73,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
-  ng-flex:
-    needs: set-up
-
-    steps:
       - name: Test ng-flex
         run: yarn test ng-flex
       - name: Build ng-flex
@@ -108,10 +83,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
-  ng-material-components-web:
-    needs: set-up
-
-    steps:
       - name: Test ng-material-components-web
         run: yarn test ng-material-components-web
       - name: Build ng-material-components-web
@@ -122,10 +93,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
-  express-http-error:
-    needs: set-up
-
-    steps:
       - name: Test express-http-error
         run: yarn test express-http-error
       - name: Build express-http-error
@@ -136,10 +103,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
-  express-params:
-    needs: set-up
-
-    steps:
       - name: Test express-params
         run: yarn test express-params
       - name: Build express-params
@@ -150,10 +113,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
-  express-helpers:
-    needs: set-up
-
-    steps:
       - name: Test express-helpers
         run: yarn test express-helpers
       - name: Build express-helpers
@@ -164,10 +123,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
-  express-mysql:
-    needs: set-up
-
-    steps:
       - name: Test express-mysql
         run: yarn test express-mysql
       - name: Build express-mysql
@@ -178,10 +133,6 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
-  ng-router-history:
-    needs: set-up
-
-    steps:
       - name: Test ng-router-history
         run: yarn test ng-router-history
       - name: Build ng-router-history
