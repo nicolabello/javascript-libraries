@@ -3,6 +3,7 @@ export * from './lib/directives/linear-progress.directive';
 export * from './lib/directives/list.directive';
 export * from './lib/directives/menu.directive';
 export * from './lib/directives/ripple.directive';
+export * from './lib/directives/ripple-unbounded.directive';
 export * from './lib/directives/select.directive';
 export * from './lib/directives/select-helper-text.directive';
 export * from './lib/directives/switch.directive';
