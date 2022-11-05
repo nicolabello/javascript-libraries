@@ -12,7 +12,7 @@ jobs:
   js-acl:
     env:
       NAME: js-acl
-    name: js-acl
+    name: ${{env.NAME}}
     runs-on: ubuntu-latest
 
     steps:
@@ -28,11 +28,11 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Test
-        run: yarn test ${{NAME}}
+        run: yarn test ${{env.NAME}}
       - name: Build
-        run: yarn build ${{NAME}}
+        run: yarn build ${{env.NAME}}
       - name: Publish
-        run: cd dist/libs/${{NAME}} && npm publish --access public
+        run: cd dist/libs/${{env.NAME}} && npm publish --access public
         continue-on-error: true
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
