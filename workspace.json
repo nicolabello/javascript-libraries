@@ -12,7 +12,8 @@
     "ng-helpers": "libs/ng-helpers",
     "ng-material-components-web": "libs/ng-material-components-web",
     "ng-router-history": "libs/ng-router-history",
-    "ng-suspense": "libs/ng-suspense"
+    "ng-suspense": "libs/ng-suspense",
+    "node-otp": "libs/node-otp"
   },
   "$schema": "./node_modules/nx/schemas/workspace-schema.json"
 }

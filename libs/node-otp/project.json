@@ -1,0 +1,35 @@
+{
+  "name": "node-otp",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/node-otp/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/node-otp/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/node-otp/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/node-otp",
+        "tsConfig": "libs/node-otp/tsconfig.lib.json",
+        "packageJson": "libs/node-otp/package.json",
+        "main": "libs/node-otp/src/index.ts",
+        "assets": ["libs/node-otp/*.md"]
+      }
+    }
+  },
+  "tags": []
+}

@@ -26,7 +26,8 @@
       "@nicolabello/ng-helpers": ["libs/ng-helpers/src/index.ts"],
       "@nicolabello/ng-material-components-web": ["libs/ng-material-components-web/src/index.ts"],
       "@nicolabello/ng-router-history": ["libs/ng-router-history/src/index.ts"],
-      "@nicolabello/ng-suspense": ["libs/ng-suspense/src/index.ts"]
+      "@nicolabello/ng-suspense": ["libs/ng-suspense/src/index.ts"],
+      "@nicolabello/node-otp": ["libs/node-otp/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
