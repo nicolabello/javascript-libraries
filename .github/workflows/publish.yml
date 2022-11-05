@@ -12,7 +12,7 @@ jobs:
   js-acl:
     env:
       NAME: js-acl
-    name: ${{NAME}}
+    name: js-acl
     runs-on: ubuntu-latest
 
     steps:
