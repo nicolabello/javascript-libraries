@@ -8,9 +8,13 @@ on:
     branches:
       - master
 
+env:
+  NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
+    name: Publish all packages
 
     steps:
       - name: Checkout
@@ -19,7 +23,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          registry-url: "https://registry.npmjs.org"
+          registry-url: 'https://registry.npmjs.org'
           cache: 'yarn'
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -31,8 +35,6 @@ jobs:
       - name: Publish js-acl
         run: cd dist/libs/js-acl && npm publish --access public
         continue-on-error: true
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
       - name: Test js-helpers
         run: yarn test js-helpers
@@ -41,8 +43,6 @@ jobs:
       - name: Publish js-helpers
         run: cd dist/libs/js-helpers && npm publish --access public
         continue-on-error: true
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
       - name: Test ng-dynamic-router
         run: yarn test ng-dynamic-router
@@ -51,8 +51,6 @@ jobs:
       - name: Publish ng-dynamic-router
         run: cd dist/libs/ng-dynamic-router && npm publish --access public
         continue-on-error: true
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
       - name: Test ng-helpers
         run: yarn test ng-helpers
@@ -61,8 +59,6 @@ jobs:
       - name: Publish ng-helpers
         run: cd dist/libs/ng-helpers && npm publish --access public
         continue-on-error: true
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
       - name: Test ng-suspense
         run: yarn test ng-suspense
@@ -71,8 +67,6 @@ jobs:
       - name: Publish ng-suspense
         run: cd dist/libs/ng-suspense && npm publish --access public
         continue-on-error: true
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
       - name: Test ng-flex
         run: yarn test ng-flex
@@ -81,8 +75,6 @@ jobs:
       - name: Publish ng-flex
         run: cd dist/libs/ng-flex && npm publish --access public
         continue-on-error: true
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
       - name: Test ng-material-components-web
         run: yarn test ng-material-components-web
@@ -91,8 +83,6 @@ jobs:
       - name: Publish ng-material-components-web
         run: cd dist/libs/ng-material-components-web && npm publish --access public
         continue-on-error: true
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
       - name: Test express-http-error
         run: yarn test express-http-error
@@ -101,8 +91,6 @@ jobs:
       - name: Publish express-http-error
         run: cd dist/libs/express-http-error && npm publish --access public
         continue-on-error: true
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
       - name: Test express-params
         run: yarn test express-params
@@ -111,8 +99,6 @@ jobs:
       - name: Publish express-params
         run: cd dist/libs/express-params && npm publish --access public
         continue-on-error: true
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
       - name: Test express-helpers
         run: yarn test express-helpers
@@ -121,8 +107,6 @@ jobs:
       - name: Publish express-helpers
         run: cd dist/libs/express-helpers && npm publish --access public
         continue-on-error: true
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
       - name: Test express-mysql
         run: yarn test express-mysql
@@ -131,8 +115,6 @@ jobs:
       - name: Publish express-mysql
         run: cd dist/libs/express-mysql && npm publish --access public
         continue-on-error: true
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
 
       - name: Test ng-router-history
         run: yarn test ng-router-history
@@ -141,5 +123,3 @@ jobs:
       - name: Publish ng-router-history
         run: cd dist/libs/ng-router-history && npm publish --access public
         continue-on-error: true
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}

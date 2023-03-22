@@ -11,6 +11,10 @@ export class Typings {
     return typeof value === 'number' && isFinite(value);
   }
 
+  public static isBoolean(value: any): value is boolean {
+    return value === true || value === false;
+  }
+
   public static isArray(value: any): value is any[] {
     return Array.isArray(value);
   }
