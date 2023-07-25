@@ -1,17 +1,18 @@
 {
+  "name": "js-acl",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/js-acl/src",
   "projectType": "library",
   "targets": {
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["libs/js-acl/**/*.ts"]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/js-acl"],
       "options": {
         "jestConfig": "libs/js-acl/jest.config.ts",
@@ -19,7 +20,7 @@
       }
     },
     "build": {
-      "executor": "@nrwl/js:tsc",
+      "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/js-acl",
@@ -30,6 +31,5 @@
       }
     }
   },
-  "tags": [],
-  "name": "js-acl"
+  "tags": []
 }

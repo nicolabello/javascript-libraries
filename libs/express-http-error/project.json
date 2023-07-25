@@ -1,17 +1,18 @@
 {
+  "name": "express-http-error",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/express-http-error/src",
   "projectType": "library",
   "targets": {
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["libs/express-http-error/**/*.ts"]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/express-http-error"],
       "options": {
         "jestConfig": "libs/express-http-error/jest.config.ts",
@@ -19,7 +20,7 @@
       }
     },
     "build": {
-      "executor": "@nrwl/js:tsc",
+      "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/express-http-error",
@@ -30,6 +31,5 @@
       }
     }
   },
-  "tags": [],
-  "name": "express-http-error"
+  "tags": []
 }

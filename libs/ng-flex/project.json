@@ -1,11 +1,12 @@
 {
+  "name": "ng-flex",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/ng-flex/src",
   "prefix": "nb",
   "targets": {
     "build": {
-      "executor": "@nrwl/angular:package",
+      "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/libs/ng-flex"],
       "options": {
         "project": "libs/ng-flex/ng-package.json"
@@ -21,7 +22,7 @@
       "defaultConfiguration": "production"
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/ng-flex"],
       "options": {
         "jestConfig": "libs/ng-flex/jest.config.ts",
@@ -29,12 +30,11 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "options": {
         "lintFilePatterns": ["libs/ng-flex/src/**/*.ts", "libs/ng-flex/src/**/*.html"]
       }
     }
   },
-  "tags": [],
-  "name": "ng-flex"
+  "tags": []
 }

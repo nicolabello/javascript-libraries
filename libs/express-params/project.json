@@ -1,17 +1,18 @@
 {
+  "name": "express-params",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/express-params/src",
   "projectType": "library",
   "targets": {
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["libs/express-params/**/*.ts"]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/express-params"],
       "options": {
         "jestConfig": "libs/express-params/jest.config.ts",
@@ -19,7 +20,7 @@
       }
     },
     "build": {
-      "executor": "@nrwl/js:tsc",
+      "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/express-params",
@@ -30,6 +31,5 @@
       }
     }
   },
-  "tags": [],
-  "name": "express-params"
+  "tags": []
 }
