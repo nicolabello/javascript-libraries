@@ -5,7 +5,7 @@
   "projectType": "library",
   "targets": {
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["libs/js-helpers/**/*.ts"]
@@ -15,8 +15,7 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/js-helpers"],
       "options": {
-        "jestConfig": "libs/js-helpers/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/js-helpers/jest.config.ts"
       }
     },
     "build": {

@@ -1,6 +1,6 @@
 {
   "name": "@nicolabello/js-acl",
-  "version": "2.0.10",
+  "version": "2.0.11",
   "description": "Provides a lightweight and flexible access control list (ACL) implementation for privileges management.",
   "author": "Nicola Bello <nicola.bello.3@gmail.com>",
   "repository": {

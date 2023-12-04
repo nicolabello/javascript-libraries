@@ -25,12 +25,11 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/ng-material-components-web"],
       "options": {
-        "jestConfig": "libs/ng-material-components-web/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/ng-material-components-web/jest.config.ts"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": [
           "libs/ng-material-components-web/src/**/*.ts",

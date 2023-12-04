@@ -25,12 +25,11 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/ng-dynamic-router"],
       "options": {
-        "jestConfig": "libs/ng-dynamic-router/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/ng-dynamic-router/jest.config.ts"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": ["libs/ng-dynamic-router/src/**/*.ts", "libs/ng-dynamic-router/src/**/*.html"]
       }

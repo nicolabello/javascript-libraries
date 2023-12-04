@@ -25,12 +25,11 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/ng-suspense"],
       "options": {
-        "jestConfig": "libs/ng-suspense/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/ng-suspense/jest.config.ts"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": ["libs/ng-suspense/src/**/*.ts", "libs/ng-suspense/src/**/*.html"]
       }

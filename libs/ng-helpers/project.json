@@ -25,12 +25,11 @@
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/ng-helpers"],
       "options": {
-        "jestConfig": "libs/ng-helpers/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/ng-helpers/jest.config.ts"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "options": {
         "lintFilePatterns": ["libs/ng-helpers/src/**/*.ts", "libs/ng-helpers/src/**/*.html"]
       }

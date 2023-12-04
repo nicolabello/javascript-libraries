@@ -6,7 +6,7 @@
 /out-tsc
 
 # dependencies
-/node_modules
+node_modules
 
 # IDEs and editors
 /.idea
@@ -38,10 +38,12 @@ testem.log
 .DS_Store
 Thumbs.db
 
-# Nx migrations
-migrations.json
-
-# Angular cache
-/.angular/cache
-
+# Angular
 .angular
+
+# Nx
+/migrations.json
+.nx/cache
+
+# Local env
+.env
