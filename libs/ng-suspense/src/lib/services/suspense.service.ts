@@ -1,10 +1,12 @@
 import { Injectable, OnDestroy } from '@angular/core';
+
 import { merge, Observable, Subject } from 'rxjs';
-import { SuspenseValue } from '../helpers/suspense-value';
-import { SuspenseData, SuspenseError, SuspenseLoading } from '../models/suspense';
-import { Config } from '../models/config';
-import { Visibility } from '../models/visibility';
+
 import { getVisibility } from '../helpers/get-visibility';
+import { SuspenseValue } from '../helpers/suspense-value';
+import { Config } from '../models/config';
+import { SuspenseData, SuspenseError, SuspenseLoading } from '../models/suspense';
+import { Visibility } from '../models/visibility';
 
 @Injectable()
 export class SuspenseService implements OnDestroy {
@@ -27,7 +29,7 @@ export class SuspenseService implements OnDestroy {
     );
   }
 
-  public setConfig(key: keyof Config, value: boolean) {
+  public setConfig(key: keyof Config, value: boolean): void {
     if (this.config[key] !== value) {
       this.config[key] = value;
       this.configChangeSubject.next();

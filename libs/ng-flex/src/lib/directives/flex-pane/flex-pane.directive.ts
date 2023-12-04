@@ -1,7 +1,10 @@
 import { Directive, ElementRef, OnDestroy } from '@angular/core';
-import { SubscriptionsBucket } from '@nicolabello/ng-helpers';
+
 import { Observable, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
+
+import { SubscriptionsBucket } from '@nicolabello/ng-helpers';
+
 import { Size } from '../../models/size';
 import { FlexContainerService } from '../../services/flex-container.service';
 import { FlexPaneService } from '../../services/flex-pane.service';
@@ -14,7 +17,7 @@ export abstract class FlexPaneDirective implements OnDestroy {
   protected subscriptions = new SubscriptionsBucket();
   private innerSizeSubject = new ReplaySubject<Size>(1);
 
-  constructor(
+  public constructor(
     hostElementRef: ElementRef,
     flexContainerService: FlexContainerService,
     flexPaneService: FlexPaneService

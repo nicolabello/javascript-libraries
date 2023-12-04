@@ -1,5 +1,7 @@
 import { AfterViewInit, Directive, ElementRef, HostListener, inject, OnDestroy } from '@angular/core';
+
 import { MDCSwitch } from '@material/switch';
+
 import { ToggleDirective } from '../helpers/toggle.directive';
 
 @Directive({

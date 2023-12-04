@@ -1,7 +1,10 @@
 import { Response } from 'express';
+
 import { escape, PoolConnection } from 'mysql2';
-import { mySql } from './my-sql';
+
 import { HttpError, HttpStatusCode } from '@nicolabello/express-http-error';
+
+import { mySql } from './my-sql';
 
 export class MySqlConnection {
   private connection?: PoolConnection;

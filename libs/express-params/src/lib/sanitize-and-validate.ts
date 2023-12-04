@@ -1,8 +1,10 @@
 import { Request, RequestHandler } from 'express';
+
+import { HttpError, HttpStatusCode } from '@nicolabello/express-http-error';
+import { deepValue, Typings } from '@nicolabello/js-helpers';
+
 import { ValidationErrors } from './models/validation-errors';
 import { Param } from './param';
-import { deepValue, Typings } from '@nicolabello/js-helpers';
-import { HttpError, HttpStatusCode } from '@nicolabello/express-http-error';
 
 function getParam(req: Request, paramName: string, defaultValue?: any): any {
   for (const object of [req.params, req.body, req.query]) {

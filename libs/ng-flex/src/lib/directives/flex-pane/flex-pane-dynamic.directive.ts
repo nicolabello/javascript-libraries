@@ -1,5 +1,7 @@
 import { AfterViewInit, Directive, OnDestroy } from '@angular/core';
+
 import { FlexPaneService } from '../../services/flex-pane.service';
+
 import { FlexPaneDirective } from './flex-pane.directive';
 
 @Directive({

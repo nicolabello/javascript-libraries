@@ -7,7 +7,9 @@ import {
   OnInit,
   SkipSelf,
 } from '@angular/core';
+
 import { SubscriptionsBucket } from '@nicolabello/ng-helpers';
+
 import { Subview } from '../../models/subview';
 import { DynamicRouterService } from '../../services/dynamic-router.service';
 
@@ -22,7 +24,7 @@ export class DynamicRouterSubviewComponent implements OnInit, OnDestroy {
   @Input() public level = 0;
   private subscriptions = new SubscriptionsBucket();
 
-  constructor(
+  public constructor(
     @SkipSelf() private parentRouterService: DynamicRouterService,
     private cdr: ChangeDetectorRef,
     private routerService: DynamicRouterService

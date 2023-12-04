@@ -10,7 +10,9 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
+
 import { SubscriptionsBucket } from '@nicolabello/ng-helpers';
+
 import { HistoryRoute } from '../../helpers/history-route';
 import { NavigationDirection } from '../../models/navigation-direction';
 import { DynamicRouterService } from '../../services/dynamic-router.service';
@@ -48,7 +50,7 @@ export class DynamicRouterOutletComponent implements OnDestroy, OnInit {
   private route?: HistoryRoute;
   private componentRef?: ComponentRef<any>;
 
-  constructor(
+  public constructor(
     private routerService: DynamicRouterService,
     private injector: Injector,
     private cdr: ChangeDetectorRef

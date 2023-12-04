@@ -1,4 +1,5 @@
 import { NavigationEnd, NavigationStart } from '@angular/router';
+
 import { HistoryEntry } from './history-entry';
 import { NavigationTrigger } from './navigation-trigger';
 

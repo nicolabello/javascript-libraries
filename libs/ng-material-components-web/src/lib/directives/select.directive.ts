@@ -8,7 +8,9 @@ import {
   OnDestroy,
   Output,
 } from '@angular/core';
+
 import { MDCSelect } from '@material/select';
+
 import { InputDirective } from '../helpers/input.directive';
 
 @Directive({
@@ -33,7 +35,7 @@ export class SelectDirective extends InputDirective<MDCSelect> implements AfterV
     this.instance?.destroy();
   }
 
-  private emitInstanceValue = () => {
+  private emitInstanceValue = (): void => {
     this.valueChange.emit(this.instance?.value);
   };
 }

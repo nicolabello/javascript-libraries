@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import { SubscribeDirective } from './subscribe.directive';
 
 @NgModule({

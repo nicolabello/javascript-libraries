@@ -1,4 +1,5 @@
 import { AfterViewInit, Directive, ElementRef, inject, OnDestroy } from '@angular/core';
+
 import { MDCTabBar } from '@material/tab-bar';
 
 @Directive({

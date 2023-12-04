@@ -1,8 +1,9 @@
 import { ChangeDetectorRef, Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+
 import { Observable, Subscription } from 'rxjs';
 
 class Context<T> {
-  nbSubscribe?: T;
+  public nbSubscribe?: T;
 }
 
 // Use as <ng-container *nbSubscribe="interval$ as value;">{{ value }}</ng-container>
@@ -15,14 +16,14 @@ export class SubscribeDirective<T> implements OnInit, OnDestroy {
   private context: Context<T> = new Context();
   private subscription?: Subscription;
 
-  constructor(
+  public constructor(
     private viewContainer: ViewContainerRef,
     private cdr: ChangeDetectorRef,
     private templateRef: TemplateRef<Context<T>>
   ) {}
 
   @Input()
-  set nbSubscribe(observable: Observable<T>) {
+  public set nbSubscribe(observable: Observable<T>) {
     if (observable !== this.observable) {
       this.observable = observable;
       this.subscription?.unsubscribe();

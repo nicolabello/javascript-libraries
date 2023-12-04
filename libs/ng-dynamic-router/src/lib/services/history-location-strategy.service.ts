@@ -1,6 +1,7 @@
 import { LocationChangeEvent, PathLocationStrategy, PlatformLocation } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
+
 import { HistoryState } from '../models/history-state';
 import { NavigationDirection } from '../models/navigation-direction';
 import { ParentRoute } from '../models/parent-route';
@@ -21,7 +22,7 @@ Possible calls:
 export class HistoryLocationStrategy extends PathLocationStrategy {
   private state: HistoryState | null = null;
 
-  constructor(platformLocation: PlatformLocation) {
+  public constructor(platformLocation: PlatformLocation) {
     super(platformLocation);
     super.onPopState(this.popState.bind(this));
   }

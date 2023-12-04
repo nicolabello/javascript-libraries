@@ -1,6 +1,8 @@
 import { waitForAsync } from '@angular/core/testing';
+
 import { from } from 'rxjs';
 import { tap } from 'rxjs/operators';
+
 import { SuspenseValue } from './suspense-value';
 
 describe('SuspenseValue', () => {

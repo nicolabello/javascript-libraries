@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+
 import { SuspenseComponent } from '../components/suspense.component';
+
 import { SuspenseIfErrorDirective } from './suspense-if-error.directive';
 
 const testCases = [

@@ -1,4 +1,5 @@
 import { AfterViewInit, Directive, ElementRef, inject, OnDestroy } from '@angular/core';
+
 import { MDCCircularProgress } from '@material/circular-progress';
 
 @Directive({

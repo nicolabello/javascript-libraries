@@ -1,5 +1,7 @@
 import { AfterViewInit, Directive, ElementRef, inject, OnChanges, OnDestroy } from '@angular/core';
+
 import { MDCTextField } from '@material/textfield';
+
 import { InputDirective } from '../helpers/input.directive';
 
 @Directive({

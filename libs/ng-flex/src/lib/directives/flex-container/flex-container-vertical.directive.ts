@@ -1,6 +1,8 @@
 import { Directive } from '@angular/core';
+
 import { Size } from '../../models/size';
 import { FlexContainerService } from '../../services/flex-container.service';
+
 import { FlexContainerDirective } from './flex-container.directive';
 
 @Directive({

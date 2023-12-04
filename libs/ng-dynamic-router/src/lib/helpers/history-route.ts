@@ -1,5 +1,6 @@
 import { Type } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
+
 import { HistoryState } from '../models/history-state';
 import { NavigationDirection } from '../models/navigation-direction';
 import { ParentRoute } from '../models/parent-route';
@@ -9,7 +10,7 @@ export class HistoryRoute {
   public readonly params: Params;
   public readonly url: string;
 
-  constructor(public readonly activatedRoute: ActivatedRoute, public readonly state: HistoryState) {
+  public constructor(public readonly activatedRoute: ActivatedRoute, public readonly state: HistoryState) {
     // Save the following here as activatedRoute.snapshot is changing later
     this.component = activatedRoute.snapshot.data.component;
     this.params = activatedRoute.snapshot.params;

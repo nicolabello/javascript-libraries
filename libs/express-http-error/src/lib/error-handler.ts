@@ -1,7 +1,9 @@
 import { ErrorRequestHandler } from 'express';
+
+import { isNodeEnvProduction } from '@nicolabello/js-helpers';
+
 import { HttpError } from './http-error';
 import { HttpStatusCode } from './http-status-code';
-import { isNodeEnvProduction } from '@nicolabello/js-helpers';
 
 interface ErrorResponse {
   type: 'error';

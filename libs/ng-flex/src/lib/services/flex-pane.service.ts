@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { FlexPaneDirective } from '../directives/flex-pane/flex-pane.directive';
 
 @Injectable()

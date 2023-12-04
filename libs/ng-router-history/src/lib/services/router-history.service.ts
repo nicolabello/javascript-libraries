@@ -1,9 +1,11 @@
+import { LocationStrategy } from '@angular/common';
 import { Injectable } from '@angular/core';
+import { ActivatedRoute, Event, NavigationEnd, NavigationExtras, NavigationStart, Router } from '@angular/router';
+
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { filter, map, scan } from 'rxjs/operators';
-import { ActivatedRoute, Event, NavigationEnd, NavigationExtras, NavigationStart, Router } from '@angular/router';
+
 import { RouterHistory } from '../models/router-history';
-import { LocationStrategy } from '@angular/common';
 
 @Injectable()
 export class RouterHistoryService {
@@ -12,7 +14,7 @@ export class RouterHistoryService {
 
   private activatedRouteSubject = new BehaviorSubject<ActivatedRoute | null>(null);
 
-  constructor(private router: Router, private location: LocationStrategy) {}
+  public constructor(private router: Router, private location: LocationStrategy) {}
 
   public init(): void {
     this.historyObserver().subscribe();

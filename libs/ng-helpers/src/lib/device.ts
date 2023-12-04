@@ -15,7 +15,7 @@ export class Device {
       const webpImage = new Image();
       webpImage.src =
         'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
-      webpImage.onload = webpImage.onerror = () => {
+      webpImage.onload = webpImage.onerror = (): void => {
         this._webpSupported = webpImage.height === 2;
         observer.next(this._webpSupported);
         observer.complete();

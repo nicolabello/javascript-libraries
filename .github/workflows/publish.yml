@@ -28,6 +28,8 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
+      - name: Lint js-acl
+        run: yarn lint js-acl
       - name: Test js-acl
         run: yarn test js-acl
       - name: Build js-acl
@@ -36,6 +38,8 @@ jobs:
         run: cd dist/libs/js-acl && npm publish --access public
         continue-on-error: true
 
+      - name: Lint js-helpers
+        run: yarn lint js-helpers
       - name: Test js-helpers
         run: yarn test js-helpers
       - name: Build js-helpers
@@ -44,6 +48,8 @@ jobs:
         run: cd dist/libs/js-helpers && npm publish --access public
         continue-on-error: true
 
+      - name: Lint ng-dynamic-router
+        run: yarn lint ng-dynamic-router
       - name: Test ng-dynamic-router
         run: yarn test ng-dynamic-router
       - name: Build ng-dynamic-router
@@ -52,6 +58,8 @@ jobs:
         run: cd dist/libs/ng-dynamic-router && npm publish --access public
         continue-on-error: true
 
+      - name: Lint ng-helpers
+        run: yarn lint ng-helpers
       - name: Test ng-helpers
         run: yarn test ng-helpers
       - name: Build ng-helpers
@@ -60,6 +68,8 @@ jobs:
         run: cd dist/libs/ng-helpers && npm publish --access public
         continue-on-error: true
 
+      - name: Lint ng-suspense
+        run: yarn lint ng-suspense
       - name: Test ng-suspense
         run: yarn test ng-suspense
       - name: Build ng-suspense
@@ -68,6 +78,8 @@ jobs:
         run: cd dist/libs/ng-suspense && npm publish --access public
         continue-on-error: true
 
+      - name: Lint ng-flex
+        run: yarn lint ng-flex
       - name: Test ng-flex
         run: yarn test ng-flex
       - name: Build ng-flex
@@ -76,6 +88,8 @@ jobs:
         run: cd dist/libs/ng-flex && npm publish --access public
         continue-on-error: true
 
+      - name: Lint ng-material-components-web
+        run: yarn lint ng-material-components-web
       - name: Test ng-material-components-web
         run: yarn test ng-material-components-web
       - name: Build ng-material-components-web
@@ -84,6 +98,8 @@ jobs:
         run: cd dist/libs/ng-material-components-web && npm publish --access public
         continue-on-error: true
 
+      - name: Lint express-http-error
+        run: yarn lint express-http-error
       - name: Test express-http-error
         run: yarn test express-http-error
       - name: Build express-http-error
@@ -92,6 +108,8 @@ jobs:
         run: cd dist/libs/express-http-error && npm publish --access public
         continue-on-error: true
 
+      - name: Lint express-params
+        run: yarn lint express-params
       - name: Test express-params
         run: yarn test express-params
       - name: Build express-params
@@ -100,6 +118,8 @@ jobs:
         run: cd dist/libs/express-params && npm publish --access public
         continue-on-error: true
 
+      - name: Lint express-helpers
+        run: yarn lint express-helpers
       - name: Test express-helpers
         run: yarn test express-helpers
       - name: Build express-helpers
@@ -108,6 +128,8 @@ jobs:
         run: cd dist/libs/express-helpers && npm publish --access public
         continue-on-error: true
 
+      - name: Lint express-mysql
+        run: yarn lint express-mysql
       - name: Test express-mysql
         run: yarn test express-mysql
       - name: Build express-mysql
@@ -116,6 +138,8 @@ jobs:
         run: cd dist/libs/express-mysql && npm publish --access public
         continue-on-error: true
 
+      - name: Lint ng-router-history
+        run: yarn lint ng-router-history
       - name: Test ng-router-history
         run: yarn test ng-router-history
       - name: Build ng-router-history

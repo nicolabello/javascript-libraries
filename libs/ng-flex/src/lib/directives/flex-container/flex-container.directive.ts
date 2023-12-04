@@ -1,14 +1,17 @@
 import { Directive, ElementRef, Input, OnDestroy, OnInit, Optional } from '@angular/core';
-import { fromResizeObserver, SubscriptionsBucket } from '@nicolabello/ng-helpers';
+
 import { Observable } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
+
+import { fromResizeObserver, SubscriptionsBucket } from '@nicolabello/ng-helpers';
+
 import { Size } from '../../models/size';
 import { FlexContainerService } from '../../services/flex-container.service';
 import { FlexPaneService } from '../../services/flex-pane.service';
 import { FlexRootService } from '../../services/flex-root.service';
-import { FlexPaneDirective } from '../flex-pane/flex-pane.directive';
 import { FlexPaneDynamicDirective } from '../flex-pane/flex-pane-dynamic.directive';
 import { FlexPaneFixedDirective } from '../flex-pane/flex-pane-fixed.directive';
+import { FlexPaneDirective } from '../flex-pane/flex-pane.directive';
 
 @Directive()
 export abstract class FlexContainerDirective implements OnInit, OnDestroy {
@@ -20,7 +23,7 @@ export abstract class FlexContainerDirective implements OnInit, OnDestroy {
   private parentElement!: HTMLElement;
   private hostElement: HTMLElement;
 
-  constructor(
+  public constructor(
     hostElementRef: ElementRef,
     flexContainerService: FlexContainerService,
     @Optional() private flexPaneService: FlexPaneService,

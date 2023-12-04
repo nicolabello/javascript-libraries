@@ -1,4 +1,5 @@
 import { AfterViewInit, Directive, ElementRef, inject, Input, OnDestroy } from '@angular/core';
+
 import { MDCMenu } from '@material/menu';
 
 @Directive({

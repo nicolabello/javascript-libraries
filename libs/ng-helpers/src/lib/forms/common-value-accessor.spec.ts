@@ -10,6 +10,7 @@ import {
   ReactiveFormsModule,
   ValidatorFn,
 } from '@angular/forms';
+
 import { CommonValueAccessor } from './common-value-accessor';
 
 describe('InputComponent', () => {
@@ -333,12 +334,16 @@ describe('InputComponent formatters', () => {
 
 describe('InputComponent validators', () => {
   const formControlValidators: ValidatorFn[] = [
-    (formControl: AbstractControl) => ((formControl.value || '').match(/a/gi) ? null : { a: true }),
-    (formControl: AbstractControl) => ((formControl.value || '').match(/b/gi) ? null : { b: true }),
+    (formControl: AbstractControl): null | Record<string, boolean> =>
+      (formControl.value || '').match(/a/gi) ? null : { a: true },
+    (formControl: AbstractControl): null | Record<string, boolean> =>
+      (formControl.value || '').match(/b/gi) ? null : { b: true },
   ];
   const inputValidators = [
-    (formControl: AbstractControl) => ((formControl.value || '').match(/c/gi) ? null : { c: true }),
-    (formControl: AbstractControl) => ((formControl.value || '').match(/d/gi) ? null : { d: true }),
+    (formControl: AbstractControl): null | Record<string, boolean> =>
+      (formControl.value || '').match(/c/gi) ? null : { c: true },
+    (formControl: AbstractControl): null | Record<string, boolean> =>
+      (formControl.value || '').match(/d/gi) ? null : { d: true },
   ];
 
   @Component({

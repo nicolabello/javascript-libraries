@@ -1,5 +1,6 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+
 import { RouterHistoryService } from './services/router-history.service';
 
 @NgModule({
@@ -8,7 +9,7 @@ import { RouterHistoryService } from './services/router-history.service';
   imports: [CommonModule],
 })
 export class RouterHistoryModule {
-  constructor(routerHistoryService: RouterHistoryService) {
+  public constructor(routerHistoryService: RouterHistoryService) {
     // This is necessary because the service is constructed only when first injected
     routerHistoryService.init();
   }

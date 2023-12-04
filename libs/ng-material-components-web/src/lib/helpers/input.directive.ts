@@ -1,8 +1,11 @@
 import { Directive, Input, OnChanges, OnDestroy } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
+
 import { merge, Subscription } from 'rxjs';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
+
 import { MDCInputComponent } from '../models/mdc-input-component';
+
 import { updateMDCInputInstance } from './update-mdc-input-instance';
 
 @Directive()

@@ -1,5 +1,7 @@
 import { ChangeDetectorRef, Directive, inject, Input, OnDestroy, OnInit } from '@angular/core';
+
 import { Subscription } from 'rxjs';
+
 import { SuspenseData, SuspenseError, SuspenseInput, SuspenseLoading } from '../models/suspense';
 import { SuspenseService } from '../services/suspense.service';
 

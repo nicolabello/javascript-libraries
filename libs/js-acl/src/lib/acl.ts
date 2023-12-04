@@ -1,8 +1,8 @@
+import { Modifier } from './models/privilege';
+import { TreeNode } from './models/tree-node';
+import { Privileges } from './privileges';
 import { Resources } from './resources';
 import { Roles } from './roles';
-import { Privileges } from './privileges';
-import { TreeNode } from './models/tree-node';
-import { Modifier } from './models/privilege';
 
 export class Acl<Role = string | number, Resource = string | number, Privilege = string | number> {
   private roles = new Roles<Role>();

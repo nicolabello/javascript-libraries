@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
-import { ParsedQs } from 'qs';
 import { ParamsDictionary } from 'express-serve-static-core';
+
+import { ParsedQs } from 'qs';
 
 export interface AsyncRequestHandler<
   P = ParamsDictionary,

@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import { SuspenseComponent } from './components/suspense.component';
 import { SuspenseIfDataDirective } from './directives/suspense-if-data.directive';
 import { SuspenseIfEmptyDirective } from './directives/suspense-if-empty.directive';

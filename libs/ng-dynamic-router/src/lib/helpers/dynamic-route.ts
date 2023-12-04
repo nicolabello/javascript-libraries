@@ -1,4 +1,5 @@
 import { Route } from '@angular/router';
+
 import { DynamicRouterComponent } from '../components/dynamic-router/dynamic-router.component';
 import { CanDeactivateGuard } from '../services/guards/can-deactivate.guard';
 

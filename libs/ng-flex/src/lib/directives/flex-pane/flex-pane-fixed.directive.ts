@@ -1,7 +1,11 @@
 import { AfterViewInit, Directive, Input, OnDestroy } from '@angular/core';
-import { fromMutationObserver } from '@nicolabello/ng-helpers';
+
 import { debounceTime } from 'rxjs/operators';
+
+import { fromMutationObserver } from '@nicolabello/ng-helpers';
+
 import { FlexPaneService } from '../../services/flex-pane.service';
+
 import { FlexPaneDirective } from './flex-pane.directive';
 
 @Directive({

@@ -16,7 +16,7 @@ providers: [
 ]
 */
 
-const emptyFunction = () => undefined;
+const emptyFunction = (): undefined => undefined;
 
 @Directive()
 // T = FormControl type, U = UI type
@@ -146,7 +146,7 @@ export class CommonValueAccessor<T, U = T> implements ControlValueAccessor, Vali
 
   public registerOnChange(onChange: (value: T) => void): void {
     // Output for value
-    this.onChange = (value: U | undefined) => {
+    this.onChange = (value: U | undefined): void => {
       const formattedValue = this.formatValueOutput(value);
 
       this.initFormControl();
@@ -160,7 +160,7 @@ export class CommonValueAccessor<T, U = T> implements ControlValueAccessor, Vali
 
   public registerOnTouched(onTouched: () => void): void {
     // Output for touched
-    this.onTouched = () => {
+    this.onTouched = (): void => {
       this.initFormControl();
       if (this.isLocalFormControlCustom) {
         this.localFormControl?.markAsTouched();
@@ -191,7 +191,7 @@ export class CommonValueAccessor<T, U = T> implements ControlValueAccessor, Vali
     this.onValidatorChange = onValidatorChange;
   }
 
-  public ngDoCheck() {
+  public ngDoCheck(): void {
     const errorsVisible = this.errorsVisible;
     if (errorsVisible !== this._errorsVisible) {
       this._errorsVisible = errorsVisible;

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+
 import { Observable, of } from 'rxjs';
+
 import { CanComponentDeactivate } from '../../helpers/can-component-deactivate';
 import { DynamicRouterService } from '../../services/dynamic-router.service';
 import { HistoryRouterService } from '../../services/history-router.service';
@@ -9,7 +11,7 @@ import { HistoryRouterService } from '../../services/history-router.service';
   template: '',
 })
 export class DynamicRouterComponent implements CanComponentDeactivate {
-  constructor(
+  public constructor(
     private historyRouterService: HistoryRouterService,
     private routerService: DynamicRouterService,
     activatedRoute: ActivatedRoute

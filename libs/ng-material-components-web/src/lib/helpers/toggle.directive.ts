@@ -1,8 +1,11 @@
 import { Directive, Input, OnChanges, OnDestroy } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
+
 import { merge, Subscription } from 'rxjs';
 import { distinctUntilChanged, tap } from 'rxjs/operators';
+
 import { MDCToggleComponent } from '../models/mdc-toggle-component';
+
 import { updateMDCToggleInstance } from './update-mdc-toggle-instance';
 
 @Directive()
