@@ -1,4 +1,4 @@
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 export class SubscriptionsBucket {
   private subscriptionsArray: Subscription[] = [];
@@ -12,7 +12,11 @@ export class SubscriptionsBucket {
     }
   }
 
-  public push(subscription: Subscription, key?: string): void {
+  public push(subscriptionOrObservable: Subscription | Observable<unknown>, key?: string): void {
+    const subscription: Subscription =
+      subscriptionOrObservable instanceof Subscription
+        ? subscriptionOrObservable
+        : subscriptionOrObservable.subscribe();
     if (key) {
       if (this.subscriptionsObject[key]) {
         SubscriptionsBucket.safelyUnsubscribe(this.subscriptionsObject[key]);
@@ -23,14 +27,16 @@ export class SubscriptionsBucket {
     }
   }
 
-  public add(subscription: Subscription, key?: string): void {
-    return this.push(subscription, key);
+  public add(subscriptionOrObservable: Subscription | Observable<unknown>, key?: string): void {
+    return this.push(subscriptionOrObservable, key);
   }
 
-  public unsubscribe(key: string): void {
-    if (this.subscriptionsObject[key]) {
-      SubscriptionsBucket.safelyUnsubscribe(this.subscriptionsObject[key]);
-      delete this.subscriptionsObject[key];
+  public unsubscribe(key?: string): void {
+    if (key) {
+      if (this.subscriptionsObject[key]) {
+        SubscriptionsBucket.safelyUnsubscribe(this.subscriptionsObject[key]);
+        delete this.subscriptionsObject[key];
+      }
     } else {
       this.unsubscribeAll();
     }
