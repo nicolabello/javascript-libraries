@@ -12,18 +12,20 @@ export class SubscriptionsBucket {
     }
   }
 
+  private static getSubscription(subscriptionOrObservable: Subscription | Observable<unknown>): Subscription {
+    return subscriptionOrObservable instanceof Subscription
+      ? subscriptionOrObservable
+      : subscriptionOrObservable.subscribe();
+  }
+
   public push(subscriptionOrObservable: Subscription | Observable<unknown>, key?: string): void {
-    const subscription: Subscription =
-      subscriptionOrObservable instanceof Subscription
-        ? subscriptionOrObservable
-        : subscriptionOrObservable.subscribe();
     if (key) {
       if (this.subscriptionsObject[key]) {
         SubscriptionsBucket.safelyUnsubscribe(this.subscriptionsObject[key]);
       }
-      this.subscriptionsObject[key] = subscription;
+      this.subscriptionsObject[key] = SubscriptionsBucket.getSubscription(subscriptionOrObservable);
     } else {
-      this.subscriptionsArray.push(subscription);
+      this.subscriptionsArray.push(SubscriptionsBucket.getSubscription(subscriptionOrObservable));
     }
   }
 
