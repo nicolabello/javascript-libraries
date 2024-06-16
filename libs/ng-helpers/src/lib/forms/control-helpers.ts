@@ -10,7 +10,7 @@ export interface ControlErrors {
 export class ControlHelpers {
   private static _getErrorsRecursively(
     control: AbstractControl,
-    path: string = '',
+    path = '',
     errors: ControlErrors[] = []
   ): ControlErrors[] {
     if (control) {

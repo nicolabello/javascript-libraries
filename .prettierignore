@@ -10,3 +10,5 @@
 test-setup.ts
 
 /.nx/cache
+
+/.nx/workspace-data

@@ -1,6 +1,6 @@
 {
   "name": "@nicolabello/ng-suspense",
-  "version": "2.0.17",
+  "version": "2.0.18",
   "description": "",
   "author": "Nicola Bello <nicola.bello.3@gmail.com>",
   "repository": {
@@ -11,8 +11,8 @@
   "keywords": [],
   "license": "GPL-2.0-or-later",
   "peerDependencies": {
-    "@angular/common": "^17.0.0",
-    "@angular/core": "^17.0.0"
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

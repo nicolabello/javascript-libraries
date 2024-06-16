@@ -22,7 +22,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20.9.0 # Same as .nvmrc
+          node-version: 22.2.0 # Same as .nvmrc
           registry-url: 'https://registry.npmjs.org'
           cache: 'yarn'
       - name: Install dependencies

@@ -4,6 +4,7 @@
   "projectType": "library",
   "sourceRoot": "libs/ng-dynamic-router/src",
   "prefix": "nb",
+  "tags": [],
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
@@ -29,11 +30,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": ["libs/ng-dynamic-router/src/**/*.ts", "libs/ng-dynamic-router/src/**/*.html"]
-      }
+      "executor": "@nx/eslint:lint"
     }
-  },
-  "tags": []
+  }
 }

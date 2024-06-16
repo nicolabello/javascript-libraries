@@ -4,6 +4,7 @@
   "projectType": "library",
   "sourceRoot": "libs/ng-flex/src",
   "prefix": "nb",
+  "tags": [],
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
@@ -29,11 +30,7 @@
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": ["libs/ng-flex/src/**/*.ts", "libs/ng-flex/src/**/*.html"]
-      }
+      "executor": "@nx/eslint:lint"
     }
-  },
-  "tags": []
+  }
 }

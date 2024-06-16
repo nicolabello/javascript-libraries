@@ -165,7 +165,7 @@ export class DynamicRouterService implements OnDestroy {
    * Set global query params
    */
 
-  public setGlobalQueryParam(key: string, value: string | null = null, replace: boolean = true): Promise<boolean> {
+  public setGlobalQueryParam(key: string, value: string | null = null, replace = true): Promise<boolean> {
     const previousValue = this.globalQueryParamsSnapshot[key];
     if (value !== (Typings.isDefined(previousValue) ? previousValue : null)) {
       return this.setGlobalQueryParams({ [key]: value }, replace, true);
@@ -173,7 +173,7 @@ export class DynamicRouterService implements OnDestroy {
     return new Promise<boolean>((resolve) => resolve(true));
   }
 
-  public setGlobalQueryParams(params: GlobalParams, replace: boolean = true, merge: boolean = false): Promise<boolean> {
+  public setGlobalQueryParams(params: GlobalParams, replace = true, merge = false): Promise<boolean> {
     return this.navigate([this.url], {
       queryParams: params,
       replaceUrl: replace,
@@ -185,7 +185,7 @@ export class DynamicRouterService implements OnDestroy {
    * Set query params
    */
 
-  public setQueryParam(key: string, value: any = null, replace: boolean = true): Promise<boolean> {
+  public setQueryParam(key: string, value: any = null, replace = true): Promise<boolean> {
     const previousValue = this.queryParamsSnapshot[key];
     if (value !== (Typings.isDefined(previousValue) ? previousValue : null)) {
       return this.setQueryParams({ [key]: value }, replace, true);
@@ -193,7 +193,7 @@ export class DynamicRouterService implements OnDestroy {
     return new Promise<boolean>((resolve) => resolve(true));
   }
 
-  public setQueryParams(params: Params, replace: boolean = true, merge: boolean = false): Promise<boolean> {
+  public setQueryParams(params: Params, replace = true, merge = false): Promise<boolean> {
     const paramsKey = this.getSubviewParamsKey(this.level);
     params = merge ? { ...this.queryParamsSnapshot, ...(params || {}) } : { ...(params || {}) };
 
