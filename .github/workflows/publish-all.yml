@@ -93,7 +93,7 @@ jobs:
     needs: [cache-node_modules]
     uses: ./.github/workflows/_publish.yaml
     with:
-      package: express-http-error
+      package: express-params
     secrets:
       NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
@@ -101,7 +101,7 @@ jobs:
     needs: [cache-node_modules]
     uses: ./.github/workflows/_publish.yaml
     with:
-      package: express-http-error
+      package: express-helpers
     secrets:
       NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
@@ -109,7 +109,7 @@ jobs:
     needs: [cache-node_modules]
     uses: ./.github/workflows/_publish.yaml
     with:
-      package: express-http-error
+      package: express-mysql
     secrets:
       NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
@@ -117,6 +117,6 @@ jobs:
     needs: [cache-node_modules]
     uses: ./.github/workflows/_publish.yaml
     with:
-      package: express-http-error
+      package: ng-router-history
     secrets:
       NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
