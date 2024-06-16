@@ -25,10 +25,98 @@ jobs:
       - name: Install node_modules
         run: yarn install --frozen-lockfile
 
-  publish:
+  publish-js-acl:
     needs: [cache-node_modules]
     uses: ./.github/workflows/_publish.yaml
     with:
       package: js-acl
+    secrets:
+      NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+  publish-js-helpers:
+    needs: [cache-node_modules]
+    uses: ./.github/workflows/_publish.yaml
+    with:
+      package: js-helpers
+    secrets:
+      NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+  publish-ng-dynamic-router:
+    needs: [cache-node_modules]
+    uses: ./.github/workflows/_publish.yaml
+    with:
+      package: ng-dynamic-router
+    secrets:
+      NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+  publish-ng-helpers:
+    needs: [cache-node_modules]
+    uses: ./.github/workflows/_publish.yaml
+    with:
+      package: ng-helpers
+    secrets:
+      NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+  publish-ng-suspense:
+    needs: [cache-node_modules]
+    uses: ./.github/workflows/_publish.yaml
+    with:
+      package: ng-suspense
+    secrets:
+      NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+  publish-ng-flex:
+    needs: [cache-node_modules]
+    uses: ./.github/workflows/_publish.yaml
+    with:
+      package: ng-flex
+    secrets:
+      NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+  publish-ng-material-components-web:
+    needs: [cache-node_modules]
+    uses: ./.github/workflows/_publish.yaml
+    with:
+      package: ng-material-components-web
+    secrets:
+      NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+  publish-express-http-error:
+    needs: [cache-node_modules]
+    uses: ./.github/workflows/_publish.yaml
+    with:
+      package: express-http-error
+    secrets:
+      NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+  publish-express-params:
+    needs: [cache-node_modules]
+    uses: ./.github/workflows/_publish.yaml
+    with:
+      package: express-http-error
+    secrets:
+      NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+  publish-express-helpers:
+    needs: [cache-node_modules]
+    uses: ./.github/workflows/_publish.yaml
+    with:
+      package: express-http-error
+    secrets:
+      NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+  publish-express-mysql:
+    needs: [cache-node_modules]
+    uses: ./.github/workflows/_publish.yaml
+    with:
+      package: express-http-error
+    secrets:
+      NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+  publish-ng-router-history:
+    needs: [cache-node_modules]
+    uses: ./.github/workflows/_publish.yaml
+    with:
+      package: express-http-error
     secrets:
       NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
