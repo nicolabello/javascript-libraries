@@ -6,9 +6,6 @@ on:
       package:
         type: string
         required: true
-      nodeVersion:
-        type: string
-        required: true
     secrets:
       NPM_AUTH_TOKEN:
         required: true
@@ -35,7 +32,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ inputs.nodeVersion }}
+          node-version: 22.2.0 # Same as .nvmrc
           registry-url: 'https://registry.npmjs.org'
           cache: 'yarn'
 
