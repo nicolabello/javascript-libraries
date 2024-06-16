@@ -33,6 +33,6 @@ jobs:
     uses: ./.github/workflows/_publish.yaml
     with:
       package: js-acl
-      nodeVersion: ${{ env.NODE_VERSION }}
+      nodeVersion: $NODE_VERSION
     secrets:
       NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
