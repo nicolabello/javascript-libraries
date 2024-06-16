@@ -1,0 +1,38 @@
+name: Publish
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+  NODE_VERSION: 22.2.0 # Same as .nvmrc
+
+jobs:
+  cache-node_modules:
+    runs-on: ubuntu-latest
+    name: Cache node_modules
+    steps:
+      - name: GitHub checkout
+        uses: actions/checkout@v4
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-${{ matrix.node-version }}-node_modules-${{ hashFiles('yarn.lock') }}
+          restore-keys: ${{ runner.os }}-${{ matrix.node-version }}-node_modules
+      - name: Install node_modules
+        run: yarn install --frozen-lockfile
+
+  publish:
+    needs: [cache-node_modules]
+    uses: ./.github/workflows/_publish.yaml
+    with:
+      package: js-acl
+      nodeVersion: ${{ NODE_VERSION }}
+    secrets:
+      NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

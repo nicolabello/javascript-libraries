@@ -1,0 +1,43 @@
+name: Build and test
+
+on:
+  workflow_call:
+    inputs:
+      package:
+        type: string
+        required: true
+      nodeVersion:
+        type: string
+        required: true
+    secrets:
+      NPM_AUTH_TOKEN:
+        required: true
+
+env:
+  NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    name: Publish ${{ inputs.package }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ inputs.nodeVersion }}
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'yarn'
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Lint ${{ inputs.package }}
+        run: yarn lint ${{ inputs.package }}
+      - name: Test ${{ inputs.package }}
+        run: yarn test ${{ inputs.package }}
+      - name: Build ${{ inputs.package }}
+        run: yarn build ${{ inputs.package }}
+      - name: Publish ${{ inputs.package }}
+        run: cd dist/libs/${{ inputs.package }} && npm publish --access public
