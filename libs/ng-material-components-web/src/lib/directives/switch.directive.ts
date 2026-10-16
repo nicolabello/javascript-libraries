@@ -25,7 +25,7 @@ export class SwitchDirective extends ToggleDirective<MDCSwitch> implements After
   }
 
   @HostListener('click', ['$event'])
-  private onHostClick(event: MouseEvent): void {
+  protected onHostClick(event: MouseEvent): void {
     event.stopImmediatePropagation();
   }
 }

@@ -1,5 +1,5 @@
 /* eslint-disable */
-export default {
+module.exports = {
   displayName: 'express-http-error',
   preset: '../../jest.preset.js',
   globals: {},

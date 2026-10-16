@@ -1,13 +1,35 @@
 {
   "name": "@nicolabello/express-mysql",
-  "version": "1.0.15",
-  "description": "",
+  "version": "1.1.0",
+  "description": "MySQL connection pool helpers for Express built on mysql2, with one pooled connection per request released automatically.",
   "author": "Nicola Bello <nicola.bello.3@gmail.com>",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://github.com/nicolabello/javascript-libraries/tree/master/libs/express-mysql#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/nicolabello/javascript-libraries",
     "directory": "libs/express-mysql"
   },
-  "keywords": [],
-  "license": "GPL-2.0-or-later"
+  "bugs": {
+    "url": "https://github.com/nicolabello/javascript-libraries/issues"
+  },
+  "keywords": [
+    "express",
+    "mysql",
+    "mysql2",
+    "connection pool",
+    "database"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "sideEffects": false,
+  "peerDependencies": {
+    "express": "^4.17.0 || ^5.0.0",
+    "mysql2": "^3.0.0"
+  },
+  "dependencies": {
+    "@nicolabello/express-http-error": "^1.1.0",
+    "tslib": "^2.3.0"
+  }
 }

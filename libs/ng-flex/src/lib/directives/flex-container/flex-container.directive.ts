@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnDestroy, OnInit, Optional } from '@angular/core';
+import { Directive, ElementRef, inject, Input, OnDestroy, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
@@ -21,17 +21,12 @@ export abstract class FlexContainerDirective implements OnInit, OnDestroy {
   protected fixedPanesAfter: FlexPaneFixedDirective[] = [];
   private subscriptions = new SubscriptionsBucket();
   private parentElement!: HTMLElement;
-  private hostElement: HTMLElement;
+  private hostElement = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
+  private flexPaneService = inject(FlexPaneService, { optional: true });
+  private flexRootService = inject(FlexRootService);
 
-  public constructor(
-    hostElementRef: ElementRef,
-    flexContainerService: FlexContainerService,
-    @Optional() private flexPaneService: FlexPaneService,
-    private flexRootService: FlexRootService
-  ) {
-    flexContainerService.flexContainer = this;
-
-    this.hostElement = hostElementRef.nativeElement;
+  public constructor() {
+    inject(FlexContainerService).flexContainer = this;
 
     this.hostElement.style.margin = '0';
     // this.hostElement.style.boxSizing = 'border-box';
@@ -53,17 +48,18 @@ export abstract class FlexContainerDirective implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
-    this.fromRootContainer = this.fromRootContainer || !this.flexPaneService;
+    const flexPaneService = this.fromRootContainer ? null : this.flexPaneService;
+    this.fromRootContainer = !flexPaneService;
     let observable: Observable<Size>;
 
-    if (this.fromRootContainer) {
+    if (!flexPaneService) {
       this.parentElement = this.flexRootService.hostElement;
       observable = fromResizeObserver(this.parentElement).pipe(
         map(() => this.parentElementInnerSize),
         distinctUntilChanged((before, after) => before.width === after.width && before.height === after.height)
       );
     } else {
-      this._parentFlexPane = this.flexPaneService.flexPane;
+      this._parentFlexPane = flexPaneService.flexPane;
       this.parentElement = this._parentFlexPane.hostElement;
       observable = this._parentFlexPane.innerSize;
     }

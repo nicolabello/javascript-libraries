@@ -23,7 +23,14 @@
         "tsConfig": "libs/express-helpers/tsconfig.lib.json",
         "packageJson": "libs/express-helpers/package.json",
         "main": "libs/express-helpers/src/index.ts",
-        "assets": ["libs/express-helpers/*.md"]
+        "assets": [
+          "libs/express-helpers/*.md",
+          {
+            "input": ".",
+            "glob": "LICENSE",
+            "output": "."
+          }
+        ]
       }
     }
   }

@@ -1,18 +1,29 @@
 {
   "name": "@nicolabello/js-acl",
-  "version": "2.0.13",
-  "description": "Provides a lightweight and flexible access control list (ACL) implementation for privileges management.",
+  "version": "2.1.0",
+  "description": "Lightweight, flexible, dependency-free access control list (ACL) for managing roles, resources and privileges, inspired by Zend ACL.",
   "author": "Nicola Bello <nicola.bello.3@gmail.com>",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://github.com/nicolabello/javascript-libraries/tree/master/libs/js-acl#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/nicolabello/javascript-libraries",
     "directory": "libs/js-acl"
   },
+  "bugs": {
+    "url": "https://github.com/nicolabello/javascript-libraries/issues"
+  },
   "keywords": [
     "acl",
-    "permissions acl",
     "access control list",
-    "privileges management"
+    "permissions",
+    "privileges",
+    "roles",
+    "authorization",
+    "rbac"
   ],
-  "license": "GPL-2.0-or-later"
+  "engines": {
+    "node": ">=18"
+  },
+  "sideEffects": false
 }

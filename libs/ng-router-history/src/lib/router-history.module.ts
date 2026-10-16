@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { inject, NgModule } from '@angular/core';
 
 import { RouterHistoryService } from './services/router-history.service';
 
@@ -9,7 +9,9 @@ import { RouterHistoryService } from './services/router-history.service';
   imports: [CommonModule],
 })
 export class RouterHistoryModule {
-  public constructor(routerHistoryService: RouterHistoryService) {
+  public constructor() {
+    const routerHistoryService = inject(RouterHistoryService);
+
     // This is necessary because the service is constructed only when first injected
     routerHistoryService.init();
   }

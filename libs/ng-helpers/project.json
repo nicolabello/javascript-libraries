@@ -9,24 +9,24 @@
     "build": {
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/libs/ng-helpers"],
+      "defaultConfiguration": "production",
       "options": {
-        "project": "libs/ng-helpers/ng-package.json"
+        "project": "libs/ng-helpers/ng-package.json",
+        "tsConfig": "libs/ng-helpers/tsconfig.lib.json"
       },
       "configurations": {
         "production": {
           "tsConfig": "libs/ng-helpers/tsconfig.lib.prod.json"
         },
-        "development": {
-          "tsConfig": "libs/ng-helpers/tsconfig.lib.json"
-        }
-      },
-      "defaultConfiguration": "production"
+        "development": {}
+      }
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/ng-helpers"],
       "options": {
-        "jestConfig": "libs/ng-helpers/jest.config.ts"
+        "jestConfig": "libs/ng-helpers/jest.config.ts",
+        "tsConfig": "libs/ng-helpers/tsconfig.spec.json"
       }
     },
     "lint": {

@@ -1,14 +1,12 @@
-import { Directive, HostListener, Input } from '@angular/core';
+import { Directive, HostListener, inject, Input } from '@angular/core';
 
 import { DynamicRouterService } from '../services/dynamic-router.service';
 
-@Directive({
-  selector: '[nbDynamicRouterLink]',
-})
+@Directive({ selector: '[nbDynamicRouterLink]' })
 export class DynamicRouterLinkDirective {
-  @Input('nbDynamicRouterLink') private commands?: any[];
+  private routerService = inject(DynamicRouterService);
 
-  public constructor(private routerService: DynamicRouterService) {}
+  @Input('nbDynamicRouterLink') public commands?: any[];
 
   @HostListener('click')
   public onClick(): void {

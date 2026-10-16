@@ -1,5 +1,5 @@
 import { LocationStrategy } from '@angular/common';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { ActivatedRoute, Event, NavigationEnd, NavigationExtras, NavigationStart, Router } from '@angular/router';
 
 import { BehaviorSubject, Observable, tap } from 'rxjs';
@@ -9,16 +9,49 @@ import { RouterHistory } from '../models/router-history';
 
 @Injectable()
 export class RouterHistoryService {
+  private router = inject(Router);
+  private location = inject(LocationStrategy);
+
   private previousUrlSubject = new BehaviorSubject<string | null>(null);
   private currentUrlSubject = new BehaviorSubject<string | null>(null);
 
   private activatedRouteSubject = new BehaviorSubject<ActivatedRoute | null>(null);
 
-  public constructor(private router: Router, private location: LocationStrategy) {}
+  private initialised = false;
 
+  /**
+   * Starts listening to router events. Called automatically by `provideRouterHistory()` and `RouterHistoryModule`.
+   */
   public init(): void {
+    if (this.initialised) {
+      return;
+    }
+    this.initialised = true;
     this.historyObserver().subscribe();
     this.activatedRouteObserver().subscribe();
+  }
+
+  /** The URL of the previous entry in the in-app history, or `null` if there is none. */
+  public get previousUrl(): Observable<string | null> {
+    return this.previousUrlSubject.asObservable();
+  }
+
+  public get previousUrlSnapshot(): string | null {
+    return this.previousUrlSubject.value;
+  }
+
+  /** The URL of the current entry in the in-app history. */
+  public get currentUrl(): Observable<string | null> {
+    return this.currentUrlSubject.asObservable();
+  }
+
+  public get currentUrlSnapshot(): string | null {
+    return this.currentUrlSubject.value;
+  }
+
+  /** The deepest activated route after each completed navigation. */
+  public get activatedRoute(): Observable<ActivatedRoute | null> {
+    return this.activatedRouteSubject.asObservable();
   }
 
   private historyObserver(): Observable<RouterHistory> {
@@ -100,7 +133,7 @@ export class RouterHistoryService {
 
         // Update current and previous urls
         this.previousUrlSubject.next(previous?.url || null);
-        this.currentUrlSubject.next(current.url);
+        this.currentUrlSubject.next(current?.url || null);
       })
     );
   }
@@ -127,6 +160,10 @@ export class RouterHistoryService {
     return this.previousUrlSubject.asObservable().pipe(map((url) => !!url));
   }
 
+  /**
+   * Goes back in the browser history if there is a previous in-app entry,
+   * otherwise navigates to the given fallback commands (if any).
+   */
   public navigateBack(commands?: any[], extras?: NavigationExtras): void {
     if (this.previousUrlSubject.value) {
       this.location.back();

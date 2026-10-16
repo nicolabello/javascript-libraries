@@ -7,7 +7,7 @@ import { MDCRipple } from '@material/ripple';
   exportAs: 'mdcRipple',
 })
 export class RippleDirective implements AfterViewInit, OnDestroy {
-  @Input() private unbounded = false;
+  @Input() public unbounded = false;
 
   public instance?: MDCRipple;
 

@@ -19,7 +19,7 @@ import { InputDirective } from '../helpers/input.directive';
   exportAs: 'mdcSelect',
 })
 export class SelectDirective extends InputDirective<MDCSelect> implements AfterViewInit, OnChanges, OnDestroy {
-  @Output() private valueChange = new EventEmitter<string>();
+  @Output() public readonly valueChange = new EventEmitter<string>();
 
   private elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 

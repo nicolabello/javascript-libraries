@@ -1,13 +1,29 @@
 {
   "name": "@nicolabello/js-helpers",
-  "version": "2.0.14",
-  "description": "",
+  "version": "2.1.0",
+  "description": "Small, dependency-free JavaScript/TypeScript helpers: type guards, deep property access, Unicode-safe Base64 JSON encoding and regular expression utilities.",
   "author": "Nicola Bello <nicola.bello.3@gmail.com>",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://github.com/nicolabello/javascript-libraries/tree/master/libs/js-helpers#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/nicolabello/javascript-libraries",
     "directory": "libs/js-helpers"
   },
-  "keywords": [],
-  "license": "GPL-2.0-or-later"
+  "bugs": {
+    "url": "https://github.com/nicolabello/javascript-libraries/issues"
+  },
+  "keywords": [
+    "helpers",
+    "utilities",
+    "typescript",
+    "type guards",
+    "base64",
+    "regexp",
+    "deep value"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "sideEffects": false
 }

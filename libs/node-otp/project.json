@@ -23,7 +23,14 @@
         "tsConfig": "libs/node-otp/tsconfig.lib.json",
         "packageJson": "libs/node-otp/package.json",
         "main": "libs/node-otp/src/index.ts",
-        "assets": ["libs/node-otp/*.md"]
+        "assets": [
+          "libs/node-otp/*.md",
+          {
+            "input": ".",
+            "glob": "LICENSE",
+            "output": "."
+          }
+        ]
       }
     }
   }

@@ -28,7 +28,12 @@
       "@nicolabello/ng-router-history": ["libs/ng-router-history/src/index.ts"],
       "@nicolabello/ng-suspense": ["libs/ng-suspense/src/index.ts"],
       "@nicolabello/node-otp": ["libs/node-otp/src/index.ts"]
-    }
+    },
+    "strict": false,
+    "noUncheckedSideEffectImports": false,
+    "types": ["*"],
+    "esModuleInterop": false,
+    "ignoreDeprecations": "6.0"
   },
   "exclude": ["node_modules", "tmp"]
 }

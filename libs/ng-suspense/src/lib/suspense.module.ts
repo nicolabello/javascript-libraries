@@ -17,7 +17,7 @@ const items = [
 ];
 
 @NgModule({
-  declarations: items,
+  imports: [...items],
   exports: items,
 })
 export class SuspenseModule {}

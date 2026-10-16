@@ -1,6 +1,8 @@
 {
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
   "singleQuote": true,
   "printWidth": 120,
+  "trailingComma": "es5",
   "importOrder": [
     "^@nestjs",
     "^@angular(?!/material|/cdk)",

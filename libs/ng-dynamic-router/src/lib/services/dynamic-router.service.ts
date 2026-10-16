@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { inject, Injectable, OnDestroy } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, NavigationExtras, Params } from '@angular/router';
 
 import { BehaviorSubject, Observable, of } from 'rxjs';
@@ -19,13 +19,13 @@ declare type GlobalParams = {
 
 @Injectable()
 export class DynamicRouterService implements OnDestroy {
+  private historyRouterService = inject(HistoryRouterService);
+
   private static activeComponents: { [level: number]: CanComponentDeactivate } = {};
 
   // private readonly subviews: Subview[] = Object.keys(Subview).map(key => Subview[key]);
   public readonly animatingSubject = new BehaviorSubject<boolean>(false);
   public level = 0;
-
-  public constructor(private historyRouterService: HistoryRouterService) {}
 
   public get subviewLevel(): number {
     return this.level + 1;

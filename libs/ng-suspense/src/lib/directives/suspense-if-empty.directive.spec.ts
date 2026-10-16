@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { SuspenseComponent } from '../components/suspense.component';
@@ -253,6 +253,8 @@ const testCases4 = [
       <ng-container *nbSuspenseIfEmpty="let data">Data: {{ data }}</ng-container>
     </nb-suspense>
   `,
+  changeDetection: ChangeDetectionStrategy.Eager,
+  imports: [SuspenseComponent, SuspenseIfEmptyDirective],
 })
 class TestComponent {
   public data: any;
@@ -273,7 +275,7 @@ describe('SuspenseIfEmptyDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [TestComponent, SuspenseComponent, SuspenseIfEmptyDirective],
+      imports: [TestComponent, SuspenseComponent, SuspenseIfEmptyDirective],
     }).compileComponents();
   }));
 
@@ -302,7 +304,7 @@ describe('SuspenseIfEmptyDirective', () => {
       fixture.whenStable();
 
       expect(directive?.value).toBe(testCase.data);
-      testCase.visible ? expect(directive?.isVisible).toBeTruthy() : expect(directive?.isVisible).toBeFalsy();
+      expect(directive?.isVisible).toBe(!!testCase.visible);
     }
   });
 });

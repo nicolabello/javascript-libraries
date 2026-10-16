@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject } from '@angular/core';
 
 import { FlexRootService } from '../../services/flex-root.service';
 
@@ -10,7 +10,10 @@ import { FlexRootService } from '../../services/flex-root.service';
   providers: [FlexRootService],
 })
 export class FlexRootComponent {
-  public constructor(hostElementRef: ElementRef, flexRootService: FlexRootService) {
+  public constructor() {
+    const hostElementRef = inject(ElementRef);
+    const flexRootService = inject(FlexRootService);
+
     flexRootService.hostElement = hostElementRef.nativeElement;
   }
 }

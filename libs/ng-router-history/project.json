@@ -9,24 +9,24 @@
     "build": {
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/libs/ng-router-history"],
+      "defaultConfiguration": "production",
       "options": {
-        "project": "libs/ng-router-history/ng-package.json"
+        "project": "libs/ng-router-history/ng-package.json",
+        "tsConfig": "libs/ng-router-history/tsconfig.lib.json"
       },
       "configurations": {
         "production": {
           "tsConfig": "libs/ng-router-history/tsconfig.lib.prod.json"
         },
-        "development": {
-          "tsConfig": "libs/ng-router-history/tsconfig.lib.json"
-        }
-      },
-      "defaultConfiguration": "production"
+        "development": {}
+      }
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/ng-router-history"],
       "options": {
-        "jestConfig": "libs/ng-router-history/jest.config.ts"
+        "jestConfig": "libs/ng-router-history/jest.config.ts",
+        "tsConfig": "libs/ng-router-history/tsconfig.spec.json"
       }
     },
     "lint": {

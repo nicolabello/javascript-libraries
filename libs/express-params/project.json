@@ -23,7 +23,14 @@
         "tsConfig": "libs/express-params/tsconfig.lib.json",
         "packageJson": "libs/express-params/package.json",
         "main": "libs/express-params/src/index.ts",
-        "assets": ["libs/express-params/*.md"]
+        "assets": [
+          "libs/express-params/*.md",
+          {
+            "input": ".",
+            "glob": "LICENSE",
+            "output": "."
+          }
+        ]
       }
     }
   }

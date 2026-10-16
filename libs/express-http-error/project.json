@@ -23,7 +23,14 @@
         "tsConfig": "libs/express-http-error/tsconfig.lib.json",
         "packageJson": "libs/express-http-error/package.json",
         "main": "libs/express-http-error/src/index.ts",
-        "assets": ["libs/express-http-error/*.md"]
+        "assets": [
+          "libs/express-http-error/*.md",
+          {
+            "input": ".",
+            "glob": "LICENSE",
+            "output": "."
+          }
+        ]
       }
     }
   }

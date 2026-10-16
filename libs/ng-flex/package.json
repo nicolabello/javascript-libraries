@@ -1,20 +1,32 @@
 {
   "name": "@nicolabello/ng-flex",
-  "version": "2.0.12",
-  "description": "",
+  "version": "3.0.0",
+  "description": "Angular directives for pixel-precise application layouts made of fixed and dynamic panes that resize with their container.",
   "author": "Nicola Bello <nicola.bello.3@gmail.com>",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://github.com/nicolabello/javascript-libraries/tree/master/libs/ng-flex#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/nicolabello/javascript-libraries",
     "directory": "libs/ng-flex"
   },
-  "keywords": [],
-  "license": "GPL-2.0-or-later",
+  "bugs": {
+    "url": "https://github.com/nicolabello/javascript-libraries/issues"
+  },
+  "keywords": [
+    "angular",
+    "layout",
+    "flex",
+    "panes",
+    "resize"
+  ],
+  "sideEffects": false,
   "peerDependencies": {
-    "@angular/common": "^18.0.0",
-    "@angular/core": "^18.0.0"
+    "@angular/core": "^22.0.0",
+    "rxjs": "^7.4.0"
   },
   "dependencies": {
+    "@nicolabello/ng-helpers": "^3.0.0",
     "tslib": "^2.3.0"
   }
 }

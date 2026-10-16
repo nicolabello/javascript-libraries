@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { inject, Injectable, OnDestroy } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 
 import { BehaviorSubject, merge, Observable } from 'rxjs';
@@ -13,10 +13,11 @@ import { HistoryLocationStrategy } from './history-location-strategy.service';
 
 @Injectable()
 export class HistoryRouterService implements OnDestroy {
+  private router = inject(Router);
+  private location = inject(HistoryLocationStrategy);
+
   private subscriptions = new SubscriptionsBucket();
   private routeSubject = new BehaviorSubject<HistoryRoute | null>(null);
-
-  public constructor(private router: Router, private location: HistoryLocationStrategy) {}
 
   public get route(): Observable<HistoryRoute | null> {
     return this.routeSubject.asObservable();

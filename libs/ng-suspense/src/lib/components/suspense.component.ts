@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 
@@ -12,9 +12,10 @@ import { SuspenseService } from '../services/suspense.service';
   providers: [SuspenseService],
 })
 export class SuspenseComponent implements OnInit, OnDestroy {
-  private changesSubscription?: Subscription;
+  private cdr = inject(ChangeDetectorRef);
+  private suspenseService = inject(SuspenseService);
 
-  public constructor(private cdr: ChangeDetectorRef, private suspenseService: SuspenseService) {}
+  private changesSubscription?: Subscription;
 
   @Input()
   public set data(value: SuspenseInput<SuspenseData>) {

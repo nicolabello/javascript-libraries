@@ -21,8 +21,9 @@ const emptyFunction = (): undefined => undefined;
 @Directive()
 // T = FormControl type, U = UI type
 export class CommonValueAccessor<T, U = T> implements ControlValueAccessor, Validator, DoCheck {
+  // Typed like Angular's FormControlDirective input, so that e.g. FormControl<string | null> can be bound
   // eslint-disable-next-line @angular-eslint/no-input-rename
-  @Input('formControl') private _formControl?: FormControl<T>;
+  @Input('formControl') public formControlInput?: FormControl<any>;
   @Input() public formControlName?: string;
 
   private controlContainer = inject(ControlContainer, { host: true, skipSelf: true, optional: true });
@@ -78,8 +79,8 @@ export class CommonValueAccessor<T, U = T> implements ControlValueAccessor, Vali
       }
 
       // If instantiated with [formControl]
-      if (this._formControl) {
-        this.localFormControl = this._formControl;
+      if (this.formControlInput) {
+        this.localFormControl = this.formControlInput;
         this.isLocalFormControlCustom = false;
         return;
       }
@@ -109,14 +110,16 @@ export class CommonValueAccessor<T, U = T> implements ControlValueAccessor, Vali
 
   public getError<T extends Record<string, unknown> = Record<string, unknown>>(
     priority?: string[]
-  ): {
-    key: string;
-    details: T;
-  } | void {
+  ):
+    | {
+        key: string;
+        details: T;
+      }
+    | undefined {
     const errors = this.errors;
 
     if (!errors) {
-      return;
+      return undefined;
     }
 
     if (priority?.length) {
@@ -130,12 +133,8 @@ export class CommonValueAccessor<T, U = T> implements ControlValueAccessor, Vali
       }
     }
 
-    for (const key of Object.keys(errors)) {
-      return {
-        key: key,
-        details: errors[key],
-      };
-    }
+    const [key] = Object.keys(errors);
+    return key ? { key, details: errors[key] } : undefined;
   }
 
   // Input for value

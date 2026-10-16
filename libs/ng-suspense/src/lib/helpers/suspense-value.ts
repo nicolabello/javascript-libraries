@@ -41,9 +41,13 @@ export class SuspenseValue<T = any> {
       }
 
       if (isPromise(source)) {
-        this.value = await source;
-        this.booleanValue = this.toBoolean(this.value);
-        this.changeSubject.next();
+        const value = await source;
+        // Ignore the result if the source changed while the promise was pending
+        if (source === this.source) {
+          this.value = value;
+          this.booleanValue = this.toBoolean(this.value);
+          this.changeSubject.next();
+        }
         return;
       }
 

@@ -13,14 +13,14 @@ import { HistoryLocationStrategy } from './services/history-location-strategy.se
 import { HistoryRouterService } from './services/history-router.service';
 
 @NgModule({
-  declarations: [
+  imports: [
+    RouterModule,
     DynamicRouterOutletComponent,
     DynamicRouterLinkDirective,
     DynamicRouterLinkActivePipe,
     DynamicRouterComponent,
     DynamicRouterSubviewComponent,
   ],
-  imports: [RouterModule],
   providers: [HistoryRouterService, DynamicRouterService, CanDeactivateGuard],
   exports: [
     DynamicRouterOutletComponent,

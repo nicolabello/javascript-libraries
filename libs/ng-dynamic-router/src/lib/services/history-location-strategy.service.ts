@@ -1,5 +1,5 @@
 import { LocationChangeEvent, PathLocationStrategy, PlatformLocation } from '@angular/common';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 
 import { HistoryState } from '../models/history-state';
@@ -22,7 +22,9 @@ Possible calls:
 export class HistoryLocationStrategy extends PathLocationStrategy {
   private state: HistoryState | null = null;
 
-  public constructor(platformLocation: PlatformLocation) {
+  public constructor() {
+    const platformLocation = inject(PlatformLocation);
+
     super(platformLocation);
     super.onPopState(this.popState.bind(this));
   }

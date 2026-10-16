@@ -8,7 +8,7 @@ describe('SuspenseComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [SuspenseComponent],
+      imports: [SuspenseComponent],
     }).compileComponents();
   }));
 
