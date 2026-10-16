@@ -34,7 +34,7 @@ A collection of small, focused TypeScript libraries for JavaScript, Node.js/Expr
 | [`@nicolabello/ng-dynamic-router`](libs/ng-dynamic-router)                   | Mobile-style stacked navigation with animated transitions and subviews.             | [![npm](https://img.shields.io/npm/v/@nicolabello/ng-dynamic-router.svg)](https://www.npmjs.com/package/@nicolabello/ng-dynamic-router)                   |
 | [`@nicolabello/ng-material-components-web`](libs/ng-material-components-web) | Auto-initialising Angular directives for Material Components for the Web.           | [![npm](https://img.shields.io/npm/v/@nicolabello/ng-material-components-web.svg)](https://www.npmjs.com/package/@nicolabello/ng-material-components-web) |
 
-The Angular packages require **Angular 22**. Every package has its own README with installation and usage instructions.
+The JavaScript and Express packages ship both ES modules and CommonJS, with TypeScript types. The Angular packages require **Angular 22**. Every package has its own README with installation and usage instructions.
 
 ## Development
 

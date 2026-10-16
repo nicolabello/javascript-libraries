@@ -29,7 +29,6 @@
     "mysql2": "^3.0.0"
   },
   "dependencies": {
-    "@nicolabello/express-http-error": "^1.1.0",
-    "tslib": "^2.3.0"
+    "@nicolabello/express-http-error": "^1.1.0"
   }
 }

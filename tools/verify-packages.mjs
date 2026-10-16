@@ -5,8 +5,8 @@
  * Every package is packed with `npm pack` and installed in a fresh temporary project,
  * exactly like a consumer would (only the declared dependencies and peer dependencies are available).
  * Then, for each package:
- *  - Node packages are loaded with both `require()` and `import` and smoke tested
- *  - Node packages are type checked from a TypeScript consumer
+ *  - Node packages are loaded with both `require()` and `import` and smoke tested, and their ESM build is evaluated
+ *  - Node packages are type checked from CommonJS, ESM and bundled TypeScript consumers
  *  - Angular packages are processed by the Angular linker (as the Angular CLI does) and loaded in JIT mode
  *
  * Usage: node tools/verify-packages.mjs  (after `nx run-many -t build`)
@@ -145,13 +145,23 @@ try {
       );
       run('node', ['load.mjs'], app);
     });
+
+    // The ESM build, used by bundlers through the "module" condition
+    step(`${pkg.name}: ESM build`, () => {
+      const installed = join(app, 'node_modules', pkg.name);
+      const esm = JSON.parse(readFileSync(join(installed, 'package.json'), 'utf8')).module;
+      if (!esm) throw new Error('No "module" entry');
+      // Evaluated from the package directory, so that its imports resolve as they would for a bundler
+      execFileSync('node', ['--input-type=module'], {
+        cwd: installed,
+        input: readFileSync(join(installed, esm), 'utf8'),
+        stdio: ['pipe', 'pipe', 'pipe'],
+      });
+    });
   }
 
   // 3. Node packages: type check from a TypeScript consumer
-  step('Node packages: TypeScript consumer type check', () => {
-    writeFileSync(
-      join(app, 'consumer.ts'),
-      `import express from 'express';
+  const consumer = `import express from 'express';
        import { Acl } from '@nicolabello/js-acl';
        import { Base64, Typings } from '@nicolabello/js-helpers';
        import { errorHandler, HttpError, HttpStatusCode } from '@nicolabello/express-http-error';
@@ -178,14 +188,15 @@ try {
          })
        );
        app.use(errorHandler());
-      `
-    );
-    run(
-      'npx',
-      ['tsc', '--noEmit', '--strict', '--esModuleInterop', '--module', 'nodenext', '--skipLibCheck', 'consumer.ts'],
-      app
-    );
-  });
+      `;
+  const typeCheck = (title, file, options) =>
+    step(`Node packages: type check from ${title}`, () => {
+      writeFileSync(join(app, file), consumer);
+      run('npx', ['tsc', '--noEmit', '--strict', '--skipLibCheck', ...options, file], app);
+    });
+  typeCheck('a CommonJS consumer (nodenext)', 'consumer.cts', ['--module', 'nodenext', '--esModuleInterop']);
+  typeCheck('an ESM consumer (nodenext)', 'consumer.mts', ['--module', 'nodenext']);
+  typeCheck('a bundled consumer (bundler)', 'consumer.ts', ['--module', 'preserve', '--moduleResolution', 'bundler']);
 
   // 4. Angular packages: link (as the Angular CLI does) and load in JIT mode
   // Use the Babel version the Angular compiler is built for

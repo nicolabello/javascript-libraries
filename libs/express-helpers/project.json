@@ -16,15 +16,23 @@
       }
     },
     "build": {
-      "executor": "@nx/js:tsc",
+      "executor": "@nx/rollup:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/express-helpers",
-        "tsConfig": "libs/express-helpers/tsconfig.lib.json",
-        "packageJson": "libs/express-helpers/package.json",
         "main": "libs/express-helpers/src/index.ts",
+        "tsConfig": "libs/express-helpers/tsconfig.lib.json",
+        "project": "libs/express-helpers/package.json",
+        "compiler": "tsc",
+        "format": ["esm", "cjs"],
+        "generateExportsField": true,
+        "sourceMap": true,
         "assets": [
-          "libs/express-helpers/*.md",
+          {
+            "input": "libs/express-helpers",
+            "glob": "*.md",
+            "output": "."
+          },
           {
             "input": ".",
             "glob": "LICENSE",

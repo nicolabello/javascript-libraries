@@ -29,7 +29,6 @@
   },
   "dependencies": {
     "@nicolabello/express-http-error": "^1.1.0",
-    "@nicolabello/js-helpers": "^2.1.0",
-    "tslib": "^2.3.0"
+    "@nicolabello/js-helpers": "^2.1.0"
   }
 }
