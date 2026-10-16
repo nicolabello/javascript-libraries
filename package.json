@@ -34,6 +34,16 @@
     "@angular/platform-browser": "22.1.8",
     "@angular/platform-browser-dynamic": "22.1.8",
     "@angular/router": "22.1.8",
+    "@material/circular-progress": "^14.0.0",
+    "@material/linear-progress": "^14.0.0",
+    "@material/list": "^14.0.0",
+    "@material/menu": "^14.0.0",
+    "@material/ripple": "^14.0.0",
+    "@material/select": "^14.0.0",
+    "@material/switch": "^14.0.0",
+    "@material/tab-bar": "^14.0.0",
+    "@material/textfield": "^14.0.0",
+    "@material/top-app-bar": "^14.0.0",
     "express": "^5.3.0",
     "material-components-web": "^14.0.0",
     "mysql2": "^3.24.6",
@@ -75,7 +85,6 @@
     "eslint-plugin-import": "^2.32.0",
     "eslint-plugin-unused-imports": "^4.4.1",
     "globals": "^17",
-    "husky": "^9.0.11",
     "jest": "30.5.2",
     "jest-environment-jsdom": "30.5.2",
     "jest-environment-node": "^30.5.2",
@@ -86,7 +95,6 @@
     "nx": "23.3.0",
     "postcss": "^8.4.5",
     "prettier": "^3.9.10",
-    "pretty-quick": "^4.2.2",
     "rollup": "^4",
     "sass": "^1.56.1",
     "ts-jest": "29.4.9",
@@ -96,5 +104,6 @@
   },
   "engines": {
     "node": ">=24"
-  }
+  },
+  "packageManager": "pnpm@12.14.0"
 }

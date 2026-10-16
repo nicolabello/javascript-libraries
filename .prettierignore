@@ -2,7 +2,6 @@
 
 /.angular
 /.vscode
-/.husky
 /dist
 /node_modules
 /coverage
@@ -13,3 +12,4 @@ test-setup.ts
 
 /.nx/workspace-data
 .nx/self-healing
+pnpm-lock.yaml

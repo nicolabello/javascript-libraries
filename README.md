@@ -43,21 +43,21 @@ This is an [Nx](https://nx.dev) monorepo. Each library lives in `libs/<name>` an
 ### Prerequisites
 
 - Node.js 24 (see [`.nvmrc`](.nvmrc), e.g. `nvm use`)
-- [Yarn 1](https://classic.yarnpkg.com/)
+- [pnpm](https://pnpm.io), at the version in the `packageManager` field of [`package.json`](package.json) (e.g. `corepack enable pnpm`, or any pnpm install, which switches to that version automatically)
 
 ```bash
-yarn install
+pnpm install
 ```
 
 ### Common tasks
 
 ```bash
-yarn nx test js-acl                      # Test one library
-yarn nx lint js-acl                      # Lint one library
-yarn nx build js-acl                     # Build one library into dist/libs/js-acl
+pnpm nx test js-acl                      # Test one library
+pnpm nx lint js-acl                      # Lint one library
+pnpm nx build js-acl                     # Build one library into dist/libs/js-acl
 
-yarn nx run-many -t lint test build      # Lint, test and build everything
-yarn verify-packages                     # Pack the built libraries and check they work when installed from npm
+pnpm nx run-many -t lint test build      # Lint, test and build everything
+pnpm verify-packages                     # Pack the built libraries and check they work when installed from npm
 ```
 
 `verify-packages` packs every built library with `npm pack`, installs the tarballs in a clean project (with only their declared dependencies and peer dependencies) and then loads, smoke tests and type checks them. The Angular libraries are also processed by the Angular linker. Run it after a build.

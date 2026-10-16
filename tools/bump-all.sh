@@ -1,8 +1,8 @@
 #!/bin/sh
 
-# https://stackoverflow.com/a/41553472/5631003
+# Bumps the patch version of every library
 for DIR in ./libs/*/; do (
 
-  yarn --cwd "$DIR" version --patch --no-commit-hooks --no-git-tag-version
+  cd "$DIR" && npm version patch --no-git-tag-version
 
 ); done
