@@ -1,13 +1,30 @@
 {
   "name": "@nicolabello/express-helpers",
-  "version": "1.0.15",
-  "description": "",
+  "version": "1.1.0",
+  "description": "Helpers for Express, such as a typed wrapper that forwards async route handler errors to next().",
   "author": "Nicola Bello <nicola.bello.3@gmail.com>",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://github.com/nicolabello/javascript-libraries/tree/master/libs/express-helpers#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/nicolabello/javascript-libraries",
     "directory": "libs/express-helpers"
   },
-  "keywords": [],
-  "license": "GPL-2.0-or-later"
+  "bugs": {
+    "url": "https://github.com/nicolabello/javascript-libraries/issues"
+  },
+  "keywords": [
+    "express",
+    "async",
+    "async handler",
+    "middleware",
+    "typescript"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "sideEffects": false,
+  "peerDependencies": {
+    "express": "^4.17.0 || ^5.0.0"
+  }
 }

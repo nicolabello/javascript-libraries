@@ -16,14 +16,29 @@
       }
     },
     "build": {
-      "executor": "@nx/js:tsc",
+      "executor": "@nx/rollup:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/js-helpers",
-        "tsConfig": "libs/js-helpers/tsconfig.lib.json",
-        "packageJson": "libs/js-helpers/package.json",
         "main": "libs/js-helpers/src/index.ts",
-        "assets": ["libs/js-helpers/*.md"]
+        "tsConfig": "libs/js-helpers/tsconfig.lib.json",
+        "project": "libs/js-helpers/package.json",
+        "compiler": "tsc",
+        "format": ["esm", "cjs"],
+        "generateExportsField": true,
+        "sourceMap": true,
+        "assets": [
+          {
+            "input": "libs/js-helpers",
+            "glob": "*.md",
+            "output": "."
+          },
+          {
+            "input": ".",
+            "glob": "LICENSE",
+            "output": "."
+          }
+        ]
       }
     }
   }

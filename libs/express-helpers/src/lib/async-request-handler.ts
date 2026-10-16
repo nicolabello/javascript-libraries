@@ -1,14 +1,15 @@
 import { NextFunction, Request, Response } from 'express';
-import { ParamsDictionary } from 'express-serve-static-core';
 
-import { ParsedQs } from 'qs';
+// Same defaults as Express' own RequestHandler, derived from `Request` so that no extra type packages are needed
+type DefaultParams = Request['params'];
+type DefaultQuery = Request['query'];
 
 export interface AsyncRequestHandler<
-  P = ParamsDictionary,
+  P = DefaultParams,
   ResBody = any,
   ReqBody = any,
-  ReqQuery = ParsedQs,
-  Locals extends Record<string, any> = Record<string, any>
+  ReqQuery = DefaultQuery,
+  Locals extends Record<string, any> = Record<string, any>,
 > {
   (
     req: Request<P, ResBody, ReqBody, ReqQuery, Locals>,
@@ -17,12 +18,16 @@ export interface AsyncRequestHandler<
   ): Promise<void>;
 }
 
+/**
+ * Wraps an async route handler so that a rejected promise is forwarded to `next(error)`
+ * and handled by the Express error-handling middleware.
+ */
 export function asyncRequestHandler<
-  P = ParamsDictionary,
+  P = DefaultParams,
   ResBody = any,
   ReqBody = any,
-  ReqQuery = ParsedQs,
-  Locals extends Record<string, any> = Record<string, any>
+  ReqQuery = DefaultQuery,
+  Locals extends Record<string, any> = Record<string, any>,
 >(
   requestHandler: AsyncRequestHandler<P, ResBody, ReqBody, ReqQuery, Locals>
 ): AsyncRequestHandler<P, ResBody, ReqBody, ReqQuery, Locals> {

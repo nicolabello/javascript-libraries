@@ -1,14 +1,12 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { inject, Pipe, PipeTransform } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
 import { DynamicRouterService } from '../services/dynamic-router.service';
 
-@Pipe({
-  name: 'nbDynamicRouterLinkActive',
-})
+@Pipe({ name: 'nbDynamicRouterLinkActive' })
 export class DynamicRouterLinkActivePipe implements PipeTransform {
-  public constructor(private routerService: DynamicRouterService) {}
+  private routerService = inject(DynamicRouterService);
 
   public transform(commands: any[]): Observable<boolean> {
     // const url = this.router.serializeUrl(this.router.createUrlTree(commands));

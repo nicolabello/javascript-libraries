@@ -9,24 +9,24 @@
     "build": {
       "executor": "@nx/angular:package",
       "outputs": ["{workspaceRoot}/dist/libs/ng-flex"],
+      "defaultConfiguration": "production",
       "options": {
-        "project": "libs/ng-flex/ng-package.json"
+        "project": "libs/ng-flex/ng-package.json",
+        "tsConfig": "libs/ng-flex/tsconfig.lib.json"
       },
       "configurations": {
         "production": {
           "tsConfig": "libs/ng-flex/tsconfig.lib.prod.json"
         },
-        "development": {
-          "tsConfig": "libs/ng-flex/tsconfig.lib.json"
-        }
-      },
-      "defaultConfiguration": "production"
+        "development": {}
+      }
     },
     "test": {
       "executor": "@nx/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/libs/ng-flex"],
       "options": {
-        "jestConfig": "libs/ng-flex/jest.config.ts"
+        "jestConfig": "libs/ng-flex/jest.config.ts",
+        "tsConfig": "libs/ng-flex/tsconfig.spec.json"
       }
     },
     "lint": {

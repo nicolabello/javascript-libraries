@@ -24,7 +24,7 @@ export class Typings {
   }
 
   public static isObject(value: any): value is { [key: string]: any } {
-    return value && typeof value === 'object' && value.constructor === Object;
+    return !!value && typeof value === 'object' && value.constructor === Object;
   }
 
   public static toString(value: any): string {

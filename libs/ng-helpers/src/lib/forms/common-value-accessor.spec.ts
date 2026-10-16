@@ -28,7 +28,7 @@ describe('InputComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [InputComponent],
+      imports: [InputComponent],
     }).compileComponents();
   }));
 
@@ -51,6 +51,7 @@ describe('InputWrapperComponent', () => {
       { provide: NG_VALUE_ACCESSOR, useExisting: InputComponent, multi: true },
       { provide: NG_VALIDATORS, useExisting: InputComponent, multi: true },
     ],
+    imports: [FormsModule, ReactiveFormsModule],
   })
   class InputComponent extends CommonValueAccessor<string> {}
 
@@ -64,6 +65,7 @@ describe('InputWrapperComponent', () => {
         <nb-input formControlName="formControl" #inputComponentByFormControlName></nb-input>
       </form>
     `,
+    imports: [FormsModule, ReactiveFormsModule, InputComponent],
   })
   class InputWrapperComponent {
     public value = '';
@@ -85,8 +87,7 @@ describe('InputWrapperComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [InputComponent, InputWrapperComponent],
-      imports: [FormsModule, ReactiveFormsModule],
+      imports: [FormsModule, ReactiveFormsModule, InputComponent, InputWrapperComponent],
     }).compileComponents();
   }));
 
@@ -121,6 +122,7 @@ describe('InputComponent value', () => {
       { provide: NG_VALUE_ACCESSOR, useExisting: InputComponent, multi: true },
       { provide: NG_VALIDATORS, useExisting: InputComponent, multi: true },
     ],
+    imports: [FormsModule, ReactiveFormsModule],
   })
   class InputComponent extends CommonValueAccessor<string> {}
 
@@ -134,6 +136,7 @@ describe('InputComponent value', () => {
         <nb-input formControlName="formControl" #inputComponentByFormControlName></nb-input>
       </form>
     `,
+    imports: [FormsModule, ReactiveFormsModule, InputComponent],
   })
   class InputWrapperComponent {
     public model = '';
@@ -155,8 +158,7 @@ describe('InputComponent value', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [InputComponent, InputWrapperComponent],
-      imports: [FormsModule, ReactiveFormsModule],
+      imports: [FormsModule, ReactiveFormsModule, InputComponent, InputWrapperComponent],
     }).compileComponents();
   }));
 
@@ -227,6 +229,7 @@ describe('InputComponent formatters', () => {
       { provide: NG_VALUE_ACCESSOR, useExisting: InputComponent, multi: true },
       { provide: NG_VALIDATORS, useExisting: InputComponent, multi: true },
     ],
+    imports: [FormsModule, ReactiveFormsModule],
   })
   class InputComponent extends CommonValueAccessor<string> {
     protected formatValueInput(value: any): string {
@@ -248,6 +251,7 @@ describe('InputComponent formatters', () => {
         <nb-input formControlName="formControl" #inputComponentByFormControlName></nb-input>
       </form>
     `,
+    imports: [FormsModule, ReactiveFormsModule, InputComponent],
   })
   class InputWrapperComponent {
     public model = '';
@@ -269,8 +273,7 @@ describe('InputComponent formatters', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [InputComponent, InputWrapperComponent],
-      imports: [FormsModule, ReactiveFormsModule],
+      imports: [FormsModule, ReactiveFormsModule, InputComponent, InputWrapperComponent],
     }).compileComponents();
   }));
 
@@ -353,6 +356,7 @@ describe('InputComponent validators', () => {
       { provide: NG_VALUE_ACCESSOR, useExisting: InputComponent, multi: true },
       { provide: NG_VALIDATORS, useExisting: InputComponent, multi: true },
     ],
+    imports: [FormsModule, ReactiveFormsModule],
   })
   class InputComponent extends CommonValueAccessor<string> {
     protected validators = inputValidators;
@@ -368,6 +372,7 @@ describe('InputComponent validators', () => {
         <nb-input formControlName="formControl" #inputComponentByFormControlName></nb-input>
       </form>
     `,
+    imports: [FormsModule, ReactiveFormsModule, InputComponent],
   })
   class InputWrapperComponent {
     public model = '';
@@ -389,8 +394,7 @@ describe('InputComponent validators', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [InputComponent, InputWrapperComponent],
-      imports: [FormsModule, ReactiveFormsModule],
+      imports: [FormsModule, ReactiveFormsModule, InputComponent, InputWrapperComponent],
     }).compileComponents();
   }));
 

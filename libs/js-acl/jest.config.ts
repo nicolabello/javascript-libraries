@@ -1,5 +1,5 @@
 /* eslint-disable */
-export default {
+module.exports = {
   displayName: 'js-acl',
   preset: '../../jest.preset.js',
   globals: {},

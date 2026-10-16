@@ -1,4 +1,4 @@
-import { Directive, ElementRef, OnDestroy } from '@angular/core';
+import { Directive, ElementRef, inject, OnDestroy } from '@angular/core';
 
 import { Observable, ReplaySubject } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
@@ -12,22 +12,16 @@ import { FlexContainerDirective } from '../flex-container/flex-container.directi
 
 @Directive()
 export abstract class FlexPaneDirective implements OnDestroy {
-  public hostElement: HTMLElement;
-  protected flexContainer: FlexContainerDirective;
+  public hostElement = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
+  protected flexContainer: FlexContainerDirective = inject(FlexContainerService).flexContainer;
   protected subscriptions = new SubscriptionsBucket();
   private innerSizeSubject = new ReplaySubject<Size>(1);
 
-  public constructor(
-    hostElementRef: ElementRef,
-    flexContainerService: FlexContainerService,
-    flexPaneService: FlexPaneService
-  ) {
-    this.hostElement = hostElementRef.nativeElement;
+  public constructor() {
     this.hostElement.style.margin = '0';
     this.hostElement.style.boxSizing = 'border-box';
 
-    flexPaneService.flexPane = this;
-    this.flexContainer = flexContainerService.flexContainer; // horizontalFlexContainer || verticalFlexContainer;
+    inject(FlexPaneService).flexPane = this;
   }
 
   public get innerSize(): Observable<Size> {

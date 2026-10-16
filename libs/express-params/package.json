@@ -1,13 +1,34 @@
 {
   "name": "@nicolabello/express-params",
-  "version": "1.0.13",
-  "description": "",
+  "version": "1.1.0",
+  "description": "Declarative request parameter sanitization and validation middleware for Express.",
   "author": "Nicola Bello <nicola.bello.3@gmail.com>",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://github.com/nicolabello/javascript-libraries/tree/master/libs/express-params#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/nicolabello/javascript-libraries",
     "directory": "libs/express-params"
   },
-  "keywords": [],
-  "license": "GPL-2.0-or-later"
+  "bugs": {
+    "url": "https://github.com/nicolabello/javascript-libraries/issues"
+  },
+  "keywords": [
+    "express",
+    "validation",
+    "sanitization",
+    "params",
+    "middleware"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "sideEffects": false,
+  "peerDependencies": {
+    "express": "^4.17.0 || ^5.0.0"
+  },
+  "dependencies": {
+    "@nicolabello/express-http-error": "^1.1.0",
+    "@nicolabello/js-helpers": "^2.1.0"
+  }
 }

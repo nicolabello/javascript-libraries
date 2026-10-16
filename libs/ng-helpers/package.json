@@ -1,18 +1,31 @@
 {
   "name": "@nicolabello/ng-helpers",
-  "version": "2.0.20",
-  "description": "",
+  "version": "3.0.0",
+  "description": "Angular helpers: a base ControlValueAccessor, form utilities, a subscribe directive and RxJS wrappers for Resize/Mutation/Intersection observers.",
   "author": "Nicola Bello <nicola.bello.3@gmail.com>",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://github.com/nicolabello/javascript-libraries/tree/master/libs/ng-helpers#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/nicolabello/javascript-libraries",
     "directory": "libs/ng-helpers"
   },
-  "keywords": [],
-  "license": "GPL-2.0-or-later",
+  "bugs": {
+    "url": "https://github.com/nicolabello/javascript-libraries/issues"
+  },
+  "keywords": [
+    "angular",
+    "helpers",
+    "control value accessor",
+    "forms",
+    "rxjs",
+    "resize observer"
+  ],
+  "sideEffects": false,
   "peerDependencies": {
-    "@angular/common": "^18.0.0",
-    "@angular/core": "^18.0.0"
+    "@angular/core": "^22.0.0",
+    "@angular/forms": "^22.0.0",
+    "rxjs": "^7.4.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

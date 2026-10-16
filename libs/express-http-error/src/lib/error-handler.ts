@@ -5,14 +5,15 @@ import { isNodeEnvProduction } from '@nicolabello/js-helpers';
 import { HttpError } from './http-error';
 import { HttpStatusCode } from './http-status-code';
 
-interface ErrorResponse {
+export interface ErrorResponse {
   type: 'error';
   status: HttpStatusCode;
   message: string;
   data?: { [key: string]: any };
+  debugData?: { [key: string]: any };
 }
 
-function getErrorResponse<T extends Error>(err: T, isProduction: boolean): ErrorResponse {
+export function getErrorResponse(err: unknown, isProduction: boolean): ErrorResponse {
   if (err instanceof HttpError) {
     return {
       type: 'error',
@@ -23,6 +24,8 @@ function getErrorResponse<T extends Error>(err: T, isProduction: boolean): Error
     };
   }
 
+  const error = err instanceof Error ? err : new Error(String(err));
+
   return {
     type: 'error',
     status: HttpStatusCode.InternalServerError,
@@ -30,10 +33,10 @@ function getErrorResponse<T extends Error>(err: T, isProduction: boolean): Error
     ...(isProduction
       ? null
       : {
-          message: err.message,
+          message: error.message,
           debugData: {
-            name: err.name,
-            stack: err.stack,
+            name: error.name,
+            stack: error.stack,
           },
         }),
   };
@@ -45,6 +48,10 @@ export function errorHandler({
   isProduction?: boolean;
 } = {}): ErrorRequestHandler {
   return (err, req, res, next) => {
+    // If the response has already started, let Express close the connection
+    if (res.headersSent) {
+      return next(err);
+    }
     const error = getErrorResponse(err, isProduction);
     res.status(error.status).send(error);
   };

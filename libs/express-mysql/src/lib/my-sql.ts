@@ -1,52 +1,63 @@
 import { createPool, Pool, PoolConnection, PoolOptions } from 'mysql2';
 
 class MySql {
-  private pool: Pool;
+  private pool?: Pool;
+
+  public get isConnected(): boolean {
+    return !!this.pool;
+  }
 
   public async connect(config: PoolOptions): Promise<void> {
     if (this.pool) {
-      return Promise.resolve();
+      return;
     }
-    this.pool = createPool(config);
-    await this.checkConnection();
+
+    const pool = createPool(config);
+
+    try {
+      await MySql.checkConnection(pool);
+    } catch (error) {
+      pool.end();
+      throw error;
+    }
+
+    this.pool = pool;
   }
 
   public getConnection(): Promise<PoolConnection> {
+    const pool = this.pool;
+
+    if (!pool) {
+      return Promise.reject(new Error('MySQL pool is not initialised: call mySql.connect(config) first'));
+    }
+
     return new Promise((resolve, reject) => {
-      this.pool.getConnection((error, connection) => {
-        if (error) reject(error);
-        resolve(connection);
-      });
+      pool.getConnection((error, connection) => (error ? reject(error) : resolve(connection)));
     });
   }
 
-  // public async query<T = any>(sql: string): Promise<T> {
-  //   return new Promise((resolve, reject) => {
-  //     this.pool.query(sql, (error, result: T) => {
-  //       if (error) reject(error);
-  //       resolve(result);
-  //     });
-  //   });
-  // }
+  public disconnect(): Promise<void> {
+    const pool = this.pool;
+    this.pool = undefined;
 
-  private checkConnection(): Promise<void> {
+    if (!pool) {
+      return Promise.resolve();
+    }
+
+    return new Promise((resolve, reject) => pool.end((error) => (error ? reject(error) : resolve())));
+  }
+
+  private static checkConnection(pool: Pool): Promise<void> {
     return new Promise((resolve, reject) => {
-      this.pool.getConnection((error, connection) => {
-        if (error) reject(error);
-        connection?.release();
+      pool.getConnection((error, connection) => {
+        if (error) {
+          return reject(error);
+        }
+        connection.release();
         resolve();
       });
     });
   }
-
-  // public disconnect(): Promise<void> {
-  //   return new Promise((resolve, reject) => {
-  //     this.pool.end((error) => {
-  //       if (error) reject(error);
-  //       resolve();
-  //     });
-  //   });
-  // }
 }
 
 // Singleton

@@ -1,12 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  Input,
-  OnDestroy,
-  OnInit,
-  SkipSelf,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
 
 import { SubscriptionsBucket } from '@nicolabello/ng-helpers';
 
@@ -20,15 +12,13 @@ import { DynamicRouterService } from '../../services/dynamic-router.service';
   providers: [DynamicRouterService],
 })
 export class DynamicRouterSubviewComponent implements OnInit, OnDestroy {
+  private parentRouterService = inject(DynamicRouterService, { skipSelf: true });
+  private cdr = inject(ChangeDetectorRef);
+  private routerService = inject(DynamicRouterService);
+
   public active: Subview;
   @Input() public level = 0;
   private subscriptions = new SubscriptionsBucket();
-
-  public constructor(
-    @SkipSelf() private parentRouterService: DynamicRouterService,
-    private cdr: ChangeDetectorRef,
-    private routerService: DynamicRouterService
-  ) {}
 
   public ngOnInit(): void {
     this.routerService.level =

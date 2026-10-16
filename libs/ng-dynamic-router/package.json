@@ -1,20 +1,37 @@
 {
   "name": "@nicolabello/ng-dynamic-router",
-  "version": "2.0.14",
-  "description": "",
+  "version": "3.0.0",
+  "description": "Mobile-style stacked navigation for Angular: animated forward/back transitions, history-aware back button and query-param driven subviews.",
   "author": "Nicola Bello <nicola.bello.3@gmail.com>",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://github.com/nicolabello/javascript-libraries/tree/master/libs/ng-dynamic-router#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/nicolabello/javascript-libraries",
     "directory": "libs/ng-dynamic-router"
   },
-  "keywords": [],
-  "license": "GPL-2.0-or-later",
+  "bugs": {
+    "url": "https://github.com/nicolabello/javascript-libraries/issues"
+  },
+  "keywords": [
+    "angular",
+    "router",
+    "navigation",
+    "transitions",
+    "subviews",
+    "mobile"
+  ],
+  "sideEffects": false,
   "peerDependencies": {
-    "@angular/common": "^18.0.0",
-    "@angular/core": "^18.0.0"
+    "@angular/animations": "^22.0.0",
+    "@angular/common": "^22.0.0",
+    "@angular/core": "^22.0.0",
+    "@angular/router": "^22.0.0",
+    "rxjs": "^7.4.0"
   },
   "dependencies": {
+    "@nicolabello/js-helpers": "^2.1.0",
+    "@nicolabello/ng-helpers": "^3.0.0",
     "tslib": "^2.3.0"
   }
 }

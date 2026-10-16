@@ -1,0 +1,94 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  build:
+    name: Lint, test, build and verify
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      # Uses the version in the "packageManager" field of package.json
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint, test and build
+        run: pnpm nx run-many -t lint test build
+
+      # Packs every package and installs it in a clean project, as a consumer would
+      - name: Verify packages
+        run: pnpm verify-packages
+
+      - name: Upload packages
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v7
+        with:
+          name: packages
+          path: dist/libs
+          retention-days: 7
+
+  publish:
+    name: Publish to npm
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # Required for npm provenance
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Download packages
+        uses: actions/download-artifact@v8
+        with:
+          name: packages
+          path: dist/libs
+
+      # Only versions that are not on npm yet are published: bump a package's version to release it.
+      # Packages are listed in dependency order.
+      - name: Publish new versions
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+        run: |
+          for lib in js-helpers js-acl express-http-error express-helpers express-params express-mysql \
+                     ng-helpers ng-suspense ng-flex ng-router-history ng-dynamic-router ng-material-components-web; do
+            dir="dist/libs/$lib"
+            name=$(node -p "require('./$dir/package.json').name")
+            version=$(node -p "require('./$dir/package.json').version")
+            if npm view "$name@$version" version > /dev/null 2>&1; then
+              echo "$name@$version is already published"
+            else
+              npm publish "$dir" --access public --provenance
+            fi
+          done

@@ -3,5 +3,6 @@
   "dest": "../../dist/libs/ng-flex",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "allowedNonPeerDependencies": ["@nicolabello/ng-helpers"]
 }

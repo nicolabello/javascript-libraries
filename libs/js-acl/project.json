@@ -16,14 +16,29 @@
       }
     },
     "build": {
-      "executor": "@nx/js:tsc",
+      "executor": "@nx/rollup:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/js-acl",
-        "tsConfig": "libs/js-acl/tsconfig.lib.json",
-        "packageJson": "libs/js-acl/package.json",
         "main": "libs/js-acl/src/index.ts",
-        "assets": ["libs/js-acl/*.md"]
+        "tsConfig": "libs/js-acl/tsconfig.lib.json",
+        "project": "libs/js-acl/package.json",
+        "compiler": "tsc",
+        "format": ["esm", "cjs"],
+        "generateExportsField": true,
+        "sourceMap": true,
+        "assets": [
+          {
+            "input": "libs/js-acl",
+            "glob": "*.md",
+            "output": "."
+          },
+          {
+            "input": ".",
+            "glob": "LICENSE",
+            "output": "."
+          }
+        ]
       }
     }
   }

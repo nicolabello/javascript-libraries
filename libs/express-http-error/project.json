@@ -16,14 +16,29 @@
       }
     },
     "build": {
-      "executor": "@nx/js:tsc",
+      "executor": "@nx/rollup:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/express-http-error",
-        "tsConfig": "libs/express-http-error/tsconfig.lib.json",
-        "packageJson": "libs/express-http-error/package.json",
         "main": "libs/express-http-error/src/index.ts",
-        "assets": ["libs/express-http-error/*.md"]
+        "tsConfig": "libs/express-http-error/tsconfig.lib.json",
+        "project": "libs/express-http-error/package.json",
+        "compiler": "tsc",
+        "format": ["esm", "cjs"],
+        "generateExportsField": true,
+        "sourceMap": true,
+        "assets": [
+          {
+            "input": "libs/express-http-error",
+            "glob": "*.md",
+            "output": "."
+          },
+          {
+            "input": ".",
+            "glob": "LICENSE",
+            "output": "."
+          }
+        ]
       }
     }
   }

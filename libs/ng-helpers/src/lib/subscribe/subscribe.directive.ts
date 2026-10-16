@@ -1,4 +1,13 @@
-import { ChangeDetectorRef, Directive, Input, OnDestroy, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Directive,
+  inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  TemplateRef,
+  ViewContainerRef,
+} from '@angular/core';
 
 import { Observable, Subscription } from 'rxjs';
 
@@ -8,19 +17,15 @@ class Context<T> {
 
 // Use as <ng-container *nbSubscribe="interval$ as value;">{{ value }}</ng-container>
 // https://netbasal.com/diy-subscription-handling-directive-in-angular-c8f6e762697f
-@Directive({
-  selector: '[nbSubscribe]',
-})
+@Directive({ selector: '[nbSubscribe]' })
 export class SubscribeDirective<T> implements OnInit, OnDestroy {
+  private viewContainer = inject(ViewContainerRef);
+  private cdr = inject(ChangeDetectorRef);
+  private templateRef = inject<TemplateRef<Context<T>>>(TemplateRef);
+
   private observable?: Observable<T>;
   private context: Context<T> = new Context();
   private subscription?: Subscription;
-
-  public constructor(
-    private viewContainer: ViewContainerRef,
-    private cdr: ChangeDetectorRef,
-    private templateRef: TemplateRef<Context<T>>
-  ) {}
 
   @Input()
   public set nbSubscribe(observable: Observable<T>) {

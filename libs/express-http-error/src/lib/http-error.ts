@@ -8,5 +8,6 @@ export class HttpError extends Error {
     public readonly debugData?: any
   ) {
     super(message);
+    this.name = 'HttpError';
   }
 }

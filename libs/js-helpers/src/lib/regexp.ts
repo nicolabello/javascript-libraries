@@ -26,7 +26,7 @@ export class Regexp {
   }
 
   private static getMatchRegExp(pattern: string, glue: string): RegExp {
-    pattern = Regexp.removeExtraSpaces(Regexp.escapePattern(pattern)).replace(' ', glue);
+    pattern = Regexp.removeExtraSpaces(Regexp.escapePattern(pattern)).split(' ').join(glue);
     // return pattern ? new RegExp(pattern, 'gi') : null;
     return new RegExp(pattern, 'gi');
   }

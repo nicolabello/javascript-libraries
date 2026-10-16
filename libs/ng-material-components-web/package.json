@@ -1,20 +1,41 @@
 {
   "name": "@nicolabello/ng-material-components-web",
-  "version": "2.0.19",
-  "description": "",
+  "version": "3.0.0",
+  "description": "Angular directives that automatically initialise Material Components for the Web (MDC Web) components and bind them to Angular forms.",
   "author": "Nicola Bello <nicola.bello.3@gmail.com>",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://github.com/nicolabello/javascript-libraries/tree/master/libs/ng-material-components-web#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/nicolabello/javascript-libraries",
     "directory": "libs/ng-material-components-web"
   },
-  "keywords": [],
-  "license": "GPL-2.0-or-later",
+  "bugs": {
+    "url": "https://github.com/nicolabello/javascript-libraries/issues"
+  },
+  "keywords": [
+    "angular",
+    "material",
+    "material components web",
+    "mdc",
+    "mdc-web",
+    "directives"
+  ],
+  "sideEffects": false,
   "peerDependencies": {
-    "@angular/common": "^18.0.0",
-    "@angular/core": "^18.0.0",
-    "@angular/forms": "^18.0.0",
-    "material-components-web": "^14.0.0"
+    "@angular/core": "^22.0.0",
+    "@angular/forms": "^22.0.0",
+    "@material/circular-progress": "^14.0.0",
+    "@material/linear-progress": "^14.0.0",
+    "@material/list": "^14.0.0",
+    "@material/menu": "^14.0.0",
+    "@material/ripple": "^14.0.0",
+    "@material/select": "^14.0.0",
+    "@material/switch": "^14.0.0",
+    "@material/tab-bar": "^14.0.0",
+    "@material/textfield": "^14.0.0",
+    "@material/top-app-bar": "^14.0.0",
+    "rxjs": "^7.4.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

@@ -4,7 +4,7 @@
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "importHelpers": true,
@@ -13,7 +13,6 @@
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": ".",
     "paths": {
       "@nicolabello/express-helpers": ["libs/express-helpers/src/index.ts"],
       "@nicolabello/express-http-error": ["libs/express-http-error/src/index.ts"],
@@ -28,7 +27,10 @@
       "@nicolabello/ng-router-history": ["libs/ng-router-history/src/index.ts"],
       "@nicolabello/ng-suspense": ["libs/ng-suspense/src/index.ts"],
       "@nicolabello/node-otp": ["libs/node-otp/src/index.ts"]
-    }
+    },
+    "strict": false,
+    "noUncheckedSideEffectImports": false,
+    "types": ["*"]
   },
   "exclude": ["node_modules", "tmp"]
 }

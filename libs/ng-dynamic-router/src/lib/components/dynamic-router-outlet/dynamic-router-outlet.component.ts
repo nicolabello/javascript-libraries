@@ -4,12 +4,14 @@ import {
   ChangeDetectorRef,
   Component,
   ComponentRef,
+  inject,
   Injector,
   OnDestroy,
   OnInit,
   ViewChild,
   ViewContainerRef,
 } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 import { SubscriptionsBucket } from '@nicolabello/ng-helpers';
 
@@ -39,8 +41,13 @@ import { DynamicRouterService } from '../../services/dynamic-router.service';
     ]),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [RouterOutlet],
 })
 export class DynamicRouterOutletComponent implements OnDestroy, OnInit {
+  private routerService = inject(DynamicRouterService);
+  private injector = inject(Injector);
+  private cdr = inject(ChangeDetectorRef);
+
   public animationDirection: NavigationDirection | null = null;
 
   @ViewChild('outlet', { read: ViewContainerRef, static: true })
@@ -49,12 +56,6 @@ export class DynamicRouterOutletComponent implements OnDestroy, OnInit {
   private subscriptions = new SubscriptionsBucket();
   private route?: HistoryRoute;
   private componentRef?: ComponentRef<any>;
-
-  public constructor(
-    private routerService: DynamicRouterService,
-    private injector: Injector,
-    private cdr: ChangeDetectorRef
-  ) {}
 
   private static hasSameUrl(currentRoute: HistoryRoute, newRoute: HistoryRoute): boolean {
     return currentRoute.url === newRoute.url;

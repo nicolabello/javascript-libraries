@@ -4,9 +4,7 @@ import { SuspenseIfContext, SuspenseInput } from '../models/suspense';
 
 import { SuspenseIfDirective } from './suspense-if.directive';
 
-@Directive({
-  selector: '[nbSuspenseIfError]',
-})
+@Directive({ selector: '[nbSuspenseIfError]' })
 export class SuspenseIfErrorDirective<T> extends SuspenseIfDirective<T> implements OnInit, OnDestroy {
   @Input() public nbSuspenseIfErrorOfType?: SuspenseInput<T>;
 

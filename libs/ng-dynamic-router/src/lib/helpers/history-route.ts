@@ -10,7 +10,10 @@ export class HistoryRoute {
   public readonly params: Params;
   public readonly url: string;
 
-  public constructor(public readonly activatedRoute: ActivatedRoute, public readonly state: HistoryState) {
+  public constructor(
+    public readonly activatedRoute: ActivatedRoute,
+    public readonly state: HistoryState
+  ) {
     // Save the following here as activatedRoute.snapshot is changing later
     this.component = activatedRoute.snapshot.data.component;
     this.params = activatedRoute.snapshot.params;

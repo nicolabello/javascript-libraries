@@ -1,18 +1,31 @@
 {
   "name": "@nicolabello/ng-router-history",
-  "version": "0.0.14",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Tracks Angular Router navigation history to expose the previous URL and navigate back safely, with a fallback route.",
   "author": "Nicola Bello <nicola.bello.3@gmail.com>",
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://github.com/nicolabello/javascript-libraries/tree/master/libs/ng-router-history#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/nicolabello/javascript-libraries",
     "directory": "libs/ng-router-history"
   },
-  "keywords": [],
-  "license": "GPL-2.0-or-later",
+  "bugs": {
+    "url": "https://github.com/nicolabello/javascript-libraries/issues"
+  },
+  "keywords": [
+    "angular",
+    "router",
+    "history",
+    "back navigation",
+    "previous url"
+  ],
+  "sideEffects": false,
   "peerDependencies": {
-    "@angular/common": "^18.0.0",
-    "@angular/core": "^18.0.0"
+    "@angular/common": "^22.0.0",
+    "@angular/core": "^22.0.0",
+    "@angular/router": "^22.0.0",
+    "rxjs": "^7.4.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

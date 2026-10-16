@@ -3,5 +3,6 @@
   "dest": "../../dist/libs/ng-dynamic-router",
   "lib": {
     "entryFile": "src/index.ts"
-  }
+  },
+  "allowedNonPeerDependencies": ["@nicolabello/js-helpers", "@nicolabello/ng-helpers"]
 }

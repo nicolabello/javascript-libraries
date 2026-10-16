@@ -16,14 +16,29 @@
       }
     },
     "build": {
-      "executor": "@nx/js:tsc",
+      "executor": "@nx/rollup:rollup",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/express-mysql",
-        "tsConfig": "libs/express-mysql/tsconfig.lib.json",
-        "packageJson": "libs/express-mysql/package.json",
         "main": "libs/express-mysql/src/index.ts",
-        "assets": ["libs/express-mysql/*.md"]
+        "tsConfig": "libs/express-mysql/tsconfig.lib.json",
+        "project": "libs/express-mysql/package.json",
+        "compiler": "tsc",
+        "format": ["esm", "cjs"],
+        "generateExportsField": true,
+        "sourceMap": true,
+        "assets": [
+          {
+            "input": "libs/express-mysql",
+            "glob": "*.md",
+            "output": "."
+          },
+          {
+            "input": ".",
+            "glob": "LICENSE",
+            "output": "."
+          }
+        ]
       }
     }
   }

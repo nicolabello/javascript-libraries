@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 
 import { Observable, of } from 'rxjs';
@@ -11,11 +11,13 @@ import { HistoryRouterService } from '../../services/history-router.service';
   template: '',
 })
 export class DynamicRouterComponent implements CanComponentDeactivate {
-  public constructor(
-    private historyRouterService: HistoryRouterService,
-    private routerService: DynamicRouterService,
-    activatedRoute: ActivatedRoute
-  ) {
+  private historyRouterService = inject(HistoryRouterService);
+  private routerService = inject(DynamicRouterService);
+
+  public constructor() {
+    const historyRouterService = this.historyRouterService;
+    const activatedRoute = inject(ActivatedRoute);
+
     historyRouterService.initActivatedRouteObserver(activatedRoute);
   }
 
