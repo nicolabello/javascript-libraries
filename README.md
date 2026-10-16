@@ -72,7 +72,11 @@ Packages are published by the [CI workflow](.github/workflows/ci.yml) when chang
 2. Open a pull request: lint, tests, builds and package verification run on it
 3. Merge it: every package whose version is not on npm yet is published, with [npm provenance](https://docs.npmjs.com/generating-provenance-statements)
 
-Publishing requires an `NPM_AUTH_TOKEN` repository secret.
+Publishing uses [npm trusted publishing](https://docs.npmjs.com/trusted-publishers): no npm token is stored in the repository, but every package must trust the CI workflow. A new package must be published once manually; then, with a recent npm (`npm install -g npm@latest`) and logged in as an owner of the package:
+
+```bash
+npm trust github @nicolabello/<name> --repo nicolabello/javascript-libraries --file ci.yml --allow-publish
+```
 
 ## License
 

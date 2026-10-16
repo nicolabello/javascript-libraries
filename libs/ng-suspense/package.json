@@ -7,7 +7,7 @@
   "homepage": "https://github.com/nicolabello/javascript-libraries/tree/master/libs/ng-suspense#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nicolabello/javascript-libraries",
+    "url": "git+https://github.com/nicolabello/javascript-libraries.git",
     "directory": "libs/ng-suspense"
   },
   "bugs": {
