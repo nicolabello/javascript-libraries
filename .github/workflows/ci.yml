@@ -58,7 +58,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      id-token: write # Required for npm provenance
+      id-token: write # Required for npm trusted publishing (OIDC) and provenance
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -77,9 +77,9 @@ jobs:
 
       # Only versions that are not on npm yet are published: bump a package's version to release it.
       # Packages are listed in dependency order.
+      # Authentication uses npm trusted publishing: every package must trust this workflow on npmjs.com
+      # (see "Releasing" in the README). Provenance is generated automatically.
       - name: Publish new versions
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
         run: |
           for lib in js-helpers js-acl express-http-error express-helpers express-params express-mysql \
                      ng-helpers ng-suspense ng-flex ng-router-history ng-dynamic-router ng-material-components-web; do
@@ -89,6 +89,6 @@ jobs:
             if npm view "$name@$version" version > /dev/null 2>&1; then
               echo "$name@$version is already published"
             else
-              npm publish "$dir" --access public --provenance
+              npm publish "$dir" --access public
             fi
           done

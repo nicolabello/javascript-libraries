@@ -7,7 +7,7 @@
   "homepage": "https://github.com/nicolabello/javascript-libraries/tree/master/libs/js-helpers#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nicolabello/javascript-libraries",
+    "url": "git+https://github.com/nicolabello/javascript-libraries.git",
     "directory": "libs/js-helpers"
   },
   "bugs": {
